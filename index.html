@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>India New Tax Regime — FY 2025-26</title>
+<title>FYNNECT — Tax Guide</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:#1a1a1a;line-height:1.6;background:#f8f8f6;padding:20px}
@@ -99,21 +99,58 @@ tr:last-child td{border-bottom:none}
 <div class="wrap">
 
 <div class="hero">
-  <div class="hero-title">New Tax Regime — Complete Guide</div>
-  <div class="hero-sub">FY 2025-26 &nbsp;·&nbsp; AY 2026-27 &nbsp;·&nbsp; Default regime for all taxpayers</div>
-  <div class="hero-pills">
-    <span class="hpill hot">New Regime Only</span>
-    <span class="hpill">Budget 2025 Rates</span>
-    <span class="hpill">All instruments covered</span>
+  <!-- Top row: branding + year badges -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:4px">India Income Tax</div>
+      <div class="hero-title">FYNNECT — Tax Guide</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <div style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 12px;text-align:center">
+        <div style="font-size:10px;opacity:.7;margin-bottom:1px">ITR Due Date</div>
+        <div style="font-size:13px;font-weight:500">31 July 2026</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="kpi-grid">
-  <div class="kpi k1"><div class="kpi-v">₹12.75 L</div><div class="kpi-l">Salaried zero-tax limit</div></div>
-  <div class="kpi k2"><div class="kpi-v">₹75,000</div><div class="kpi-l">Standard deduction</div></div>
-  <div class="kpi k3"><div class="kpi-v">12.5%</div><div class="kpi-l">LTCG on equity</div></div>
-  <div class="kpi k4"><div class="kpi-v">20%</div><div class="kpi-l">STCG on equity</div></div>
-  <div class="kpi k5"><div class="kpi-v">30%</div><div class="kpi-l">Crypto / lottery flat tax</div></div>
+  <!-- Divider -->
+  <div style="border-top:1px solid rgba(255,255,255,.15);margin-bottom:14px"></div>
+
+  <!-- Key metrics row -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px">
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">₹12.75L</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Salaried zero-tax (New)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">₹75,000</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Standard deduction (New)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">12.5%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">LTCG on equity (Sec 112A)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">20%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">STCG on equity (Sec 111A)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">30%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Crypto / lottery flat tax</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">4%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Health &amp; Education Cess</div>
+    </div>
+  </div>
+
+  <!-- Pills row -->
+  <div class="hero-pills">
+    <span class="hpill hot">New Regime (Default)</span>
+    <span class="hpill">Old Regime (Optional)</span>
+    <span class="hpill">Budget 2025 Updated</span>
+    <span class="hpill">New + Old Calculators</span>
+  </div>
 </div>
 
 <div class="tabs">
@@ -783,9 +820,27 @@ tr:last-child td{border-bottom:none}
 .hidden{display:none}
 .two-result{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 @media(max-width:540px){.two-result{grid-template-columns:1fr}}
+
+/* Regime toggle */.regime-toggle{display:flex;gap:0;background:#f3f4f6;border-radius:30px;padding:4px;margin-bottom:18px;width:fit-content}
+.regime-btn{padding:9px 28px;border-radius:26px;font-size:14px;font-weight:500;cursor:pointer;border:none;background:transparent;color:#6b7280;transition:all .2s;font-family:inherit}
+.regime-btn.active-new{background:linear-gradient(135deg,#1a56db,#7c3aed);color:#fff;box-shadow:0 2px 8px rgba(26,86,219,.3)}
+.regime-btn.active-old{background:linear-gradient(135deg,#dc2626,#f97316);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.3)}
+
 </style>
 
-<div class="note" style="margin-bottom:14px">This step-by-step guide walks through the exact method used to calculate income tax for a salaried individual under the <b>New Tax Regime (FY 2025-26)</b>. Fill in your client's details and the calculator will do the math.</div>
+<!-- REGIME TOGGLE -->
+<div style="margin-bottom:14px">
+  <div style="font-size:13px;font-weight:500;color:#374151;margin-bottom:10px">Select tax regime to calculate:</div>
+  <div class="regime-toggle">
+    <button class="regime-btn active-new" id="btn-new" onclick="switchRegime('new')">📊 New Regime <span style="font-size:11px;opacity:.8">(Default)</span></button>
+    <button class="regime-btn" id="btn-old" onclick="switchRegime('old')">📋 Old Regime <span style="font-size:11px;opacity:.8">(Optional)</span></button>
+  </div>
+  <div style="font-size:11px;color:#9ca3af;margin-top:6px" id="regime-hint">New regime (FY 2025-26): NIL → 5% → 10% → 15% → 20% → 25% → 30% | No HRA/80C deductions</div>
+</div>
+
+<!-- ═══════════ NEW REGIME CALCULATOR ═══════════ -->
+<div id="calc-new-regime">
+<div class="note" style="margin-bottom:14px">Step-by-step calculator for the <b>New Tax Regime (FY 2025-26)</b>. Fill in your client's details — all calculations update live.</div>
 
 <!-- STEP 1 -->
 <div class="calc-step">
@@ -1149,8 +1204,248 @@ tr:last-child td{border-bottom:none}
   <span class="tip-chip">File ITR by 31 July 2026 to avoid ₹5,000 late fee</span>
 </div>
 
-<!-- EXCEL EXPORT -->
-<div id="excel-export-banner" style="border-radius:14px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #a7f3d0;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+</div><!-- end calc-new-regime -->
+
+<!-- ═══════════ OLD REGIME CALCULATOR ═══════════ -->
+<div id="calc-old-regime" style="display:none">
+<div class="note note-w" style="margin-bottom:14px">Step-by-step calculator for the <b>Old Tax Regime (FY 2025-26)</b>. Allows HRA, 80C, 80D, home loan interest and many more deductions. Standard deduction: ₹50,000.</div>
+
+<!-- AGE SELECTOR -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">A</div>
+    <div><div class="calc-step-title">Age Category</div><div class="calc-step-sub">Determines basic exemption limit — senior citizens get higher exemption</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row">
+      <span class="field-label">Client age group</span>
+      <select class="field-input" id="old_age" onchange="calcOld()" style="width:200px">
+        <option value="below60">Below 60 years (Exemption ₹2.5L)</option>
+        <option value="senior">60–80 years — Senior Citizen (Exemption ₹3L)</option>
+        <option value="supersenior">Above 80 years — Super Senior Citizen (Exemption ₹5L)</option>
+      </select>
+    </div>
+    <div class="note note-g" id="old_age_note" style="margin-top:4px">Basic exemption limit: ₹2,50,000 — applicable for individuals below 60 years</div>
+  </div>
+</div>
+
+<!-- STEP 1 OLD — SALARY -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">1</div>
+    <div><div class="calc-step-title">Gross Salary Income</div><div class="calc-step-sub">Enter all salary components</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Basic salary (annual)</span><input class="field-input" id="o_basic" type="number" placeholder="e.g. 900000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">HRA received</span><input class="field-input" id="o_hra" type="number" placeholder="e.g. 300000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Special allowance</span><input class="field-input" id="o_special" type="number" placeholder="e.g. 200000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Bonus / performance pay</span><input class="field-input" id="o_bonus" type="number" placeholder="e.g. 150000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Other taxable allowances</span><input class="field-input" id="o_other_allow" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#dc2626">= Gross Salary</span><span id="o_gross_sal" style="font-size:15px;font-weight:500;color:#dc2626;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 2 OLD — HRA + STD DEDUCTION -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">2</div>
+    <div><div class="calc-step-title">Less: Exemptions from Salary</div><div class="calc-step-sub">HRA exemption, LTA, standard deduction ₹50,000</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #fecaca">
+      <div style="font-size:12px;font-weight:500;color:#b91c1c;margin-bottom:8px">🏠 HRA Exemption Calculator (Sec 10(13A))</div>
+      <div class="field-row"><span class="field-label">Rent paid annually</span><input class="field-input" id="o_rent_paid" type="number" placeholder="e.g. 240000" oninput="calcOld()"></div>
+      <div class="field-row">
+        <span class="field-label">City type</span>
+        <select class="field-input" id="o_metro" onchange="calcOld()" style="width:160px">
+          <option value="metro">Metro (50% of Basic)</option>
+          <option value="nonmetro">Non-Metro (40% of Basic)</option>
+        </select>
+      </div>
+      <div class="field-note">Metro cities: Mumbai, Delhi, Kolkata, Chennai — 50% of Basic. All others: 40%.</div>
+      <div class="field-row"><span class="field-label" style="color:#059669">HRA Exemption (auto-calculated)</span><span id="o_hra_exempt" style="font-size:13px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+      <div class="field-note" id="o_hra_breakdown" style="color:#9ca3af"></div>
+    </div>
+    <div class="field-row"><span class="field-label">LTA exemption (actual travel cost)</span><input class="field-input" id="o_lta" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-note">LTA: 2 journeys in 4-year block — economy rail/air fare for self+family. FY 2025-26 is in the 2022–2025 block.</div>
+    <div class="field-row"><span class="field-label">Standard deduction u/s 16(ia)</span><span style="font-size:13px;font-weight:500;color:#059669">₹50,000</span></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#059669">= Net Salary After Exemptions</span><span id="o_net_sal" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 3 OLD — OTHER INCOME -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">3</div>
+    <div><div class="calc-step-title">Add: Other Income</div><div class="calc-step-sub">Profession, business, interest, rent, capital gains</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Professional income (net)</span><input class="field-input" id="o_prof" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Business income (net)</span><input class="field-input" id="o_biz" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">F&amp;O / Options trading income</span><input class="field-input" id="o_fo" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Interest income (FD, savings, bonds)</span><input class="field-input" id="o_int" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Rental income (before 30% deduction)</span><input class="field-input" id="o_rent_inc" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">Enter GROSS rental income — 30% standard deduction (Sec 24a) is auto-applied</div>
+    <div class="field-row"><span class="field-label">STCG — equity / equity MF (≤12 months)</span><input class="field-input" id="o_stcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">LTCG — equity / equity MF (&gt;12 months, gross)</span><input class="field-input" id="o_ltcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Debt MF / other CG gains (at slab rate)</span><input class="field-input" id="o_debt_mf" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Other income</span><input class="field-input" id="o_other" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+  </div>
+</div>
+
+<!-- STEP 4 OLD — DEDUCTIONS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">4</div>
+    <div><div class="calc-step-title">Less: Chapter VI-A Deductions</div><div class="calc-step-sub">80C, 80D, 80E, home loan interest, NPS and more — all available in old regime</div></div>
+  </div>
+  <div class="calc-step-body">
+
+    <div style="background:#ecfdf5;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #a7f3d0">
+      <div style="font-size:12px;font-weight:500;color:#15803d;margin-bottom:8px">💰 Section 80C (combined limit ₹1,50,000)</div>
+      <div class="field-row"><span class="field-label">EPF / VPF contribution</span><input class="field-input" id="o_epf" type="number" placeholder="e.g. 72000" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">PPF contribution</span><input class="field-input" id="o_ppf" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">ELSS mutual fund investment</span><input class="field-input" id="o_elss" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">LIC / life insurance premium</span><input class="field-input" id="o_lic" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">Home loan principal repayment</span><input class="field-input" id="o_hl_princ" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">NSC / SCSS / Sukanya Samriddhi / other 80C</span><input class="field-input" id="o_80c_other" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label" style="color:#15803d">80C total (capped at ₹1.5L)</span><span id="o_80c_total" style="font-size:13px;font-weight:500;color:#15803d;min-width:160px;text-align:right">₹0</span></div>
+    </div>
+
+    <div class="field-row"><span class="field-label">NPS — own contribution u/s 80CCD(1B)</span><input class="field-input" id="o_nps_self" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-note">Additional deduction up to ₹50,000 over and above the ₹1.5L 80C limit</div>
+    <div class="field-row"><span class="field-label">NPS — employer contribution u/s 80CCD(2)</span><input class="field-input" id="o_nps_emp" type="number" placeholder="e.g. 90000" oninput="calcOld()"></div>
+    <div class="field-note">Max: 14% of basic+DA (central govt), 10% (others). No monetary cap.</div>
+    <div class="field-row"><span class="field-label">Health insurance — self &amp; family (80D)</span><input class="field-input" id="o_80d_self" type="number" placeholder="e.g. 25000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Health insurance — parents (80D)</span><input class="field-input" id="o_80d_par" type="number" placeholder="e.g. 25000" oninput="calcOld()"></div>
+    <div class="field-note">Limit: ₹25,000 (₹50,000 if parents are senior citizens). Max total 80D = ₹75,000 (self 25K + senior parents 50K).</div>
+    <div class="field-row"><span class="field-label">Home loan interest — self-occupied (Sec 24b)</span><input class="field-input" id="o_hl_int" type="number" placeholder="e.g. 200000" oninput="calcOld()"></div>
+    <div class="field-note">Capped at ₹2,00,000 per year for self-occupied property. No cap for let-out property.</div>
+    <div class="field-row"><span class="field-label">Education loan interest (80E)</span><input class="field-input" id="o_80e" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">Full interest deduction for up to 8 years. No monetary cap.</div>
+    <div class="field-row"><span class="field-label">Donations (80G)</span><input class="field-input" id="o_80g" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">50% or 100% of donation. Cash limit: ₹2,000 per donation.</div>
+    <div class="field-row"><span class="field-label">Savings interest (80TTA) or Senior deposit interest (80TTB)</span><input class="field-input" id="o_80tta" type="number" placeholder="e.g. 10000" oninput="calcOld()"></div>
+    <div class="field-note">80TTA: up to ₹10,000 (savings account interest only). 80TTB: up to ₹50,000 for senior citizens (all deposits).</div>
+    <div class="field-row"><span class="field-label">Other deductions (80DD, 80DDB, 80U etc.)</span><input class="field-input" id="o_other_ded" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+
+    <div class="field-row" style="margin-top:10px;padding-top:8px;border-top:.5px solid #e5e7eb">
+      <span class="field-label" style="font-weight:500;color:#059669">= Total Deductions</span>
+      <span id="o_total_ded" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" style="font-weight:500;color:#7c3aed">= Total Taxable Income</span>
+      <span id="o_taxable_inc" style="font-size:16px;font-weight:500;color:#7c3aed;min-width:160px;text-align:right">₹0</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5 OLD — TAX -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">5</div>
+    <div><div class="calc-step-title">Apply Old Regime Slab Rates</div><div class="calc-step-sub">3-slab structure: 5% / 20% / 30% — varies by age group</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="slab-visual" id="o_slab_visual"></div>
+    <table class="ledger">
+      <tr><td class="lbl">Tax on regular income (old regime slabs)</td><td class="val" id="o_tax_regular">₹0</td></tr>
+      <tr><td class="lbl">Tax on STCG @20% (Sec 111A)</td><td class="val" id="o_tax_stcg">₹0</td></tr>
+      <tr><td class="lbl">Tax on LTCG @12.5% above ₹1.25L (Sec 112A)</td><td class="val" id="o_tax_ltcg">₹0</td></tr>
+      <tr class="total-row"><td>Gross Tax Before Rebate</td><td class="val" id="o_gross_tax">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 6 OLD — REBATE -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">6</div>
+    <div><div class="calc-step-title">Less: Sec 87A Rebate</div><div class="calc-step-sub">Old regime: rebate of ₹12,500 if <b>total taxable income</b> ≤ ₹5 lakh (on slab tax only — not STCG/LTCG)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Eligible? (total taxable income ≤ ₹5,00,000)</td><td class="val" id="o_rebate_elig">—</td></tr>
+      <tr><td class="lbl">Rebate amount u/s 87A</td><td class="val" id="o_rebate_amt" style="color:#059669">₹0</td></tr>
+      <tr class="highlight-row"><td>Tax after Rebate</td><td class="val" id="o_after_rebate">₹0</td></tr>
+    </table>
+    <div class="note note-w" style="margin-top:6px">⚠ Old regime 87A rebate is ₹12,500 (not ₹60,000) and applies only if taxable income ≤ ₹5L. Like new regime, rebate does NOT apply against STCG/LTCG tax.</div>
+  </div>
+</div>
+
+<!-- STEP 7 OLD — SURCHARGE -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">7</div>
+    <div><div class="calc-step-title">Add: Surcharge</div><div class="calc-step-sub">Old regime: up to 37% (higher than new regime's 25% cap for income above ₹5 Cr)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Surcharge rate (on regular income)</td><td class="val" id="o_sc_rate">Nil</td></tr>
+      <tr><td class="lbl">Surcharge on STCG/LTCG (capped at 15%)</td><td class="val" id="o_sc_cg">Nil</td></tr>
+      <tr><td class="lbl">Surcharge amount</td><td class="val" id="o_sc_amt">₹0</td></tr>
+      <tr class="total-row"><td>Tax + Surcharge</td><td class="val" id="o_tax_sc">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 8 OLD — CESS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">8</div>
+    <div><div class="calc-step-title">Add: Health &amp; Education Cess @4%</div><div class="calc-step-sub">Same as new regime — 4% on (tax + surcharge)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Cess @4%</td><td class="val" id="o_cess">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 9 OLD — TDS CREDITS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">9</div>
+    <div><div class="calc-step-title">Less: TDS Already Deducted</div><div class="calc-step-sub">Enter TDS and advance tax paid</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">TDS deducted by employer (Form 16)</span><input class="field-input" id="o_tds1" type="number" placeholder="e.g. 80000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">TDS on interest / rent / other</span><input class="field-input" id="o_tds2" type="number" placeholder="e.g. 5000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Advance tax paid</span><input class="field-input" id="o_adv" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+  </div>
+</div>
+
+<!-- OLD RESULT BOX -->
+<div class="result-box" style="background:linear-gradient(135deg,#7f1d1d,#dc2626)">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div><div class="result-title">Total Tax (Old Regime)</div><div class="result-value" id="o_final_tax">₹0</div><div class="result-sub">Before TDS / advance tax credits</div></div>
+    <div><div class="result-title">Net Balance (Old Regime)</div><div class="result-value" id="o_balance">₹0</div><div class="result-sub" id="o_balance_sub">After all credits</div></div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.2);padding-top:12px">
+    <div style="font-size:12px;opacity:.8;margin-bottom:8px;font-weight:500">Old Regime Full Ledger</div>
+    <table style="width:100%;font-size:12px;border-collapse:collapse">
+      <tr><td style="padding:3px 0;opacity:.75">Gross Salary</td><td style="text-align:right" id="ol_gross">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: HRA Exemption</td><td style="text-align:right;color:#86efac" id="ol_hra">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: LTA Exemption</td><td style="text-align:right;color:#86efac" id="ol_lta">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Standard Deduction</td><td style="text-align:right;color:#86efac">− ₹50,000</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Add: Other Income (Prof + Biz + F&O + Interest + Rent)</td><td style="text-align:right" id="ol_other">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">LTCG Exemption (₹1.25L Sec 112A)</td><td style="text-align:right;color:#86efac" id="ol_ltcg_e">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Total Chapter VI-A Deductions</td><td style="text-align:right;color:#86efac" id="ol_ded">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:4px 0;font-weight:500">Gross Tax</td><td style="text-align:right;font-weight:500" id="ol_gtax">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: 87A Rebate</td><td style="text-align:right;color:#86efac" id="ol_rebate">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Surcharge</td><td style="text-align:right" id="ol_sc">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Cess @4%</td><td style="text-align:right" id="ol_cess">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:4px 0;font-weight:500">Total Tax Liability</td><td style="text-align:right;font-weight:500" id="ol_total">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: TDS + Advance Tax</td><td style="text-align:right;color:#86efac" id="ol_tds">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:5px 0;font-weight:500;font-size:13px">Net Payable / (Refund)</td><td style="text-align:right;font-weight:500;font-size:13px" id="ol_net">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- end calc-old-regime -->
+
+<!-- SHARED: EXCEL EXPORT -->
+<div id="excel-export-banner" style="border-radius:14px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #a7f3d0;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:18px">
   <div>
     <div style="font-size:14px;font-weight:500;color:#065f46;margin-bottom:3px">📊 Download Tax Computation as Excel</div>
     <div style="font-size:12px;color:#047857">Exports a fully formatted Excel sheet with all your filled values, slab breakdown, GTI computation, and final tax summary — ready to share with your client.</div>
@@ -1161,11 +1456,227 @@ tr:last-child td{border-bottom:none}
 </div>
 
 <script>
+// ── Regime switcher ──────────────────────────────
+let activeRegime = 'new';
+function switchRegime(r) {
+  activeRegime = r;
+  document.getElementById('calc-new-regime').style.display = r === 'new' ? 'block' : 'none';
+  document.getElementById('calc-old-regime').style.display = r === 'old' ? 'block' : 'none';
+  document.getElementById('btn-new').className = 'regime-btn' + (r === 'new' ? ' active-new' : '');
+  document.getElementById('btn-old').className = 'regime-btn' + (r === 'old' ? ' active-old' : '');
+  document.getElementById('regime-hint').textContent = r === 'new'
+    ? 'New regime (FY 2025-26): NIL → 5% → 10% → 15% → 20% → 25% → 30% | No HRA/80C deductions'
+    : 'Old regime (FY 2025-26): NIL → 5% → 20% → 30% | HRA, 80C, 80D, home loan interest all available';
+  if (r === 'old') calcOld();
+}
+
+// ── Old Regime Calculator ────────────────────────
+function getO(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calcOldSlabTax(inc, ageGroup) {
+  if (inc <= 0) return 0;
+  let exemption = ageGroup === 'senior' ? 300000 : ageGroup === 'supersenior' ? 500000 : 250000;
+  const taxable = Math.max(0, inc - exemption);
+  if (taxable === 0) return 0;
+  let tax = 0, rem = taxable;
+  // Old regime slabs (above exemption): 5% up to 2.5L, 20% up to 7.5L, 30% above
+  // Absolute amounts:
+  const s1_end = 500000, s2_end = 1000000;
+  if (ageGroup === 'supersenior') {
+    // Super senior: 0 up to 5L, 20% 5L-10L, 30% above 10L
+    const in_20 = Math.max(0, Math.min(inc, s2_end) - 500000);
+    const in_30 = Math.max(0, inc - s2_end);
+    tax = in_20 * 0.20 + in_30 * 0.30;
+  } else {
+    // Below 60 & Senior: 5% 2.5L-5L / Senior: 5% 3L-5L, 20% 5L-10L, 30% above 10L
+    const base = ageGroup === 'senior' ? 300000 : 250000;
+    const in_5 = Math.max(0, Math.min(inc, 500000) - base);
+    const in_20 = Math.max(0, Math.min(inc, 1000000) - 500000);
+    const in_30 = Math.max(0, inc - 1000000);
+    tax = in_5 * 0.05 + in_20 * 0.20 + in_30 * 0.30;
+  }
+  return tax;
+}
+
+function calcOld() {
+  const age = document.getElementById('old_age').value;
+  const exemLimit = age === 'senior' ? 300000 : age === 'supersenior' ? 500000 : 250000;
+
+  // Age note
+  const ageLabels = {below60:'₹2,50,000 — individuals below 60 years', senior:'₹3,00,000 — Senior Citizens (60–80 yrs)', supersenior:'₹5,00,000 — Super Senior Citizens (80+ yrs)'};
+  document.getElementById('old_age_note').textContent = 'Basic exemption limit: ' + ageLabels[age];
+
+  // Step 1
+  const basic = getO('o_basic'), hra_recv = getO('o_hra'), special = getO('o_special');
+  const bonus = getO('o_bonus'), o_allow = getO('o_other_allow');
+  const gross = basic + hra_recv + special + bonus + o_allow;
+  document.getElementById('o_gross_sal').textContent = fmt(gross);
+
+  // Step 2 — HRA exemption: min of (actual HRA received, 50%/40% of basic, rent paid minus 10% of basic)
+  const rent_paid = getO('o_rent_paid');
+  const metro = document.getElementById('o_metro').value === 'metro';
+  const hra_pct = metro ? 0.50 : 0.40;
+  const hra_a = hra_recv;
+  const hra_b = basic * hra_pct;
+  const hra_c = Math.max(0, rent_paid - basic * 0.10);
+  const hra_exempt = rent_paid > 0 ? Math.min(hra_a, hra_b, hra_c) : 0;
+  document.getElementById('o_hra_exempt').textContent = fmt(hra_exempt);
+  if (rent_paid > 0) {
+    document.getElementById('o_hra_breakdown').textContent =
+      `Min of: A) Actual HRA ${fmt(hra_a)}  B) ${metro?'50%':'40%'} of Basic ${fmt(hra_b)}  C) Rent − 10% of Basic ${fmt(hra_c)}  → Exempt: ${fmt(hra_exempt)}`;
+  } else {
+    document.getElementById('o_hra_breakdown').textContent = 'Enter rent paid to calculate HRA exemption';
+  }
+
+  const lta = getO('o_lta');
+  const std_ded = 50000;
+  const netSal = Math.max(0, gross - hra_exempt - lta - std_ded);
+  document.getElementById('o_net_sal').textContent = fmt(netSal);
+
+  // Step 3 — Other income
+  const prof = getO('o_prof'), biz = getO('o_biz'), fo = getO('o_fo');
+  const int_inc = getO('o_int');
+  const rent_gross = getO('o_rent_inc');
+  const rent_net = rent_gross * 0.70; // after 30% std deduction u/s 24a
+  const o_stcg = getO('o_stcg');
+  const o_ltcg_gross = getO('o_ltcg');
+  const o_ltcg_exempt = Math.min(o_ltcg_gross, 125000);
+  const o_ltcg_taxable = Math.max(0, o_ltcg_gross - o_ltcg_exempt);
+  const debt_mf = getO('o_debt_mf');
+  const other = getO('o_other');
+
+  // Step 4 — Deductions
+  const epf = getO('o_epf'), ppf = getO('o_ppf'), elss = getO('o_elss');
+  const lic = getO('o_lic'), hl_princ = getO('o_hl_princ'), o80c_other = getO('o_80c_other');
+  const raw_80c = epf + ppf + elss + lic + hl_princ + o80c_other;
+  const ded_80c = Math.min(raw_80c, 150000);
+  document.getElementById('o_80c_total').textContent = fmt(ded_80c) + (raw_80c > 150000 ? ' (capped)' : '');
+
+  const nps_self = Math.min(getO('o_nps_self'), 50000);
+  const nps_emp = getO('o_nps_emp');
+  const ded_80d = Math.min(getO('o_80d_self'), 25000) + Math.min(getO('o_80d_par'), 50000);
+  const ded_hl_int = Math.min(getO('o_hl_int'), 200000);
+  const ded_80e = getO('o_80e');
+  const ded_80g = getO('o_80g');
+  const ded_80tta = Math.min(getO('o_80tta'), age === 'supersenior' || age === 'senior' ? 50000 : 10000);
+  const ded_other = getO('o_other_ded');
+
+  const total_via = ded_80c + nps_self + nps_emp + ded_80d + ded_hl_int + ded_80e + ded_80g + ded_80tta + ded_other;
+
+  document.getElementById('o_total_ded').textContent = fmt(total_via);
+
+  // GTI (before VI-A deductions, after HRA/LTA/std ded and LTCG exemption)
+  const true_gti_old = netSal + prof + biz + fo + int_inc + rent_net + o_stcg + o_ltcg_taxable + debt_mf + other;
+  // Total Taxable Income
+  const total_taxable_old = Math.max(0, true_gti_old - total_via);
+  // Regular income (slab)
+  const regular_old = Math.max(0, total_taxable_old - o_stcg - o_ltcg_taxable);
+
+  document.getElementById('o_taxable_inc').textContent = fmt(total_taxable_old);
+
+  // Step 5 — Tax
+  const tax_reg_old = calcOldSlabTax(regular_old, age);
+  const tax_stcg_old = o_stcg * 0.20;
+  const tax_ltcg_old = o_ltcg_taxable * 0.125;
+  const gross_tax_old = tax_reg_old + tax_stcg_old + tax_ltcg_old;
+
+  document.getElementById('o_tax_regular').textContent = fmt(tax_reg_old);
+  document.getElementById('o_tax_stcg').textContent = fmt(tax_stcg_old);
+  document.getElementById('o_tax_ltcg').textContent = fmt(tax_ltcg_old);
+  document.getElementById('o_gross_tax').textContent = fmt(gross_tax_old);
+
+  // Old regime slab visual
+  const slabDefsOld = age === 'supersenior'
+    ? [{label:'Up to ₹5L',rate:'NIL',from:0,to:500000,pct:0,color:'#dcfce7'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}]
+    : age === 'senior'
+    ? [{label:'Up to ₹3L',rate:'NIL',from:0,to:300000,pct:0,color:'#dcfce7'},
+       {label:'₹3L–₹5L',rate:'5%',from:300000,to:500000,pct:0.05,color:'#dbeafe'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}]
+    : [{label:'Up to ₹2.5L',rate:'NIL',from:0,to:250000,pct:0,color:'#dcfce7'},
+       {label:'₹2.5L–₹5L',rate:'5%',from:250000,to:500000,pct:0.05,color:'#dbeafe'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}];
+
+  let ovis = `<div style="font-size:11px;color:#6b7280;margin-bottom:6px">Slab breakdown — regular income of ${fmt(regular_old)}</div>`;
+  const maxW = 240;
+  for (const s of slabDefsOld) {
+    const used = Math.max(0, Math.min(regular_old, s.to === Infinity ? regular_old : s.to) - s.from);
+    if (used <= 0 && regular_old <= s.from) break;
+    const barW = regular_old > 0 ? Math.max(used > 0 ? 6 : 0, (used / regular_old) * maxW) : 0;
+    ovis += `<div class="slab-vis-row"><span class="slab-vis-label">${s.label} @${s.rate}</span><div class="slab-vis-bar" style="width:${barW}px;background:${s.color};border:1px solid rgba(0,0,0,.08)"></div><span class="slab-vis-amt">${fmt(used)} → tax ${fmt(used * s.pct)}</span></div>`;
+    if (s.to === Infinity || regular_old <= s.to) break;
+  }
+  document.getElementById('o_slab_visual').innerHTML = ovis;
+
+  // Step 6 — 87A Rebate (old regime: ₹12,500 if TOTAL TAXABLE INCOME ≤ ₹5L)
+  // Note: unlike new regime (regular income check), old regime checks TOTAL taxable income
+  const o_rebate_elig = total_taxable_old <= 500000;
+  const o_rebate = o_rebate_elig ? Math.min(tax_reg_old, 12500) : 0;
+  const tax_reg_ar_old = Math.max(0, tax_reg_old - o_rebate);
+  const after_rebate_old = tax_reg_ar_old + tax_stcg_old + tax_ltcg_old;
+
+  document.getElementById('o_rebate_elig').textContent = o_rebate_elig ? '✅ Yes (total income ≤ ₹5L)' : '❌ No (total income > ₹5L)';
+  document.getElementById('o_rebate_amt').textContent = fmt(o_rebate);
+  document.getElementById('o_after_rebate').textContent = fmt(after_rebate_old);
+
+  // Step 7 — Surcharge (old regime: up to 37% for >5Cr; 15% cap on STCG/LTCG)
+  function oldSurchRate(inc) {
+    if (inc <= 5000000) return 0;
+    if (inc <= 10000000) return 0.10;
+    if (inc <= 20000000) return 0.15;
+    if (inc <= 50000000) return 0.25;
+    return 0.37; // 37% in old regime (no cap unlike new regime)
+  }
+  const o_sr = oldSurchRate(total_taxable_old);
+  const o_sr_cap = Math.min(o_sr, 0.15);
+  const o_sc = tax_reg_ar_old * o_sr + (tax_stcg_old + tax_ltcg_old) * o_sr_cap;
+  const o_tax_sc = after_rebate_old + o_sc;
+
+  document.getElementById('o_sc_rate').textContent = o_sr === 0 ? 'Nil' : (o_sr * 100) + '%';
+  document.getElementById('o_sc_cg').textContent = (tax_stcg_old + tax_ltcg_old) > 0 ? (o_sr_cap === 0 ? 'Nil' : (o_sr_cap * 100) + '% (capped at 15%)') : 'Nil';
+  document.getElementById('o_sc_amt').textContent = fmt(o_sc);
+  document.getElementById('o_tax_sc').textContent = fmt(o_tax_sc);
+
+  // Step 8 — Cess
+  const o_cess = o_tax_sc * 0.04;
+  const o_final = o_tax_sc + o_cess;
+  document.getElementById('o_cess').textContent = fmt(o_cess);
+
+  // Step 9
+  const o_tds_total = getO('o_tds1') + getO('o_tds2') + getO('o_adv');
+  const o_balance = o_final - o_tds_total;
+
+  document.getElementById('o_final_tax').textContent = fmt(o_final);
+  document.getElementById('o_balance').textContent = o_balance < 0 ? '(Refund) ' + fmt(Math.abs(o_balance)) : fmt(o_balance);
+  document.getElementById('o_balance_sub').textContent = o_balance < 0 ? 'File ITR to claim refund' : 'Pay as self-assessment tax before filing';
+
+  // Ledger
+  document.getElementById('ol_gross').textContent = fmt(gross);
+  document.getElementById('ol_hra').textContent = '− ' + fmt(hra_exempt);
+  document.getElementById('ol_lta').textContent = '− ' + fmt(lta);
+  document.getElementById('ol_other').textContent = fmt(prof + biz + fo + int_inc + rent_net + debt_mf + other);
+  document.getElementById('ol_ltcg_e').textContent = '− ' + fmt(o_ltcg_exempt);
+  document.getElementById('ol_ded').textContent = '− ' + fmt(total_via);
+  document.getElementById('ol_gtax').textContent = fmt(gross_tax_old);
+  document.getElementById('ol_rebate').textContent = '− ' + fmt(o_rebate);
+  document.getElementById('ol_sc').textContent = fmt(o_sc);
+  document.getElementById('ol_cess').textContent = fmt(o_cess);
+  document.getElementById('ol_total').textContent = fmt(o_final);
+  document.getElementById('ol_tds').textContent = '− ' + fmt(o_tds_total);
+  document.getElementById('ol_net').textContent = o_balance < 0 ? '(Refund) ' + fmt(Math.abs(o_balance)) : fmt(o_balance);
+}
+
+// Track last active tax tab
+let lastTaxPanel = 'slabs';
 function show(id, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
   btn.classList.add('active');
+  lastTaxPanel = id;
 }
 
 function fmt(n) {
