@@ -591,8 +591,6 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-</div><!-- end wrap -->
-
 <!-- NRI TAXATION -->
 <div id="panel-nri" class="panel">
 
@@ -773,7 +771,7 @@ tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-</div>
+</div><!-- end panel-nri -->
 
 <!-- TAX CALCULATOR -->
 <div id="panel-calc" class="panel">
@@ -1285,7 +1283,11 @@ tr:last-child td{border-bottom:none}
     <div class="field-note">Enter GROSS rental income — 30% standard deduction (Sec 24a) is auto-applied</div>
     <div class="field-row"><span class="field-label">STCG — equity / equity MF (≤12 months)</span><input class="field-input" id="o_stcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
     <div class="field-row"><span class="field-label">LTCG — equity / equity MF (&gt;12 months, gross)</span><input class="field-input" id="o_ltcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
-    <div class="field-row"><span class="field-label">Debt MF / other CG gains (at slab rate)</span><input class="field-input" id="o_debt_mf" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>after</b> 1 Apr 2023</span><input class="field-input" id="o_debt_mf_new" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note" style="color:#dc2626">⚠ Always slab rate regardless of holding period (Budget 2023 change)</div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>before</b> 1 Apr 2023 (held &gt;36 months)</span><input class="field-input" id="o_debt_mf_old_ltcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note" style="color:#dc2626">⚠ Indexation removed — taxed at slab rate (same as new regime)</div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased before 1 Apr 2023 (held ≤36 months)</span><input class="field-input" id="o_debt_mf_old_stcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
     <div class="field-row"><span class="field-label">Other income</span><input class="field-input" id="o_other" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
   </div>
 </div>
@@ -1450,7 +1452,11 @@ tr:last-child td{border-bottom:none}
   <button onclick="exportExcel()" style="padding:10px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,#059669,#0e9f6e);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(5,150,105,.3)">⬇ Download Excel</button>
 </div>
 
-</div>
+</div><!-- end panel-calc -->
+
+</div><!-- end folder-tax -->
+
+</div><!-- end wrap -->
 
 <script>
 // ── Regime switcher ──────────────────────────────
@@ -1509,20 +1515,25 @@ function calcOld() {
   const gross = basic + hra_recv + special + bonus + o_allow;
   document.getElementById('o_gross_sal').textContent = fmt(gross);
 
-  // Step 2 — HRA exemption: min of (actual HRA received, 50%/40% of basic, rent paid minus 10% of basic)
+  // Step 2 — HRA exemption: min of (actual HRA, 50%/40% of basic, rent paid − 10% of basic)
   const rent_paid = getO('o_rent_paid');
   const metro = document.getElementById('o_metro').value === 'metro';
   const hra_pct = metro ? 0.50 : 0.40;
-  const hra_a = hra_recv;
-  const hra_b = basic * hra_pct;
-  const hra_c = Math.max(0, rent_paid - basic * 0.10);
-  const hra_exempt = rent_paid > 0 ? Math.min(hra_a, hra_b, hra_c) : 0;
-  document.getElementById('o_hra_exempt').textContent = fmt(hra_exempt);
-  if (rent_paid > 0) {
+  let hra_exempt = 0;
+  if (basic > 0 && hra_recv > 0 && rent_paid > 0) {
+    const hra_a = hra_recv;
+    const hra_b = basic * hra_pct;
+    const hra_c = Math.max(0, rent_paid - basic * 0.10);
+    hra_exempt = Math.min(hra_a, hra_b, hra_c);
+    document.getElementById('o_hra_exempt').textContent = fmt(hra_exempt);
     document.getElementById('o_hra_breakdown').textContent =
       `Min of: A) Actual HRA ${fmt(hra_a)}  B) ${metro?'50%':'40%'} of Basic ${fmt(hra_b)}  C) Rent − 10% of Basic ${fmt(hra_c)}  → Exempt: ${fmt(hra_exempt)}`;
   } else {
-    document.getElementById('o_hra_breakdown').textContent = 'Enter rent paid to calculate HRA exemption';
+    document.getElementById('o_hra_exempt').textContent = '₹0';
+    document.getElementById('o_hra_breakdown').textContent =
+      basic === 0 ? 'Enter basic salary to enable HRA exemption calculation' :
+      hra_recv === 0 ? 'Enter HRA received in salary' :
+      'Enter rent paid to calculate HRA exemption';
   }
 
   const lta = getO('o_lta');
@@ -1539,7 +1550,7 @@ function calcOld() {
   const o_ltcg_gross = getO('o_ltcg');
   const o_ltcg_exempt = Math.min(o_ltcg_gross, 125000);
   const o_ltcg_taxable = Math.max(0, o_ltcg_gross - o_ltcg_exempt);
-  const debt_mf = getO('o_debt_mf');
+  const debt_mf = getO('o_debt_mf_new') + getO('o_debt_mf_old_ltcg') + getO('o_debt_mf_old_stcg');
   const other = getO('o_other');
 
   // Step 4 — Deductions
@@ -1952,7 +1963,201 @@ async function exportExcel() {
   btn.textContent = '⏳ Generating...';
   btn.disabled = true;
 
-  // ── Recalculate all values ──
+  if (activeRegime === 'old') {
+    await exportExcelOld(btn, orig);
+  } else {
+    await exportExcelNew(btn, orig);
+  }
+}
+
+async function exportExcelOld(btn, orig) {
+  // ── Collect old regime values ──
+  const age = document.getElementById('old_age').value;
+  const ageLabel = age==='senior'?'Senior Citizen (60–80 yrs)':age==='supersenior'?'Super Senior Citizen (80+)':'Below 60 years';
+  const basic=getO('o_basic'), hra_recv=getO('o_hra'), special=getO('o_special');
+  const bonus=getO('o_bonus'), o_allow=getO('o_other_allow');
+  const gross = basic+hra_recv+special+bonus+o_allow;
+  const rent_paid=getO('o_rent_paid');
+  const metro=document.getElementById('o_metro').value==='metro';
+  let hra_exempt=0;
+  if(basic>0&&hra_recv>0&&rent_paid>0){
+    hra_exempt=Math.min(hra_recv, basic*(metro?.5:.4), Math.max(0,rent_paid-basic*.1));
+  }
+  const lta=getO('o_lta'), std_ded=50000;
+  const netSal=Math.max(0,gross-hra_exempt-lta-std_ded);
+  const prof=getO('o_prof'),biz=getO('o_biz'),fo=getO('o_fo');
+  const int_inc=getO('o_int'), rent_net=getO('o_rent_inc')*0.70;
+  const o_stcg=getO('o_stcg'), o_ltcg_gross=getO('o_ltcg');
+  const o_ltcg_exempt=Math.min(o_ltcg_gross,125000);
+  const o_ltcg_taxable=Math.max(0,o_ltcg_gross-o_ltcg_exempt);
+  const debt_mf=getO('o_debt_mf_new')+getO('o_debt_mf_old_ltcg')+getO('o_debt_mf_old_stcg');
+  const other=getO('o_other');
+  const epf=getO('o_epf'),ppf=getO('o_ppf'),elss=getO('o_elss'),lic=getO('o_lic'),hl_princ=getO('o_hl_princ'),o80c_o=getO('o_80c_other');
+  const ded_80c=Math.min(epf+ppf+elss+lic+hl_princ+o80c_o,150000);
+  const nps_self=Math.min(getO('o_nps_self'),50000),nps_emp=getO('o_nps_emp');
+  const ded_80d=Math.min(getO('o_80d_self'),25000)+Math.min(getO('o_80d_par'),50000);
+  const ded_hl=Math.min(getO('o_hl_int'),200000),ded_80e=getO('o_80e');
+  const ded_80g=getO('o_80g');
+  const ded_80tta=Math.min(getO('o_80tta'),age==='below60'?10000:50000);
+  const ded_other=getO('o_other_ded');
+  const total_via=ded_80c+nps_self+nps_emp+ded_80d+ded_hl+ded_80e+ded_80g+ded_80tta+ded_other;
+  const true_gti=netSal+prof+biz+fo+int_inc+rent_net+o_stcg+o_ltcg_taxable+debt_mf+other;
+  const total_taxable=Math.max(0,true_gti-total_via);
+  const regular_old=Math.max(0,total_taxable-o_stcg-o_ltcg_taxable);
+  function slabOld(inc,a){
+    if(inc<=0)return 0;
+    if(a==='supersenior')return Math.max(0,Math.min(inc,1e6)-5e5)*.2+Math.max(0,inc-1e6)*.3;
+    const b=a==='senior'?3e5:25e4;
+    return Math.max(0,Math.min(inc,5e5)-b)*.05+Math.max(0,Math.min(inc,1e6)-5e5)*.2+Math.max(0,inc-1e6)*.3;
+  }
+  const tax_reg=slabOld(regular_old,age);
+  const tax_stcg=o_stcg*.2, tax_ltcg=o_ltcg_taxable*.125;
+  const gross_tax=tax_reg+tax_stcg+tax_ltcg;
+  const reb_elig=total_taxable<=5e5;
+  const rebate=reb_elig?Math.min(tax_reg,12500):0;
+  const tax_reg_ar=Math.max(0,tax_reg-rebate);
+  const after_rebate=tax_reg_ar+tax_stcg+tax_ltcg;
+  function oSR(i){return i<=5e6?0:i<=1e7?.1:i<=2e7?.15:i<=5e7?.25:.37;}
+  const sr=oSR(total_taxable), sr_cap=Math.min(sr,.15);
+  const surcharge=tax_reg_ar*sr+(tax_stcg+tax_ltcg)*sr_cap;
+  const tc=after_rebate+surcharge, cess=tc*.04, final_tax=tc+cess;
+  const credits=getO('o_tds1')+getO('o_tds2')+getO('o_adv');
+  const balance=final_tax-credits;
+  const INR='#,##0;(#,##0);"-"';
+  const wb=new ExcelJS.Workbook(); wb.creator='FYNNECT Tax Guide';
+  const ws=wb.addWorksheet('Old Regime Tax',{views:[{state:'frozen',ySplit:4}]});
+  ws.getColumn(1).width=52; ws.getColumn(2).width=18; ws.getColumn(3).width=42;
+  const thin=c=>({style:'thin',color:{argb:c||'FFE5E7EB'}});
+  const brd=()=>({top:thin(),bottom:thin(),left:thin(),right:thin()});
+  function sc(cell,{bg,fg='FF374151',bold=false,sz=9.5,align='left',fmt:f,italic=false}={}){
+    if(bg)cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:bg.startsWith('FF')?bg:'FF'+bg}};
+    cell.font={name:'Arial',bold,size:sz,color:{argb:fg.startsWith('FF')?fg:'FF'+fg},italic};
+    cell.alignment={horizontal:align,vertical:'middle',wrapText:true};
+    if(f)cell.numFmt=f; cell.border=brd();
+  }
+  function sHdr(r,text,bg){
+    ws.mergeCells(r,1,r,3);const c=ws.getCell(r,1);c.value='  '+text;
+    sc(c,{bg,fg:'FFFFFFFF',bold:true,sz:9.5});ws.getRow(r).height=21;
+  }
+  function dRow(r,lbl,amt,note,opts={}){
+    const alt=r%2===0?'FFF9FAFB':'FFFFFFFF';
+    const lb=opts.bg||alt,ab=opts.bg||alt;
+    const lc=ws.getCell(r,1);lc.value=lbl;sc(lc,{bg:lb,bold:opts.bold,sz:opts.sz||9.5,indent:opts.indent||0});
+    const ac=ws.getCell(r,2);ac.value=amt;sc(ac,{bg:ab,fg:opts.fgAmt||'FF1F2937',bold:opts.bold,sz:opts.sz||9.5,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3);nc.value=note||'';sc(nc,{bg:ab,fg:'FF9CA3AF',sz:8.5,italic:true});
+    ws.getRow(r).height=17;
+  }
+  function tRow(r,lbl,amt,note,bg,fgAmt='FF1F2937'){
+    const lc=ws.getCell(r,1);lc.value='  '+lbl;sc(lc,{bg,bold:true,sz:10});
+    const ac=ws.getCell(r,2);ac.value=amt;sc(ac,{bg,fg:fgAmt,bold:true,sz:10,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3);nc.value=note||'';sc(nc,{bg,fg:'FF6B7280',sz:8.5,italic:true});
+    ws.getRow(r).height=20;
+  }
+  // Title
+  ws.mergeCells('A1:C1');const t1=ws.getCell('A1');
+  t1.value='   FYNNECT Tax Guide — Old Regime Computation Sheet';
+  t1.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFDC2626'}};
+  t1.font={name:'Arial',bold:true,size:16,color:{argb:'FFFFFFFF'}};
+  t1.alignment={horizontal:'left',vertical:'middle'}; ws.getRow(1).height=38;
+  ws.mergeCells('A2:C2');const t2=ws.getCell('A2');
+  t2.value=`   Old Tax Regime | ${ageLabel} | FY 2025-26 (AY 2026-27) | Generated: ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'})}`;
+  t2.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFFFF1F2'}};
+  t2.font={name:'Arial',size:9,color:{argb:'FFB91C1C'},italic:true};
+  t2.alignment={horizontal:'left',vertical:'middle'}; ws.getRow(2).height=16;
+  ws.mergeCells('A3:C3');ws.getCell('A3').fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFFECACA'}};ws.getRow(3).height=4;
+  [['Income / Deduction Item','left'],['Amount (₹)','right'],['Notes / Section Reference','left']].forEach(([h,a],i)=>{
+    const c=ws.getCell(4,i+1);c.value=h;c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF374151'}};
+    c.font={name:'Arial',bold:true,size:9.5,color:{argb:'FFFFFFFF'}};c.alignment={horizontal:a,vertical:'middle'};c.border=brd();ws.getRow(4).height=20;
+  });
+  let r=5;
+  const gap=()=>{ws.mergeCells(r,1,r,3);ws.getRow(r).height=8;r++;};
+  sHdr(r,'STEP 1 — SALARY INCOME','DC2626');r++;
+  dRow(r,'Basic Salary (annual)',basic,'');r++;
+  dRow(r,'HRA Received',hra_recv,'Exemption calculated via 3-rule formula');r++;
+  dRow(r,'Special Allowance',special,'');r++;
+  dRow(r,'Bonus / Performance Pay',bonus,'');r++;
+  dRow(r,'Other Taxable Allowances',o_allow,'');r++;
+  tRow(r,'GROSS SALARY',gross,'','FFDBEAFE');r++; gap();
+  sHdr(r,'STEP 2 — LESS: EXEMPTIONS FROM SALARY','059669');r++;
+  dRow(r,'HRA Exemption u/s 10(13A)',-hra_exempt,`${metro?'Metro (50%)':'Non-Metro (40%)'} — Min(HRA recd, %Basic, Rent−10%Basic)`,{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'LTA Exemption u/s 10(5)',-lta,'2 journeys per 4-year block',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Standard Deduction u/s 16(ia)',-50000,'Fixed ₹50,000 for old regime (vs ₹75,000 in new regime)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'NET SALARY AFTER EXEMPTIONS',netSal,'','FFDCFCE7','FF15803D');r++; gap();
+  sHdr(r,'STEP 3 — ADD: OTHER INCOME','D97706');r++;
+  dRow(r,'Professional Income (net)',prof,'');r++;
+  dRow(r,'Business Income (net)',biz,'');r++;
+  dRow(r,'F&O / Options Trading Income',fo,'Non-speculative business income');r++;
+  dRow(r,'Interest Income (FD, savings, bonds)',int_inc,'Slab rate');r++;
+  dRow(r,'Rental Income (net after 30% Sec 24a deduction)',rent_net,'Gross rent × 70%');r++;
+  dRow(r,'Debt MF Gains (all at slab rate)',debt_mf,'Post Apr 2023 and pre-Apr 2023 — all taxed at slab rate');r++;
+  dRow(r,'STCG — Equity / Equity MF (≤12 months, STT paid)',o_stcg,'Taxed @20% separately (Sec 111A)',{bg:'FFF5F3FF',bold:true});r++;
+  dRow(r,'LTCG — Equity / Equity MF (>12 months) — GROSS',o_ltcg_gross,'',{bg:'FFF5F3FF',bold:true});r++;
+  dRow(r,'  Less: LTCG Exemption u/s 112A',-o_ltcg_exempt,'First ₹1,25,000 per year tax-free',{bg:'FFECFDF5',fgAmt:'FFB91C1C',indent:2});r++;
+  dRow(r,'  LTCG Taxable Portion',o_ltcg_taxable,'Taxed @12.5%',{bg:'FFFEF9C3',indent:2});r++;
+  dRow(r,'Other Income',other,'');r++;
+  tRow(r,'GROSS TOTAL INCOME (GTI)',true_gti,'Before Chapter VI-A deductions','FFEDE9FE','FF5B21B6');r++; gap();
+  sHdr(r,'STEP 4 — LESS: CHAPTER VI-A DEDUCTIONS (Old Regime)','059669');r++;
+  dRow(r,'80C — EPF+PPF+ELSS+LIC+Home loan principal etc. (capped ₹1.5L)',ded_80c,'Combined limit ₹1,50,000',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80CCD(1B) — Own NPS contribution (max ₹50K over 80C)',nps_self,'Additional deduction beyond ₹1.5L ceiling',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80CCD(2) — Employer NPS contribution',nps_emp,'Max 14% of salary (Govt) / 10% others',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80D — Health insurance premiums (self + parents)',ded_80d,'Self: ₹25K cap; Parents: ₹50K cap (senior)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Sec 24b — Home loan interest (self-occupied)',ded_hl,'Capped at ₹2,00,000 per year',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80E — Education loan interest',ded_80e,'Full interest for up to 8 years',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80G — Donations',ded_80g,'50% or 100% of eligible donations',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80TTA / 80TTB — Interest deduction',ded_80tta,age==='below60'?'Savings a/c interest up to ₹10,000':'Deposit interest up to ₹50,000 (senior)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Other deductions (80DD, 80DDB, 80U etc.)',ded_other,'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TOTAL CHAPTER VI-A DEDUCTIONS',total_via,'','FFDCFCE7','FF15803D');r++;
+  tRow(r,'TOTAL TAXABLE INCOME',total_taxable,'GTI minus all deductions','FFDBEAFE','FF1E40AF');r++;
+  dRow(r,'  of which: Regular Income (old regime slabs)',regular_old,'',{bg:'FFEDE9FE',indent:2});r++;
+  dRow(r,'  of which: STCG taxable @20%',o_stcg,'',{bg:'FFEDE9FE',indent:2});r++;
+  dRow(r,'  of which: LTCG taxable @12.5%',o_ltcg_taxable,'',{bg:'FFEDE9FE',indent:2});r++; gap();
+  sHdr(r,'STEP 5 — APPLY OLD REGIME SLAB RATES','DC2626');r++;
+  dRow(r,'Tax on Regular Income (old regime slabs)',tax_reg,'Below 60: NIL→5%→20%→30% | Senior: NIL→5%→20%→30% (₹3L base) | Super Senior: NIL→20%→30% (₹5L base)',{bg:'FFFFF1F2'});r++;
+  dRow(r,'Tax on STCG @20% (Sec 111A)',tax_stcg,'Flat rate — separate from slab',{bg:'FFFFF1F2'});r++;
+  dRow(r,'Tax on LTCG @12.5% (Sec 112A)',tax_ltcg,'On taxable portion above ₹1.25L',{bg:'FFFFF1F2'});r++;
+  tRow(r,'GROSS TAX',gross_tax,'','FFFEE2E2','FFB91C1C');r++; gap();
+  sHdr(r,'STEP 6 — LESS: SEC 87A REBATE (Old regime)','0E7490');r++;
+  dRow(r,'Eligibility (total taxable income ≤ ₹5,00,000)',null,reb_elig?'✅ Eligible — rebate ₹12,500':'❌ Not Eligible',{bg:'FFECFEFF'});r++;
+  dRow(r,'Rebate Amount u/s 87A (on slab tax only)',-rebate,'Max ₹12,500 (old regime). NOT applicable on STCG/LTCG tax.',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TAX AFTER REBATE',after_rebate,'','FFDBEAFE','FF1E40AF');r++; gap();
+  sHdr(r,'STEP 7 — ADD: SURCHARGE (Old regime — up to 37% for >₹5 Cr)','7C3AED');r++;
+  dRow(r,'Surcharge on Regular Income',tax_reg_ar*sr,sr===0?'Nil':'@'+(sr*100)+'% — old regime (no 25% cap unlike new regime)',{bg:'FFF5F3FF'});r++;
+  dRow(r,'Surcharge on STCG/LTCG (capped at 15%)',(tax_stcg+tax_ltcg)*sr_cap,sr_cap===0?'Nil':'@'+(sr_cap*100)+'%',{bg:'FFF5F3FF'});r++;
+  tRow(r,'TAX + SURCHARGE',tc,'','FFEDE9FE','FF5B21B6');r++; gap();
+  sHdr(r,'STEP 8 — ADD: HEALTH & EDUCATION CESS @4%','DC2626');r++;
+  dRow(r,'Cess @4% on (Tax + Surcharge)',cess,'Same as new regime — no exemption',{bg:'FFFFF1F2'});r++;
+  tRow(r,'TOTAL TAX PAYABLE',final_tax,'','FFFEE2E2','FFB91C1C');r++; gap();
+  sHdr(r,'STEP 9 — LESS: TDS & ADVANCE TAX CREDITS','1E3A5F');r++;
+  dRow(r,'TDS Deducted by Employer (Form 16)',-getO('o_tds1'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'TDS on Interest / Rent / Other',-getO('o_tds2'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Advance Tax Paid',-getO('o_adv'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TOTAL CREDITS',credits,'','FFDCFCE7','FF15803D');r++;
+  r++;ws.getRow(r).height=8;r++;
+  ws.mergeCells(r,1,r,3);
+  const fr=ws.getCell(r,1);
+  fr.value=balance>=0?'  ➤  NET TAX PAYABLE (Self-Assessment Tax)':'  ➤  REFUND DUE — File ITR to Claim';
+  fr.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFDC2626'}};
+  fr.font={name:'Arial',bold:true,size:13,color:{argb:'FFFFFFFF'}};
+  fr.alignment={horizontal:'left',vertical:'middle'};ws.getRow(r).height=32;r++;
+  ws.mergeCells(r,1,r,3);const vr=ws.getCell(r,1);
+  vr.value=Math.abs(balance);
+  vr.fill={type:'pattern',pattern:'solid',fgColor:{argb:balance<0?'FF059669':'FFB91C1C'}};
+  vr.font={name:'Arial',bold:true,size:20,color:{argb:'FFFFFFFF'}};
+  vr.alignment={horizontal:'right',vertical:'middle'};vr.numFmt=INR;ws.getRow(r).height=40;r++;
+  ws.mergeCells(r,1,r,3);const dr=ws.getCell(r,1);
+  dr.value=balance>=0?'  Pay via Challan 280 (Self-Assessment Tax) before filing ITR | Due: 31 July 2026':'  File ITR to claim refund | ITR Due: 31 July 2026';
+  dr.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFEFF6FF'}};
+  dr.font={name:'Arial',size:8.5,color:{argb:'FF1E40AF'},italic:true};
+  dr.alignment={horizontal:'left',vertical:'middle'};ws.getRow(r).height=16;
+  const buf=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='Tax_Computation_OldRegime_FY2025_26.xlsx';a.click();
+  URL.revokeObjectURL(url);
+  btn.textContent=orig;btn.disabled=false;
+}
+
+async function exportExcelNew(btn, orig) {
   const gross = getVal('basic')+getVal('hra')+getVal('special')+getVal('bonus')+getVal('other_allow');
   const netSal = Math.max(0, gross - 75000);
   const totalDebtMF = getVal('debt_mf_new')+getVal('debt_mf_old_ltcg')+getVal('debt_mf_old_stcg');
