@@ -1,0 +1,2544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FYNNECT — Tax Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:#1a1a1a;line-height:1.6;background:#f8f8f6;padding:20px}
+.wrap{max-width:900px;margin:0 auto}
+.hero{border-radius:16px;padding:22px 24px;margin-bottom:18px;background:linear-gradient(135deg,#1e3a5f 0%,#1a56db 60%,#0e9f6e 100%);color:#fff}
+.hero-title{font-size:22px;font-weight:500;margin-bottom:3px}
+.hero-sub{font-size:12px;opacity:.8;margin-bottom:14px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hpill{padding:4px 14px;border-radius:20px;font-size:12px;font-weight:500;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff}
+.hpill.hot{background:rgba(255,255,255,.92);color:#1a56db}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px}
+.kpi{border-radius:12px;padding:14px 12px;color:#fff;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;right:-8px;top:-8px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.12)}
+.kpi-v{font-size:21px;font-weight:500}
+.kpi-l{font-size:11px;opacity:.85;margin-top:2px}
+.k1{background:linear-gradient(135deg,#059669,#34d399)}
+.k2{background:linear-gradient(135deg,#1a56db,#60a5fa)}
+.k3{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+.k4{background:linear-gradient(135deg,#d97706,#fbbf24)}
+.k5{background:linear-gradient(135deg,#dc2626,#f87171)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tab{padding:7px 16px;border-radius:30px;cursor:pointer;font-size:13px;font-weight:500;border:1.5px solid #d1d5db;color:#6b7280;background:#f3f4f6;transition:all .18s}
+.tab:hover{transform:translateY(-1px)}
+.tab.active{color:#fff;border-color:transparent}
+.ta.active{background:linear-gradient(135deg,#1a56db,#7c3aed)}
+.tb.active{background:linear-gradient(135deg,#059669,#0e9f6e)}
+.tc.active{background:linear-gradient(135deg,#dc2626,#f87171)}
+.td.active{background:linear-gradient(135deg,#d97706,#fbbf24);color:#fff}
+.te.active{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+.tf.active{background:linear-gradient(135deg,#0e7490,#06b6d4)}
+.tg.active{background:linear-gradient(135deg,#be185d,#f472b6)}
+.panel{display:none}.panel.active{display:block}
+.sh{display:flex;align-items:center;gap:8px;margin:18px 0 10px}
+.sh .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.sh span{font-size:14px;font-weight:500}
+.sh-sub{font-size:12px;color:#6b7280;margin:-6px 0 10px 19px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:14px;border-radius:10px;overflow:hidden}
+th{text-align:left;padding:9px 12px;font-weight:500;font-size:12px;letter-spacing:.03em}
+td{padding:8px 12px;vertical-align:top;border-bottom:.5px solid #e5e7eb}
+tr:last-child td{border-bottom:none}
+.th-blue th{background:#dbeafe;color:#1e40af}
+.th-green th{background:#dcfce7;color:#15803d}
+.th-purple th{background:#ede9fe;color:#5b21b6}
+.th-red th{background:#fee2e2;color:#b91c1c}
+.th-amber th{background:#fef9c3;color:#a16207}
+.th-gray th{background:#f3f4f6;color:#6b7280}
+.hl-g td{background:#f0fdf4}.hl-b td{background:#eff6ff}.hl-p td{background:#f5f3ff}.hl-a td{background:#fffbeb}.hl-r td{background:#fff1f2}
+.note{font-size:12px;background:#f3f4f6;border-left:3px solid #1a56db;padding:9px 12px;border-radius:0 8px 8px 0;margin:8px 0;color:#4b5563}
+.note-g{border-left-color:#059669;background:#ecfdf5;color:#065f46}
+.note-w{border-left-color:#d97706;background:#fffbeb;color:#92400e}
+.note-r{border-left-color:#dc2626;background:#fff1f2;color:#991b1b}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap}
+.b-g{background:#dcfce7;color:#15803d}
+.b-b{background:#dbeafe;color:#1d4ed8}
+.b-p{background:#ede9fe;color:#6d28d9}
+.b-a{background:#fef9c3;color:#a16207}
+.b-r{background:#fee2e2;color:#b91c1c}
+.b-gray{background:#f3f4f6;color:#6b7280}
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin-bottom:14px}
+.inst-card{border-radius:12px;border:.5px solid #e5e7eb;background:#fff;overflow:hidden}
+.inst-header{padding:12px 14px;display:flex;align-items:center;gap:10px}
+.inst-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.inst-title{font-size:13px;font-weight:500}
+.inst-type{font-size:11px;color:#6b7280;margin-top:1px}
+.inst-body{padding:0 14px 12px;display:flex;flex-direction:column;gap:6px}
+.inst-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 0;border-bottom:.5px solid #e5e7eb}
+.inst-row:last-child{border-bottom:none}
+.inst-row .label{color:#6b7280}
+.rate-pill{padding:2px 10px;border-radius:14px;font-size:12px;font-weight:500}
+.rp-nil{background:#dcfce7;color:#15803d}
+.rp-low{background:#dbeafe;color:#1d4ed8}
+.rp-mid{background:#fef9c3;color:#a16207}
+.rp-high{background:#fee2e2;color:#b91c1c}
+.rp-max{background:#b91c1c;color:#fff}
+.rp-slab{background:#ede9fe;color:#5b21b6}
+.slab-bar{display:flex;align-items:center;gap:10px;margin:4px 0;padding:8px 12px;border-radius:9px;background:#f3f4f6;font-size:13px}
+.slab-bar .income{flex:1;font-weight:500}
+.slab-bar .rate{padding:2px 11px;border-radius:14px;font-size:12px;font-weight:500;min-width:48px;text-align:center}
+.tl{position:relative;padding-left:28px;margin:8px 0 14px}
+.tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,#7c3aed,#1a56db,#059669)}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-dot{position:absolute;left:-24px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+.tl-q{font-size:11px;font-weight:500}
+.tl-date{font-size:13px;font-weight:500}
+.tl-desc{font-size:12px;color:#6b7280}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.step-card{border-radius:10px;padding:10px 12px;font-size:12px;border:.5px solid #e5e7eb}
+.step-num{font-size:11px;font-weight:500;margin-bottom:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <!-- Top row: branding + year badges -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:4px">India Income Tax</div>
+      <div class="hero-title">FYNNECT — Tax Guide</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <div style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:6px 12px;text-align:center">
+        <div style="font-size:10px;opacity:.7;margin-bottom:1px">ITR Due Date</div>
+        <div style="font-size:13px;font-weight:500">31 July 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div style="border-top:1px solid rgba(255,255,255,.15);margin-bottom:14px"></div>
+
+  <!-- Key metrics row -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px">
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">₹12.75L</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Salaried zero-tax (New)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">₹75,000</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Standard deduction (New)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">12.5%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">LTCG on equity (Sec 112A)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">20%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">STCG on equity (Sec 111A)</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">30%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Crypto / lottery flat tax</div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px">
+      <div style="font-size:18px;font-weight:500">4%</div>
+      <div style="font-size:10px;opacity:.8;margin-top:2px">Health &amp; Education Cess</div>
+    </div>
+  </div>
+
+  <!-- Pills row -->
+  <div class="hero-pills">
+    <span class="hpill hot">New Regime (Default)</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab ta active" onclick="show('slabs',this)">📊 Slabs &amp; Rates</button>
+  <button class="tab tb" onclick="show('instruments',this)">🏦 How Instruments Are Taxed</button>
+  <button class="tab tc" onclick="show('capgains',this)">📈 Capital Gains</button>
+  <button class="tab td" onclick="show('advance',this)">🗓 Advance Tax</button>
+  <button class="tab te" onclick="show('allowed',this)">✅ What's Allowed</button>
+  <button class="tab tf" onclick="show('calc',this)">🧮 Tax Calculator</button>
+  <button class="tab tg" onclick="show('nri',this)">🌏 NRI Taxation</button>
+</div>
+
+<!-- SLABS -->
+<div id="panel-slabs" class="panel active">
+  <div class="sh"><div class="dot" style="background:#1a56db"></div><span>New regime tax slabs — FY 2025-26</span></div>
+  <div class="sh-sub">Age-neutral — same rates for all individuals including senior &amp; super-senior citizens</div>
+  <div class="slab-bar" style="background:#ecfdf5"><span class="income">Up to ₹4,00,000</span><span class="rate rp-nil">NIL</span></div>
+  <div class="slab-bar"><span class="income">₹4,00,001 – ₹8,00,000</span><span class="rate rp-low">5%</span></div>
+  <div class="slab-bar"><span class="income">₹8,00,001 – ₹12,00,000</span><span class="rate rp-low">10%</span></div>
+  <div class="slab-bar"><span class="income">₹12,00,001 – ₹16,00,000</span><span class="rate rp-mid">15%</span></div>
+  <div class="slab-bar"><span class="income">₹16,00,001 – ₹20,00,000</span><span class="rate rp-mid">20%</span></div>
+  <div class="slab-bar"><span class="income">₹20,00,001 – ₹24,00,000</span><span class="rate rp-high">25%</span></div>
+  <div class="slab-bar" style="background:#fff1f2"><span class="income">Above ₹24,00,000</span><span class="rate rp-max">30%</span></div>
+  <div class="note note-g" style="margin-top:10px">Sec 87A rebate: Up to ₹60,000 if <b>regular income</b> ≤ ₹12 lakh → effective zero tax on slab income. <b>Important:</b> Rebate is NOT applicable on STCG (Sec 111A) or LTCG (Sec 112A/112) — those taxes are payable in full even if total income ≤ ₹12L. Confirmed by Finance Act 2025 amendment + CBDT clarification. Salaried: ₹12.75L effective limit after ₹75K std. deduction (when no STCG/LTCG).</div>
+
+  <div class="sh"><div class="dot" style="background:#dc2626"></div><span>Surcharge (New regime — capped at 25%)</span></div>
+  <table class="th-red">
+    <thead><tr><th>Income range</th><th>Surcharge %</th><th>Effective max rate (incl. 4% cess)</th></tr></thead>
+    <tbody>
+      <tr><td>Up to ₹50 lakh</td><td>Nil</td><td>31.2%</td></tr>
+      <tr><td>₹50L – ₹1 Cr</td><td>10%</td><td>34.32%</td></tr>
+      <tr><td>₹1 Cr – ₹2 Cr</td><td>15%</td><td>35.88%</td></tr>
+      <tr><td>₹2 Cr – ₹5 Cr</td><td>25%</td><td>39%</td></tr>
+      <tr class="hl-g"><td>Above ₹5 Cr</td><td><b>25% (capped ✓)</b></td><td><b>39% max</b></td></tr>
+    </tbody>
+  </table>
+  <div class="note note-g">New regime advantage: Surcharge capped at 25% (vs 37% in old regime) for income above ₹5 Cr.</div>
+  <div class="sh"><div class="dot" style="background:#7c3aed"></div><span>Health &amp; Education Cess</span></div>
+  <div class="note">4% on (tax + surcharge) — applicable on all income types, all taxpayers, no exemption.</div>
+</div>
+
+<!-- INSTRUMENTS -->
+<div id="panel-instruments" class="panel">
+  <div class="sh"><div class="dot" style="background:#059669"></div><span>Salary &amp; employment income</span></div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-header" style="background:#eff6ff">
+        <div class="inst-icon" style="background:#dbeafe">💼</div>
+        <div><div class="inst-title">Salary / Wages</div><div class="inst-type">Employment income</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Tax treatment</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Standard deduction</span><span class="rate-pill rp-nil">₹75,000</span></div>
+        <div class="inst-row"><span class="label">Gratuity (on retirement)</span><span class="rate-pill rp-nil">Exempt up to ₹20L</span></div>
+        <div class="inst-row"><span class="label">Leave encashment</span><span class="rate-pill rp-nil">Exempt up to ₹25L</span></div>
+        <div class="inst-row"><span class="label">VRS receipts</span><span class="rate-pill rp-nil">Exempt up to ₹5L</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#f0fdf4">
+        <div class="inst-icon" style="background:#dcfce7">🏦</div>
+        <div><div class="inst-title">NPS — National Pension System</div><div class="inst-type">Retirement instrument</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Employer contribution (up to 14% salary)</span><span class="rate-pill rp-nil">Exempt u/s 80CCD(2)</span></div>
+        <div class="inst-row"><span class="label">Own contribution (employee)</span><span class="rate-pill rp-slab">No deduction in new regime</span></div>
+        <div class="inst-row"><span class="label">Partial withdrawal (up to 25%)</span><span class="rate-pill rp-nil">Exempt</span></div>
+        <div class="inst-row"><span class="label">60% lump sum on maturity</span><span class="rate-pill rp-nil">Exempt</span></div>
+        <div class="inst-row"><span class="label">40% mandatorily annuitised</span><span class="rate-pill rp-slab">Annuity taxed at slab</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="dot" style="background:#1a56db"></div><span>Fixed income &amp; deposits</span></div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-header" style="background:#eff6ff">
+        <div class="inst-icon" style="background:#dbeafe">🏛</div>
+        <div><div class="inst-title">Fixed Deposits (Bank / NBFC)</div><div class="inst-type">Debt instrument</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Interest income</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">TDS deducted at source</span><span class="rate-pill rp-low">10%</span></div>
+        <div class="inst-row"><span class="label">TDS threshold (non-senior)</span><span class="rate-pill rp-nil">Above ₹40,000</span></div>
+        <div class="inst-row"><span class="label">TDS threshold (senior citizen)</span><span class="rate-pill rp-nil">Above ₹50,000</span></div>
+        <div class="inst-row"><span class="label">80TTA/80TTB deduction</span><span class="rate-pill rp-high">Not in new regime</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#f0fdf4">
+        <div class="inst-icon" style="background:#dcfce7">📮</div>
+        <div><div class="inst-title">Post Office Schemes</div><div class="inst-type">Government savings</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Savings account interest</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">NSC interest (accrued)</span><span class="rate-pill rp-slab">Slab rate (annual)</span></div>
+        <div class="inst-row"><span class="label">PPF interest</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">PPF maturity</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">Sukanya Samriddhi interest</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fef9c3">
+        <div class="inst-icon" style="background:#fef08a">📜</div>
+        <div><div class="inst-title">Bonds &amp; Debentures</div><div class="inst-type">Debt securities</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Interest income (all bonds)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">LTCG (held &gt;12 months, listed)</span><span class="rate-pill rp-low">12.5%</span></div>
+        <div class="inst-row"><span class="label">STCG (listed bonds)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Tax-free bonds (NHAI/REC) interest</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">54EC bonds (capital gain reinvestment)</span><span class="rate-pill rp-nil">Gain exempt up to ₹50L</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fff7ed">
+        <div class="inst-icon" style="background:#fed7aa">🏅</div>
+        <div><div class="inst-title">Sovereign Gold Bonds (SGB)</div><div class="inst-type">Government gold investment</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">2.5% annual interest</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Capital gain on maturity (8 yrs)</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">Sold on exchange before maturity (STCG)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Sold on exchange before maturity (LTCG)</span><span class="rate-pill rp-low">12.5%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="dot" style="background:#7c3aed"></div><span>Equity &amp; stock market instruments</span></div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-header" style="background:#f5f3ff">
+        <div class="inst-icon" style="background:#ede9fe">📊</div>
+        <div><div class="inst-title">Listed Equity Shares</div><div class="inst-type">Stock exchange traded</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">STCG (≤12 months, STT paid)</span><span class="rate-pill rp-high">20% (Sec 111A)</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;12 months, STT paid)</span><span class="rate-pill rp-mid">12.5% (Sec 112A)</span></div>
+        <div class="inst-row"><span class="label">LTCG exemption per year</span><span class="rate-pill rp-nil">₹1,25,000</span></div>
+        <div class="inst-row"><span class="label">Dividend income</span><span class="rate-pill rp-slab">Slab rate + 10% TDS (&gt;₹5K)</span></div>
+        <div class="inst-row"><span class="label">Intraday trading profit</span><span class="rate-pill rp-slab">Slab rate (speculative)</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#f5f3ff">
+        <div class="inst-icon" style="background:#ede9fe">📉</div>
+        <div><div class="inst-title">F&amp;O — Futures &amp; Options</div><div class="inst-type">Derivatives</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">F&amp;O profit / loss</span><span class="rate-pill rp-slab">Slab rate (business income)</span></div>
+        <div class="inst-row"><span class="label">Expenses deductible</span><span class="rate-pill rp-nil">Yes — brokerage, internet</span></div>
+        <div class="inst-row"><span class="label">Loss set-off</span><span class="rate-pill rp-low">Against any non-salary income</span></div>
+        <div class="inst-row"><span class="label">Carry forward of loss</span><span class="rate-pill rp-low">8 years</span></div>
+        <div class="inst-row"><span class="label">Tax audit (turnover &gt;₹2 Cr)</span><span class="rate-pill rp-high">Mandatory</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fdf4ff">
+        <div class="inst-icon" style="background:#f3e8ff">📦</div>
+        <div><div class="inst-title">Equity Mutual Funds</div><div class="inst-type">&gt;65% equity allocation</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">STCG (≤12 months)</span><span class="rate-pill rp-high">20% (Sec 111A)</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;12 months)</span><span class="rate-pill rp-mid">12.5% (Sec 112A)</span></div>
+        <div class="inst-row"><span class="label">LTCG exemption per year</span><span class="rate-pill rp-nil">₹1,25,000</span></div>
+        <div class="inst-row"><span class="label">Dividend (IDCW)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">ELSS (locked 3 yrs) gains</span><span class="rate-pill rp-mid">12.5% LTCG</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fdf4ff">
+        <div class="inst-icon" style="background:#f3e8ff">📋</div>
+        <div><div class="inst-title">Debt Mutual Funds</div><div class="inst-type">Bought after 1 Apr 2023</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">All gains (regardless of holding)</span><span class="rate-pill rp-slab">Slab rate — always STCG</span></div>
+        <div class="inst-row"><span class="label">No LTCG benefit available</span><span class="rate-pill rp-high">Indexation removed</span></div>
+        <div class="inst-row"><span class="label">Dividend (IDCW)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Loss carry forward</span><span class="rate-pill rp-low">8 years (STCL)</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#eff6ff">
+        <div class="inst-icon" style="background:#dbeafe">🌐</div>
+        <div><div class="inst-title">International / FOF MFs</div><div class="inst-type">Foreign equity exposure</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">STCG (if &lt;65% domestic equity)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;24 months)</span><span class="rate-pill rp-mid">12.5%</span></div>
+        <div class="inst-row"><span class="label">FOF (domestic) gains</span><span class="rate-pill rp-slab">Slab rate (treated as debt MF)</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fff7ed">
+        <div class="inst-icon" style="background:#fed7aa">🏢</div>
+        <div><div class="inst-title">REITs &amp; InvITs</div><div class="inst-type">Infrastructure / real estate trusts</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">STCG (≤12 months)</span><span class="rate-pill rp-high">20%</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;12 months)</span><span class="rate-pill rp-mid">12.5%</span></div>
+        <div class="inst-row"><span class="label">LTCG exemption</span><span class="rate-pill rp-nil">₹1,25,000</span></div>
+        <div class="inst-row"><span class="label">Interest distribution</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Return of capital</span><span class="rate-pill rp-nil">Not taxable</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="dot" style="background:#d97706"></div><span>Real estate &amp; gold</span></div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fffbeb">
+        <div class="inst-icon" style="background:#fef08a">🏠</div>
+        <div><div class="inst-title">Residential Property</div><div class="inst-type">Immovable property</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Rental income</span><span class="rate-pill rp-slab">Slab rate (after 30% std. deduction)</span></div>
+        <div class="inst-row"><span class="label">STCG (≤24 months)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;24 months, after Jul 2024)</span><span class="rate-pill rp-mid">12.5% — no indexation</span></div>
+        <div class="inst-row"><span class="label">LTCG (acquired before 23 Jul 2024)</span><span class="rate-pill rp-nil">Lower of 12.5% or 20%+indexation</span></div>
+        <div class="inst-row"><span class="label">Sec 54 reinvestment exemption</span><span class="rate-pill rp-nil">Full LTCG exempt</span></div>
+        <div class="inst-row"><span class="label">TDS by buyer (sale &gt;₹50L)</span><span class="rate-pill rp-low">1%</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fffbeb">
+        <div class="inst-icon" style="background:#fef08a">🥇</div>
+        <div><div class="inst-title">Gold (Physical / Digital / ETF)</div><div class="inst-type">Precious metal</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">STCG (≤24 months, physical)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">LTCG (&gt;24 months, physical)</span><span class="rate-pill rp-mid">12.5% (no indexation)</span></div>
+        <div class="inst-row"><span class="label">Gold ETF LTCG (&gt;12 months)</span><span class="rate-pill rp-mid">12.5%</span></div>
+        <div class="inst-row"><span class="label">SGB maturity (8 yrs)</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="dot" style="background:#dc2626"></div><span>High-tax / special instruments</span></div>
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fff1f2">
+        <div class="inst-icon" style="background:#fee2e2">₿</div>
+        <div><div class="inst-title">Crypto / VDA / NFTs</div><div class="inst-type">Virtual digital assets</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">All gains (any holding period)</span><span class="rate-pill rp-max">30% flat (Sec 115BBH)</span></div>
+        <div class="inst-row"><span class="label">Loss set-off allowed</span><span class="rate-pill rp-high">No — not permitted</span></div>
+        <div class="inst-row"><span class="label">Loss carry forward</span><span class="rate-pill rp-high">No — not allowed</span></div>
+        <div class="inst-row"><span class="label">Deduction allowed</span><span class="rate-pill rp-high">Only cost of acquisition</span></div>
+        <div class="inst-row"><span class="label">TDS on transfer</span><span class="rate-pill rp-low">1% (Sec 194S)</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#fff1f2">
+        <div class="inst-icon" style="background:#fee2e2">🎰</div>
+        <div><div class="inst-title">Lottery / Online Gaming</div><div class="inst-type">Windfall income</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Lottery / KBC / game shows</span><span class="rate-pill rp-max">30% (Sec 115BB)</span></div>
+        <div class="inst-row"><span class="label">Online gaming (net winnings)</span><span class="rate-pill rp-max">30% (Sec 115BBJ)</span></div>
+        <div class="inst-row"><span class="label">No deduction permitted</span><span class="rate-pill rp-high">Not allowed</span></div>
+        <div class="inst-row"><span class="label">TDS on winnings</span><span class="rate-pill rp-high">30% (Sec 194B/194BA)</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#ecfdf5">
+        <div class="inst-icon" style="background:#bbf7d0">🛡</div>
+        <div><div class="inst-title">Life Insurance (LIC / ULIP)</div><div class="inst-type">Insurance products</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Maturity (premium ≤10% of sum assured)</span><span class="rate-pill rp-nil">Exempt u/s 10(10D)</span></div>
+        <div class="inst-row"><span class="label">Maturity (premium &gt;₹5L p.a., after Apr 2023)</span><span class="rate-pill rp-slab">Slab rate</span></div>
+        <div class="inst-row"><span class="label">Death claim</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">ULIP gains (premium &gt;₹2.5L p.a.)</span><span class="rate-pill rp-mid">12.5% LTCG / 20% STCG</span></div>
+        <div class="inst-row"><span class="label">Premium deduction (80C)</span><span class="rate-pill rp-high">Not in new regime</span></div>
+      </div>
+    </div>
+    <div class="inst-card">
+      <div class="inst-header" style="background:#eff6ff">
+        <div class="inst-icon" style="background:#dbeafe">🧓</div>
+        <div><div class="inst-title">EPF / PF</div><div class="inst-type">Retirement instruments</div></div>
+      </div>
+      <div class="inst-body">
+        <div class="inst-row"><span class="label">Employee contribution</span><span class="rate-pill rp-slab">No deduction in new regime</span></div>
+        <div class="inst-row"><span class="label">Employer contribution (&gt;₹7.5L aggregate)</span><span class="rate-pill rp-slab">Taxable as perquisite</span></div>
+        <div class="inst-row"><span class="label">EPF withdrawal (after 5 yrs service)</span><span class="rate-pill rp-nil">Fully exempt</span></div>
+        <div class="inst-row"><span class="label">EPF withdrawal (before 5 yrs)</span><span class="rate-pill rp-high">Taxable + 10% TDS</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Rate guide — <span class="rate-pill rp-nil" style="font-size:11px">Exempt/NIL</span> &nbsp;<span class="rate-pill rp-low" style="font-size:11px">Low (5–12.5%)</span> &nbsp;<span class="rate-pill rp-mid" style="font-size:11px">Medium (12.5–20%)</span> &nbsp;<span class="rate-pill rp-high" style="font-size:11px">High (20–30%)</span> &nbsp;<span class="rate-pill rp-max" style="font-size:11px">Max (30%+)</span> &nbsp;<span class="rate-pill rp-slab" style="font-size:11px">Slab rate</span></div>
+</div>
+
+<!-- CAPITAL GAINS -->
+<div id="panel-capgains" class="panel">
+  <div class="note note-w">Budget 2024 revised capital gains rates w.e.f. 23 July 2024. Budget 2025 retained all rates — no change for FY 2025-26.</div>
+  <div class="sh"><div class="dot" style="background:#dc2626"></div><span>Holding period classifier</span></div>
+  <table class="th-red">
+    <thead><tr><th>Asset class</th><th>Short-term (STCG)</th><th>Long-term (LTCG)</th></tr></thead>
+    <tbody>
+      <tr class="hl-p"><td>Listed equity, equity MF, REITs, InvITs, SGBs</td><td>≤ 12 months</td><td>&gt; 12 months</td></tr>
+      <tr><td>Property, unlisted shares, gold, other assets</td><td>≤ 24 months</td><td>&gt; 24 months</td></tr>
+      <tr class="hl-r"><td>Debt MF / market linked debentures (bought after 1 Apr 2023)</td><td colspan="2" style="text-align:center">Always short-term — no LTCG benefit</td></tr>
+    </tbody>
+  </table>
+  <div class="sh"><div class="dot" style="background:#7c3aed"></div><span>STCG &amp; LTCG tax rates</span></div>
+  <table class="th-purple">
+    <thead><tr><th>Asset</th><th>STCG</th><th>LTCG</th><th>Annual exemption</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td>Listed equity / equity MF (STT paid)</td><td>20%</td><td>12.5%</td><td>₹1,25,000</td></tr>
+      <tr><td>REITs / InvITs / business trust units</td><td>20%</td><td>12.5%</td><td>₹1,25,000</td></tr>
+      <tr class="hl-b"><td>Property acquired before 23 Jul 2024</td><td>Slab rate</td><td>12.5% OR 20%+indexation (choose lower)</td><td>Sec 54 / 54EC</td></tr>
+      <tr><td>Property acquired on/after 23 Jul 2024</td><td>Slab rate</td><td>12.5% (no indexation)</td><td>Sec 54 / 54EC</td></tr>
+      <tr class="hl-a"><td>Gold (physical, digital, gold ETF)</td><td>Slab rate</td><td>12.5%</td><td>None</td></tr>
+      <tr><td>Unlisted shares</td><td>Slab rate</td><td>12.5%</td><td>None</td></tr>
+      <tr class="hl-r"><td>Debt MF / debentures (after Apr 2023)</td><td>Slab rate</td><td>Slab rate (no LTCG)</td><td>None</td></tr>
+      <tr class="hl-g"><td>Sovereign Gold Bonds — on maturity</td><td>—</td><td>Fully exempt</td><td>Full exemption</td></tr>
+    </tbody>
+  </table>
+  <div class="sh"><div class="dot" style="background:#059669"></div><span>Reinvestment exemptions</span></div>
+  <table class="th-green">
+    <thead><tr><th>Section</th><th>Sell</th><th>Reinvest in</th><th>Max exemption</th><th>Deadline</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td><b>54</b></td><td>Residential house LTCG</td><td>1 house (2 if gain ≤ ₹2 Cr — once in lifetime)</td><td>Full LTCG — capped at <b>₹10 Crore</b> (from AY 2024-25)</td><td>Buy: 2 yrs after; Build: 3 yrs after</td></tr>
+      <tr><td><b>54B</b></td><td>Agricultural land LTCG</td><td>Agricultural land</td><td>Full LTCG</td><td>2 years from sale</td></tr>
+      <tr class="hl-g"><td><b>54EC</b></td><td>Any long-term asset</td><td>NHAI / REC / IRFC bonds</td><td>₹50 lakh</td><td>6 months from sale; 5-yr lock-in</td></tr>
+      <tr><td><b>54F</b></td><td>Any asset (not house)</td><td>1 residential house</td><td>Full net consideration — capped at <b>₹10 Crore</b> (from AY 2024-25)</td><td>Same as Sec 54</td></tr>
+    </tbody>
+  </table>
+  <div class="sh"><div class="dot" style="background:#d97706"></div><span>Capital loss set-off rules</span></div>
+  <table class="th-amber">
+    <thead><tr><th>Loss type</th><th>Can be set off against</th><th>Carry forward</th></tr></thead>
+    <tbody>
+      <tr><td>STCL (short-term capital loss)</td><td>STCG and LTCG both</td><td>8 assessment years</td></tr>
+      <tr class="hl-a"><td>LTCL (long-term capital loss)</td><td>LTCG only</td><td>8 assessment years</td></tr>
+      <tr class="hl-g"><td>Crypto / VDA loss</td><td>Cannot set off against anything</td><td>Cannot carry forward</td></tr>
+    </tbody>
+  </table>
+  <div class="note note-g">CII: FY 2025-26 = 376 &nbsp;|&nbsp; FY 2024-25 = 363 (Base year FY 2001-02 = 100)</div>
+</div>
+
+<!-- ADVANCE TAX -->
+<div id="panel-advance" class="panel">
+  <div class="two-col">
+    <div>
+      <div class="sh"><div class="dot" style="background:#7c3aed"></div><span>Quarterly installment schedule</span></div>
+      <div class="sh-sub">Regular taxpayers — FY 2025-26</div>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-dot" style="background:#ede9fe;border-color:#7c3aed"></div><div class="tl-q" style="color:#7c3aed">Q1 installment</div><div class="tl-date">15 June 2025</div><div class="tl-desc">Pay 15% of estimated annual tax</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#dbeafe;border-color:#1a56db"></div><div class="tl-q" style="color:#1a56db">Q2 installment</div><div class="tl-date">15 September 2025</div><div class="tl-desc">Cumulative 45% of estimated tax</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#fef9c3;border-color:#d97706"></div><div class="tl-q" style="color:#d97706">Q3 installment</div><div class="tl-date">15 December 2025</div><div class="tl-desc">Cumulative 75% of estimated tax</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#dcfce7;border-color:#059669"></div><div class="tl-q" style="color:#059669">Q4 final installment</div><div class="tl-date">15 March 2026</div><div class="tl-desc">100% — Pay remaining balance in full</div></div>
+      </div>
+      <div class="note note-g">Safe harbour: No 234C interest if Q1 ≥ 12% and Q2 ≥ 36% paid cumulatively.</div>
+      <div class="note note-w" style="margin-top:8px">Capital gains arising in Q3 or Q4? Pay tax in remaining installments only — no 234C interest on earlier shortfalls.</div>
+    </div>
+    <div>
+      <div class="sh"><div class="dot" style="background:#dc2626"></div><span>Interest on shortfall</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+        <div style="border-radius:12px;padding:14px;background:linear-gradient(135deg,#fee2e2,#fecaca);border:.5px solid #fca5a5">
+          <div style="font-size:11px;font-weight:500;color:#b91c1c;margin-bottom:6px">Section 234B — Advance tax not paid</div>
+          <div style="font-size:22px;font-weight:500;color:#b91c1c">1% per month</div>
+          <div style="font-size:12px;color:#7f1d1d;margin-top:4px">If less than 90% of tax paid before 31 March.</div>
+        </div>
+        <div style="border-radius:12px;padding:14px;background:linear-gradient(135deg,#fef9c3,#fde68a);border:.5px solid #fbbf24">
+          <div style="font-size:11px;font-weight:500;color:#a16207;margin-bottom:6px">Section 234C — Installment shortfall</div>
+          <div style="font-size:22px;font-weight:500;color:#a16207">1% per month</div>
+          <div style="font-size:12px;color:#713f12;margin-top:4px">3 months' interest per deferred installment.</div>
+        </div>
+      </div>
+      <div class="sh"><div class="dot" style="background:#059669"></div><span>Presumptive — one installment only</span></div>
+      <table class="th-green">
+        <thead><tr><th>Section</th><th>Who</th><th>Limit</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr class="hl-g"><td>44AD</td><td>Business (Indiv, HUF, Firm)</td><td>Turnover ≤ ₹3 Cr</td><td>100% by 15 Mar</td></tr>
+          <tr><td>44ADA</td><td>Professionals</td><td>Receipts ≤ ₹75L</td><td>100% by 15 Mar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sh"><div class="dot" style="background:#1a56db"></div><span>Pay advance tax — Challan 280 (online)</span></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="step-card" style="flex:1;min-width:140px;background:#eff6ff;border-color:#bfdbfe"><div class="step-num" style="color:#1d4ed8">STEP 1</div>incometax.gov.in → e-Pay Tax → Challan 280</div>
+    <div class="step-card" style="flex:1;min-width:140px;background:#f5f3ff;border-color:#ddd6fe"><div class="step-num" style="color:#6d28d9">STEP 2</div>Select "Advance Tax (100)" and AY 2026-27</div>
+    <div class="step-card" style="flex:1;min-width:140px;background:#ecfdf5;border-color:#a7f3d0"><div class="step-num" style="color:#065f46">STEP 3</div>Enter PAN, income head &amp; amount → Pay via UPI/net banking</div>
+    <div class="step-card" style="flex:1;min-width:140px;background:#fffbeb;border-color:#fde68a"><div class="step-num" style="color:#a16207">STEP 4</div>Download &amp; save challan receipt for ITR filing</div>
+  </div>
+</div>
+
+<!-- WHAT'S ALLOWED -->
+<div id="panel-allowed" class="panel">
+  <div class="note note-g">The new regime strips most deductions but retains a few critical ones. Here's exactly what survives.</div>
+  <div class="sh"><div class="dot" style="background:#059669"></div><span>Deductions &amp; exemptions still available</span></div>
+  <table class="th-green">
+    <thead><tr><th>What</th><th>Section</th><th>Benefit</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td>Standard deduction (salaried/pensioner)</td><td>16(ia)</td><td>₹75,000 — flat deduction from salary income</td></tr>
+      <tr><td>Employer's NPS contribution</td><td>80CCD(2)</td><td>14% of salary (Central Govt) / 10% others</td></tr>
+      <tr class="hl-g"><td>Gratuity on retirement</td><td>10(10)</td><td>Exempt up to ₹20 lakh</td></tr>
+      <tr><td>Leave encashment on retirement</td><td>10(10AA)</td><td>Exempt up to ₹25 lakh (non-govt)</td></tr>
+      <tr class="hl-g"><td>VRS compensation</td><td>10(10C)</td><td>Exempt up to ₹5 lakh</td></tr>
+      <tr><td>EPF withdrawal (after 5 yrs)</td><td>10(12)</td><td>Fully exempt</td></tr>
+      <tr class="hl-g"><td>Life insurance maturity (conditions met)</td><td>10(10D)</td><td>Exempt if premium ≤ 10% of sum assured</td></tr>
+      <tr><td>PPF maturity &amp; interest</td><td>10(11)</td><td>Fully exempt</td></tr>
+      <tr class="hl-g"><td>Sukanya Samriddhi maturity &amp; interest</td><td>10(11A)</td><td>Fully exempt</td></tr>
+      <tr><td>NPS lump sum (60% on maturity)</td><td>10(12A)</td><td>Fully exempt</td></tr>
+      <tr class="hl-g"><td>LTCG on listed equity (annual limit)</td><td>112A</td><td>₹1,25,000 exempt per year</td></tr>
+      <tr><td>Sec 54 / 54EC / 54F reinvestment</td><td>54/54EC/54F</td><td>LTCG on property exempt on reinvestment</td></tr>
+      <tr class="hl-g"><td>SGB maturity redemption</td><td>10</td><td>Capital gain on SGB maturity (8 yrs) fully exempt</td></tr>
+      <tr><td>Tax-free bond interest (NHAI, REC etc.)</td><td>10(15)</td><td>Fully exempt</td></tr>
+      <tr class="hl-g"><td>Family pension deduction</td><td>57(iia)</td><td>Lower of ₹25,000 or 1/3rd of pension received</td></tr>
+      <tr><td>Agniveer Corpus Fund</td><td>80CCH</td><td>Fully deductible — both employee &amp; employer contribution</td></tr>
+    </tbody>
+  </table>
+  <div class="sh"><div class="dot" style="background:#dc2626"></div><span>What is NOT available in the new regime</span></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-bottom:14px">
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 12px;border:.5px solid #fecaca;font-size:13px">
+      <div style="font-weight:500;color:#b91c1c;margin-bottom:6px">Investments</div>
+      <div style="color:#7f1d1d;line-height:1.8">80C (EPF, ELSS, PPF, LIC)<br>80CCC (pension plan)<br>80CCD(1B) (own NPS)<br>80D (health insurance)</div>
+    </div>
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 12px;border:.5px solid #fecaca;font-size:13px">
+      <div style="font-weight:500;color:#b91c1c;margin-bottom:6px">Housing</div>
+      <div style="color:#7f1d1d;line-height:1.8">Sec 24(b) home loan interest<br>80EEA affordable housing<br>HRA exemption<br>Self-occupied property loss</div>
+    </div>
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 12px;border:.5px solid #fecaca;font-size:13px">
+      <div style="font-weight:500;color:#b91c1c;margin-bottom:6px">Other deductions</div>
+      <div style="color:#7f1d1d;line-height:1.8">80E (education loan)<br>80G (donations)<br>80TTA/80TTB (interest)<br>LTA exemption, meal vouchers</div>
+    </div>
+  </div>
+  <div class="sh"><div class="dot" style="background:#1a56db"></div><span>ITR filing &amp; regime switch rules</span></div>
+  <table class="th-blue">
+    <thead><tr><th>Taxpayer type</th><th>Can switch back to old regime?</th><th>How</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td>Salaried / non-business income</td><td>Yes — every year freely</td><td>Choose at time of ITR filing</td></tr>
+      <tr><td>Business / professional income</td><td>Once only (cannot re-opt new regime)</td><td>File Form 10IEA to opt out</td></tr>
+    </tbody>
+  </table>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div class="note note-g">ITR due date (non-audit): 31 July 2026 &nbsp;|&nbsp; Audit cases: 30 Sep 2026</div>
+    <div class="note note-r">Late filing fee: ₹5,000 if income &gt; ₹5L &nbsp;|&nbsp; ₹1,000 if income ≤ ₹5L (Sec 234F)</div>
+  </div>
+</div>
+
+<!-- NRI TAXATION -->
+<div id="panel-nri" class="panel">
+
+<div style="border-radius:14px;padding:18px 20px;margin-bottom:18px;background:linear-gradient(135deg,#500724 0%,#be185d 55%,#db2777 100%);color:#fff">
+  <div style="font-size:18px;font-weight:500;margin-bottom:3px">🌏 NRI Taxation — India</div>
+  <div style="font-size:12px;opacity:.8;margin-bottom:12px">FY 2025-26 &nbsp;·&nbsp; Residency rules, income taxability, TDS, DTAA &amp; compliance</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span style="padding:3px 12px;border-radius:20px;font-size:12px;font-weight:500;background:rgba(255,255,255,.9);color:#be185d">Residency Status Determines Tax</span>
+    <span style="padding:3px 12px;border-radius:20px;font-size:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff">FEMA + Income Tax Act</span>
+    <span style="padding:3px 12px;border-radius:20px;font-size:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff">DTAA Available in 90+ countries</span>
+  </div>
+</div>
+
+<!-- RESIDENCY -->
+<div class="sh"><div class="dot" style="background:#be185d"></div><span>Step 1 — Determine Residential Status (Sec 6)</span></div>
+<div class="note" style="border-left-color:#be185d;background:#fdf2f8;color:#831843;margin-bottom:12px">Residency status is determined for each financial year independently based on physical presence in India. This is the single most important step — it decides which income gets taxed in India.</div>
+
+<table class="th-red">
+  <thead><tr><th>Status</th><th>Condition (days in India)</th><th>What is taxed in India</th></tr></thead>
+  <tbody>
+    <tr class="hl-g"><td><b>Resident &amp; Ordinarily Resident (ROR)</b></td><td>≥ 182 days in FY <br><i>OR</i> ≥ 60 days in FY + ≥ 365 days in preceding 4 FYs</td><td>Global income (India + foreign)</td></tr>
+    <tr><td><b>Resident but Not Ordinarily Resident (RNOR)</b></td><td>Resident but: NRI in 9 of 10 preceding FYs, OR ≤ 729 days in India in preceding 7 FYs</td><td>India-sourced income + foreign income from India-controlled business</td></tr>
+    <tr class="hl-r"><td><b>Non-Resident Indian (NRI)</b></td><td>&lt; 182 days in FY (general) <br><i>Exception:</i> Indian citizen going abroad for employment — &lt; 182 days</td><td>Only India-sourced income</td></tr>
+    <tr class="hl-a"><td><b>Deemed Resident (Sec 6(1A))</b></td><td>Indian citizen with income &gt; ₹15L from India, not taxable in any other country</td><td>India-sourced income (treated as RNOR)</td></tr>
+  </tbody>
+</table>
+<div class="note note-w">Special rule: Indian citizens / PIOs visiting India — 60-day rule extends to 182 days if they visit India for the purpose of employment, business, or vacation.</div>
+
+<!-- WHAT IS TAXABLE -->
+<div class="sh"><div class="dot" style="background:#dc2626"></div><span>What income is taxable for NRIs in India?</span></div>
+<table class="th-red">
+  <thead><tr><th>Income type</th><th>Taxable in India?</th><th>Rate / Notes</th></tr></thead>
+  <tbody>
+    <tr class="hl-g"><td>Salary received / accrued in India</td><td>✅ Yes</td><td>Slab rate (new regime default)</td></tr>
+    <tr><td>Salary for services rendered in India (even if paid abroad)</td><td>✅ Yes</td><td>Slab rate</td></tr>
+    <tr class="hl-g"><td>Rental income from Indian property</td><td>✅ Yes</td><td>Slab rate after 30% std deduction; TDS @31.2% by tenant</td></tr>
+    <tr><td>Interest on NRO accounts</td><td>✅ Yes</td><td>30% + surcharge + cess; TDS @30%</td></tr>
+    <tr class="hl-r"><td>Interest on NRE / FCNR accounts</td><td>❌ Exempt (Sec 10(4))</td><td>Fully exempt as long as NRI status is maintained</td></tr>
+    <tr><td>STCG on listed equity (STT paid)</td><td>✅ Yes</td><td>20% (Sec 111A)</td></tr>
+    <tr class="hl-a"><td>LTCG on listed equity (STT paid)</td><td>✅ Yes</td><td>12.5% above ₹1.25L (Sec 112A)</td></tr>
+    <tr><td>LTCG on property / unlisted shares / gold</td><td>✅ Yes</td><td>12.5% (Sec 112); TDS @12.5%+ by buyer</td></tr>
+    <tr class="hl-g"><td>Dividend from Indian companies</td><td>✅ Yes</td><td>20% flat (or DTAA rate if lower); TDS @20%</td></tr>
+    <tr><td>Business income from India operations</td><td>✅ Yes</td><td>Slab rate / corporate rate</td></tr>
+    <tr class="hl-r"><td>Foreign income (salary abroad, foreign bank interest)</td><td>❌ Not taxable</td><td>NRI is taxed only on India-sourced income</td></tr>
+    <tr><td>PPF interest / maturity</td><td>❌ Exempt</td><td>Exempt under Sec 10(11); NRIs cannot open new PPF but can continue existing</td></tr>
+  </tbody>
+</table>
+
+<!-- NRI TAX RATES -->
+<div class="sh"><div class="dot" style="background:#7c3aed"></div><span>Special tax rates applicable to NRIs</span></div>
+<div class="note" style="border-left-color:#7c3aed;background:#f5f3ff;color:#4c1d95">NRIs can opt for the new or old tax regime. However, certain NRI-specific income (STCG, LTCG, dividend, NRO interest) is taxed at flat rates regardless of slab.</div>
+<table class="th-purple">
+  <thead><tr><th>Income type</th><th>Tax rate (NRI)</th><th>TDS rate on payment to NRI</th></tr></thead>
+  <tbody>
+    <tr><td>Regular income (salary, rent, business) — new regime slabs</td><td>Slab rate (same as resident)</td><td>As per slab / Form 15CA/CB</td></tr>
+    <tr class="hl-p"><td>STCG on listed equity / equity MF (STT paid) — Sec 111A</td><td>20%</td><td>20% + surcharge + cess</td></tr>
+    <tr><td>LTCG on listed equity / equity MF — Sec 112A (above ₹1.25L)</td><td>12.5%</td><td>12.5% + surcharge + cess</td></tr>
+    <tr class="hl-p"><td>LTCG on property / unlisted shares / other assets — Sec 112</td><td>12.5%</td><td>12.5% + surcharge + cess (buyer must deduct)</td></tr>
+    <tr><td>NRO interest income</td><td>30%</td><td>30% + surcharge + cess</td></tr>
+    <tr class="hl-p"><td>Dividend from Indian companies</td><td>20% (or DTAA rate)</td><td>20% + surcharge + cess</td></tr>
+    <tr><td>Royalties / technical fees from India</td><td>10% (Sec 115A) or DTAA</td><td>10% + surcharge + cess</td></tr>
+    <tr class="hl-r"><td>NRI winning lottery / online gaming</td><td>30%</td><td>30%</td></tr>
+  </tbody>
+</table>
+<div class="note note-g">NRIs are NOT eligible for the ₹2,50,000 basic exemption against flat-rate incomes (STCG, LTCG, dividend, NRO interest). However, if total income (including flat-rate income) is below ₹2.5L, no tax is payable. Sec 87A rebate is NOT available to NRIs.</div>
+
+<!-- NRI ACCOUNTS -->
+<div class="sh"><div class="dot" style="background:#059669"></div><span>NRI bank accounts — NRE vs NRO vs FCNR</span></div>
+<table class="th-green">
+  <thead><tr><th>Account type</th><th>Currency</th><th>Who can open</th><th>Interest taxability</th><th>Repatriation</th></tr></thead>
+  <tbody>
+    <tr class="hl-g"><td><b>NRE</b> — Non-Resident External</td><td>INR (converted from foreign)</td><td>NRIs &amp; PIOs</td><td>❌ Fully exempt in India (Sec 10(4))</td><td>✅ Freely repatriable (principal + interest)</td></tr>
+    <tr><td><b>NRO</b> — Non-Resident Ordinary</td><td>INR</td><td>NRIs &amp; PIOs; for India income</td><td>✅ Taxable @30% + TDS</td><td>⚠ Up to USD 1 million per FY (after taxes)</td></tr>
+    <tr class="hl-g"><td><b>FCNR</b> — Foreign Currency NR</td><td>Foreign currency (USD, GBP etc.)</td><td>NRIs &amp; PIOs</td><td>❌ Fully exempt in India</td><td>✅ Freely repatriable</td></tr>
+    <tr><td><b>RFC</b> — Resident Foreign Currency</td><td>Foreign currency</td><td>Returned NRIs (became resident)</td><td>Taxable once resident</td><td>Freely held until resident</td></tr>
+  </tbody>
+</table>
+<div class="note note-w">NRE/FCNR interest exemption applies only while NRI status is maintained. Once the person becomes a Resident, interest on these accounts becomes taxable from that FY onwards.</div>
+
+<!-- TDS ON NRI -->
+<div class="sh"><div class="dot" style="background:#dc2626"></div><span>TDS on payments to NRIs (Sec 195)</span></div>
+<div class="note note-r" style="margin-bottom:10px">Every person making payment to an NRI must deduct TDS under Sec 195 at rates in force (including surcharge and cess) — even individuals. Failure attracts interest + penalty.</div>
+<table class="th-red">
+  <thead><tr><th>Nature of payment</th><th>TDS rate (base)</th><th>Effective rate (incl. surcharge 10% + 4% cess)</th></tr></thead>
+  <tbody>
+    <tr><td>LTCG on property / assets (Sec 112)</td><td>12.5%</td><td>~14.3% (if income ≤ ₹1 Cr)</td></tr>
+    <tr class="hl-r"><td>STCG on equity (Sec 111A)</td><td>20%</td><td>~22.9%</td></tr>
+    <tr><td>Dividend from Indian companies</td><td>20%</td><td>~22.9%</td></tr>
+    <tr class="hl-r"><td>Interest on NRO accounts</td><td>30%</td><td>~34.3%</td></tr>
+    <tr><td>Rent received by NRI from Indian tenant</td><td>31.2%</td><td>31.2% (flat)</td></tr>
+    <tr class="hl-r"><td>Salary / professional fees / other income</td><td>Slab rate</td><td>As per applicable slab</td></tr>
+    <tr><td>Royalties &amp; technical services</td><td>10%</td><td>~11.4%</td></tr>
+  </tbody>
+</table>
+<div class="note">NRI can apply to AO for lower/nil TDS certificate (Sec 197). Buyer of NRI property must file Form 27Q (not 26QB). NRI seller should file Form 13 for lower TDS.</div>
+
+<!-- DTAA -->
+<div class="sh"><div class="dot" style="background:#1a56db"></div><span>Double Tax Avoidance Agreement (DTAA)</span></div>
+<div class="note" style="border-left-color:#1a56db;background:#eff6ff;color:#1e40af;margin-bottom:10px">India has DTAA with 90+ countries. NRIs can claim the lower of India's tax rate or DTAA rate on eligible income. To claim DTAA benefit, the NRI must furnish Tax Residency Certificate (TRC) + Form 10F.</div>
+<table class="th-blue">
+  <thead><tr><th>Country</th><th>Dividend (DTAA rate)</th><th>Interest (DTAA rate)</th><th>Royalty (DTAA rate)</th><th>Capital gains</th></tr></thead>
+  <tbody>
+    <tr><td>USA</td><td>15% / 25%</td><td>15%</td><td>15%</td><td>Taxable in source country</td></tr>
+    <tr class="hl-b"><td>UK</td><td>15%</td><td>15%</td><td>15%</td><td>Taxable in source country</td></tr>
+    <tr><td>UAE</td><td>No tax in UAE; India may tax</td><td>No withholding</td><td>No withholding</td><td>India can tax CG on Indian assets</td></tr>
+    <tr class="hl-b"><td>Singapore</td><td>15%</td><td>15%</td><td>15%</td><td>Taxable in source country</td></tr>
+    <tr><td>Canada</td><td>15% / 25%</td><td>15%</td><td>15%</td><td>Taxable in source country</td></tr>
+    <tr class="hl-b"><td>Australia</td><td>15%</td><td>15%</td><td>15%</td><td>Taxable in source country</td></tr>
+    <tr><td>Germany</td><td>10%</td><td>10%</td><td>10%</td><td>Taxable in source country</td></tr>
+    <tr class="hl-b"><td>Netherlands</td><td>10%</td><td>10%</td><td>10%</td><td>Taxable in source country</td></tr>
+  </tbody>
+</table>
+<div class="note note-g">DTAA rates shown are indicative — exact rates depend on ownership percentage and treaty terms. Always verify against the specific DTAA text. NRI can use DTAA to avoid paying tax twice on the same income.</div>
+
+<!-- PROPERTY -->
+<div class="sh"><div class="dot" style="background:#d97706"></div><span>NRI selling Indian property — complete TDS flow</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px;margin-bottom:14px">
+  <div style="border-radius:12px;border:.5px solid #fde68a;overflow:hidden">
+    <div style="background:#fef9c3;padding:10px 14px;font-size:12px;font-weight:500;color:#a16207">Buyer's obligations</div>
+    <div style="padding:12px 14px;font-size:12px;display:flex;flex-direction:column;gap:6px">
+      <div style="padding:5px 0;border-bottom:.5px solid #fde68a;display:flex;justify-content:space-between"><span style="color:#6b7280">Deduct TDS on entire sale value</span><span style="font-weight:500">12.5% (LTCG) + surcharge</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #fde68a;display:flex;justify-content:space-between"><span style="color:#6b7280">File TDS return</span><span style="font-weight:500">Form 27Q</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #fde68a;display:flex;justify-content:space-between"><span style="color:#6b7280">Issue TDS certificate</span><span style="font-weight:500">Form 16A</span></div>
+      <div style="padding:5px 0;display:flex;justify-content:space-between"><span style="color:#6b7280">TDS deposit deadline</span><span style="font-weight:500">7th of next month</span></div>
+    </div>
+  </div>
+  <div style="border-radius:12px;border:.5px solid #ddd6fe;overflow:hidden">
+    <div style="background:#ede9fe;padding:10px 14px;font-size:12px;font-weight:500;color:#5b21b6">NRI seller — tax optimization</div>
+    <div style="padding:12px 14px;font-size:12px;display:flex;flex-direction:column;gap:6px">
+      <div style="padding:5px 0;border-bottom:.5px solid #ddd6fe;display:flex;justify-content:space-between"><span style="color:#6b7280">Apply for lower TDS</span><span style="font-weight:500">Form 13 to AO</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #ddd6fe;display:flex;justify-content:space-between"><span style="color:#6b7280">Reinvest LTCG in new house</span><span style="font-weight:500">Sec 54 — exempt</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #ddd6fe;display:flex;justify-content:space-between"><span style="color:#6b7280">Invest LTCG in bonds</span><span style="font-weight:500">Sec 54EC — up to ₹50L</span></div>
+      <div style="padding:5px 0;display:flex;justify-content:space-between"><span style="color:#6b7280">Claim excess TDS refund</span><span style="font-weight:500">File ITR in India</span></div>
+    </div>
+  </div>
+  <div style="border-radius:12px;border:.5px solid #a7f3d0;overflow:hidden">
+    <div style="background:#dcfce7;padding:10px 14px;font-size:12px;font-weight:500;color:#15803d">Repatriation of sale proceeds</div>
+    <div style="padding:12px 14px;font-size:12px;display:flex;flex-direction:column;gap:6px">
+      <div style="padding:5px 0;border-bottom:.5px solid #a7f3d0;display:flex;justify-content:space-between"><span style="color:#6b7280">Route proceeds through</span><span style="font-weight:500">NRO account</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #a7f3d0;display:flex;justify-content:space-between"><span style="color:#6b7280">Annual repatriation limit</span><span style="font-weight:500">USD 1 million</span></div>
+      <div style="padding:5px 0;border-bottom:.5px solid #a7f3d0;display:flex;justify-content:space-between"><span style="color:#6b7280">CA certificate required</span><span style="font-weight:500">Form 15CA + 15CB</span></div>
+      <div style="padding:5px 0;display:flex;justify-content:space-between"><span style="color:#6b7280">Property type restriction</span><span style="font-weight:500">Cannot own agricultural land</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ITR FOR NRI -->
+<div class="sh"><div class="dot" style="background:#059669"></div><span>ITR filing for NRIs</span></div>
+<table class="th-green">
+  <thead><tr><th>Condition</th><th>ITR filing required?</th><th>Form</th></tr></thead>
+  <tbody>
+    <tr class="hl-g"><td>Total India income exceeds basic exemption (₹2.5L old / ₹3L new regime)</td><td>✅ Mandatory</td><td>ITR-2 (no business income) / ITR-3 (with business)</td></tr>
+    <tr><td>LTCG / STCG regardless of amount</td><td>✅ Mandatory</td><td>ITR-2</td></tr>
+    <tr class="hl-g"><td>TDS deducted but want refund</td><td>✅ Recommended</td><td>ITR-2</td></tr>
+    <tr><td>NRO interest only, TDS already deducted fully</td><td>Optional (if no other income)</td><td>ITR-1 or ITR-2</td></tr>
+    <tr class="hl-r"><td>NRIs cannot use ITR-1 (Sahaj)</td><td>—</td><td>Must use ITR-2 or ITR-3</td></tr>
+  </tbody>
+</table>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+  <div class="note note-g">ITR due date: 31 July 2026 (non-audit) &nbsp;|&nbsp; 30 Sep 2026 (audit cases)</div>
+  <div class="note note-w">NRIs must have a PAN card. File ITR online at incometax.gov.in. Use DSC or EVC for e-verification.</div>
+</div>
+
+<!-- KEY COMPLIANCE -->
+<div class="sh"><div class="dot" style="background:#be185d"></div><span>Key compliance checklist for NRI clients</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;margin-bottom:14px">
+  <div style="background:#fdf2f8;border-radius:10px;padding:12px 14px;border:.5px solid #fbcfe8;font-size:12px">
+    <div style="font-weight:500;color:#9d174d;margin-bottom:8px">📋 Documents needed</div>
+    <div style="color:#831843;line-height:2">✓ PAN card (mandatory for all transactions)<br>✓ Tax Residency Certificate (TRC) from country of residence<br>✓ Form 10F (self-declaration for DTAA)<br>✓ Passport + visa copies for residency proof<br>✓ Form 16A from all TDS deductors<br>✓ NRO/NRE account statements</div>
+  </div>
+  <div style="background:#ecfdf5;border-radius:10px;padding:12px 14px;border:.5px solid #a7f3d0;font-size:12px">
+    <div style="font-weight:500;color:#065f46;margin-bottom:8px">✅ Tax saving opportunities</div>
+    <div style="color:#065f46;line-height:2">✓ Park savings in NRE / FCNR — interest fully exempt<br>✓ Claim DTAA benefit on dividends &amp; interest<br>✓ Harvest LTCG up to ₹1.25L annually (Sec 112A)<br>✓ Reinvest property LTCG in Sec 54 / 54EC bonds<br>✓ Apply Form 13 for lower TDS on property sales<br>✓ File ITR to claim back excess TDS deducted</div>
+  </div>
+  <div style="background:#fff1f2;border-radius:10px;padding:12px 14px;border:.5px solid #fecaca;font-size:12px">
+    <div style="font-weight:500;color:#b91c1c;margin-bottom:8px">⚠ Common pitfalls</div>
+    <div style="color:#991b1b;line-height:2">✗ Not converting accounts to NRO upon becoming NRI<br>✗ Continuing 80C investments (no benefit in new regime)<br>✗ Missing Form 15CA/CB for remittances<br>✗ Not claiming DTAA — paying higher Indian TDS<br>✗ Assuming NRE interest remains exempt after returning<br>✗ NRI buying agricultural land (prohibited under FEMA)</div>
+  </div>
+</div>
+
+</div><!-- end panel-nri -->
+
+<!-- TAX CALCULATOR -->
+<div id="panel-calc" class="panel">
+
+<style>
+.calc-step{border-radius:14px;border:.5px solid #e5e7eb;background:#fff;margin-bottom:14px;overflow:hidden}
+.calc-step-header{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:.5px solid #e5e7eb}
+.step-badge{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff;flex-shrink:0}
+.calc-step-title{font-size:14px;font-weight:500}
+.calc-step-sub{font-size:12px;color:#6b7280;margin-top:1px}
+.calc-step-body{padding:14px 16px}
+.field-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.field-label{font-size:13px;color:#374151;flex:1;min-width:160px}
+.field-input{padding:7px 12px;border-radius:8px;border:1px solid #d1d5db;font-size:13px;width:160px;background:#fff;color:#1a1a1a;font-family:inherit}
+.field-input:focus{outline:none;border-color:#1a56db;box-shadow:0 0 0 3px rgba(26,86,219,.1)}
+.field-note{font-size:11px;color:#9ca3af;margin-top:-6px;margin-bottom:6px;padding-left:4px}
+.result-box{background:linear-gradient(135deg,#1e3a5f,#1a56db);border-radius:14px;padding:20px 22px;color:#fff;margin-top:14px}
+.result-title{font-size:13px;opacity:.8;margin-bottom:4px}
+.result-value{font-size:28px;font-weight:500;margin-bottom:4px}
+.result-sub{font-size:12px;opacity:.75}
+.ledger{width:100%;border-collapse:collapse;font-size:13px}
+.ledger tr td{padding:7px 10px;border-bottom:.5px solid #e5e7eb}
+.ledger tr:last-child td{border-bottom:none}
+.ledger .lbl{color:#6b7280}
+.ledger .val{text-align:right;font-weight:500}
+.ledger .sub-lbl{color:#9ca3af;font-size:12px;padding-left:20px}
+.ledger .sub-val{text-align:right;color:#6b7280;font-size:12px}
+.ledger .total-row td{background:#f0fdf4;font-weight:500;color:#065f46}
+.ledger .deduct-row td{color:#dc2626}
+.ledger .deduct-val{text-align:right;font-weight:500;color:#dc2626}
+.ledger .highlight-row td{background:#eff6ff;font-weight:500;color:#1e40af}
+.slab-visual{margin:10px 0}
+.slab-vis-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px}
+.slab-vis-bar{height:18px;border-radius:4px;min-width:4px;transition:width .3s}
+.slab-vis-label{min-width:80px;color:#6b7280}
+.slab-vis-amt{min-width:100px;text-align:right;font-weight:500}
+.calc-btn{padding:10px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,#1a56db,#7c3aed);color:#fff;font-size:14px;font-weight:500;cursor:pointer;margin-top:6px;font-family:inherit;transition:opacity .2s}
+.calc-btn:hover{opacity:.9}
+.reset-btn{padding:10px 20px;border-radius:30px;border:1.5px solid #d1d5db;background:#fff;color:#6b7280;font-size:13px;font-weight:500;cursor:pointer;margin-top:6px;margin-left:8px;font-family:inherit}
+.tip-chip{display:inline-block;background:#fffbeb;border:.5px solid #fde68a;border-radius:8px;padding:5px 10px;font-size:12px;color:#92400e;margin:3px 2px}
+.hidden{display:none}
+.two-result{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:540px){.two-result{grid-template-columns:1fr}}
+
+/* Regime toggle */.regime-toggle{display:flex;gap:0;background:#f3f4f6;border-radius:30px;padding:4px;margin-bottom:18px;width:fit-content}
+.regime-btn{padding:9px 28px;border-radius:26px;font-size:14px;font-weight:500;cursor:pointer;border:none;background:transparent;color:#6b7280;transition:all .2s;font-family:inherit}
+.regime-btn.active-new{background:linear-gradient(135deg,#1a56db,#7c3aed);color:#fff;box-shadow:0 2px 8px rgba(26,86,219,.3)}
+.regime-btn.active-old{background:linear-gradient(135deg,#dc2626,#f97316);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.3)}
+
+</style>
+
+<!-- REGIME TOGGLE -->
+<div style="margin-bottom:14px">
+  <div style="font-size:13px;font-weight:500;color:#374151;margin-bottom:10px">Select tax regime to calculate:</div>
+  <div class="regime-toggle">
+    <button class="regime-btn active-new" id="btn-new" onclick="switchRegime('new')">📊 New Regime <span style="font-size:11px;opacity:.8">(Default)</span></button>
+    <button class="regime-btn" id="btn-old" onclick="switchRegime('old')">📋 Old Regime <span style="font-size:11px;opacity:.8">(Optional)</span></button>
+  </div>
+  <div style="font-size:11px;color:#9ca3af;margin-top:6px" id="regime-hint">New regime (FY 2025-26): NIL → 5% → 10% → 15% → 20% → 25% → 30% | No HRA/80C deductions</div>
+</div>
+
+<!-- ═══════════ NEW REGIME CALCULATOR ═══════════ -->
+<div id="calc-new-regime">
+<div class="note" style="margin-bottom:14px">Step-by-step calculator for the <b>New Tax Regime (FY 2025-26)</b>. Fill in your client's details — all calculations update live.</div>
+
+<!-- STEP 1 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#1a56db,#7c3aed)">1</div>
+    <div><div class="calc-step-title">Gross Salary Income</div><div class="calc-step-sub">Enter all components of salary before any deduction</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Basic salary (annual)</span><input class="field-input" id="basic" type="number" placeholder="e.g. 900000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label">HRA received</span><input class="field-input" id="hra" type="number" placeholder="e.g. 300000" oninput="calc()"></div>
+    <div class="field-note">Note: HRA is fully taxable under new regime — no exemption available</div>
+    <div class="field-row"><span class="field-label">Special allowance</span><input class="field-input" id="special" type="number" placeholder="e.g. 200000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label">Bonus / performance pay</span><input class="field-input" id="bonus" type="number" placeholder="e.g. 150000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label">Other taxable allowances</span><input class="field-input" id="other_allow" type="number" placeholder="e.g. 50000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#1a56db">= Gross Salary</span><span id="gross_sal" style="font-size:15px;font-weight:500;color:#1a56db;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#059669,#0e9f6e)">2</div>
+    <div><div class="calc-step-title">Less: Standard Deduction</div><div class="calc-step-sub">Flat ₹75,000 deduction available for all salaried employees &amp; pensioners in new regime</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Standard deduction (auto-applied)</span><span style="font-size:14px;font-weight:500;color:#059669">− ₹75,000</span></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#059669">= Net Salary After Std. Deduction</span><span id="net_sal" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+    <div class="note note-g" style="margin-top:6px">This is the ONLY salary deduction in the new regime. No HRA, LTA, or 80C allowed.</div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#d97706,#fbbf24)">3</div>
+    <div><div class="calc-step-title">Add: Other Income</div><div class="calc-step-sub">Include profession/business income, interest, rent, capital gains from all instruments</div></div>
+  </div>
+  <div class="calc-step-body">
+
+    <div style="background:#fffbeb;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #fde68a">
+      <div style="font-size:12px;font-weight:500;color:#a16207;margin-bottom:10px">💼 Profession / Business Income (Head 3 — PGBP)</div>
+
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:8px;border:.5px solid #fde68a">
+        <div style="font-size:11px;font-weight:500;color:#a16207;margin-bottom:6px">🔷 1. Professional Income</div>
+        <div class="field-row"><span class="field-label">Net profit from professional services</span><input class="field-input" id="prof_income" type="number" placeholder="e.g. 500000" oninput="calc()"></div>
+        <div class="field-note">Income from doctors, lawyers, CAs, consultants, architects etc. For 44ADA: enter 50% of gross receipts as net profit.</div>
+        <div class="field-row"><span class="field-label">Presumptive scheme (professional)</span>
+          <select class="field-input" id="presumptive_prof" onchange="calc()" style="width:160px">
+            <option value="none">No — Regular books</option>
+            <option value="44ADA">Sec 44ADA (receipts ≤ ₹75L)</option>
+          </select>
+        </div>
+        <div class="field-note" id="presumptive_prof_note" style="color:#059669;display:none"></div>
+      </div>
+
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:8px;border:.5px solid #fde68a">
+        <div style="font-size:11px;font-weight:500;color:#a16207;margin-bottom:6px">🔶 2. Business Income</div>
+        <div class="field-row"><span class="field-label">Net profit from business activities</span><input class="field-input" id="biz_income" type="number" placeholder="e.g. 300000" oninput="calc()"></div>
+        <div class="field-note">Trading, manufacturing, e-commerce, freelance business etc. For 44AD: enter 8% (or 6% if digital receipts) of turnover as net profit.</div>
+        <div class="field-row"><span class="field-label">Presumptive scheme (business)</span>
+          <select class="field-input" id="presumptive_biz" onchange="calc()" style="width:160px">
+            <option value="none">No — Regular books</option>
+            <option value="44AD">Sec 44AD (turnover ≤ ₹3 Cr)</option>
+          </select>
+        </div>
+        <div class="field-note" id="presumptive_biz_note" style="color:#059669;display:none"></div>
+      </div>
+
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:4px;border:.5px solid #fecaca">
+        <div style="font-size:11px;font-weight:500;color:#b91c1c;margin-bottom:6px">📉 3. Options Trading Income (F&amp;O)</div>
+        <div class="field-row"><span class="field-label">Net profit / (loss) from F&amp;O trading</span><input class="field-input" id="fo_income" type="number" placeholder="e.g. 150000" oninput="calc()"></div>
+        <div class="field-note" style="color:#dc2626">⚠ Treated as <b>Business Income (non-speculative)</b> under the Income Tax Act — regardless of frequency or volume. Taxed at slab rate. Losses can be carried forward for 8 years and set off against any non-salary business income. Enter net profit after brokerage, STT, and other trading expenses.</div>
+      </div>
+
+      <div class="field-row" style="margin-top:10px;padding-top:8px;border-top:.5px solid #fde68a">
+        <span class="field-label" style="font-weight:500;color:#a16207">= Total PGBP Income (sum of all 3 above)</span>
+        <span id="total_pgbp_display" style="font-size:14px;font-weight:500;color:#a16207;min-width:160px;text-align:right">₹0</span>
+      </div>
+    </div>
+
+    <div style="background:#eff6ff;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #bfdbfe">
+      <div style="font-size:12px;font-weight:500;color:#1d4ed8;margin-bottom:8px">🏦 Interest &amp; Rental Income</div>
+      <div class="field-row"><span class="field-label">Interest income (FD, savings, bonds)</span><input class="field-input" id="int_income" type="number" placeholder="e.g. 50000" oninput="calc()"></div>
+      <div class="field-row"><span class="field-label">Rental income (after 30% std. deduction)</span><input class="field-input" id="rent_income" type="number" placeholder="e.g. 120000" oninput="calc()"></div>
+      <div class="field-note">Enter net rental income after the 30% standard deduction on NAV has already been applied</div>
+    </div>
+
+    <div style="background:#f5f3ff;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #ddd6fe">
+      <div style="font-size:12px;font-weight:500;color:#6d28d9;margin-bottom:8px">📊 Capital Gains — Equity &amp; MF</div>
+      <div class="field-row"><span class="field-label">STCG — equity / equity MF (≤12 months, STT paid)</span><input class="field-input" id="stcg" type="number" placeholder="e.g. 80000" oninput="calc()"></div>
+      <div class="field-note">Taxed @20% (Sec 111A) — separate from slab income</div>
+      <div class="field-row"><span class="field-label">LTCG — equity / equity MF (&gt;12 months, STT paid)</span><input class="field-input" id="ltcg" type="number" placeholder="e.g. 200000" oninput="calc()"></div>
+      <div class="field-note">Enter total LTCG — first ₹1,25,000 is auto-exempted; balance taxed @12.5% (Sec 112A)</div>
+    </div>
+
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #fecaca">
+      <div style="font-size:12px;font-weight:500;color:#b91c1c;margin-bottom:8px">📋 Capital Gains — Debt Mutual Funds</div>
+      <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>after</b> 1 Apr 2023</span><input class="field-input" id="debt_mf_new" type="number" placeholder="e.g. 60000" oninput="calc()"></div>
+      <div class="field-note" style="color:#dc2626">⚠ Always treated as STCG regardless of holding period. Taxed at <b>slab rate</b>. No LTCG benefit, no indexation. Added to regular income.</div>
+      <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>before</b> 1 Apr 2023 (held &gt;36 months)</span><input class="field-input" id="debt_mf_old_ltcg" type="number" placeholder="e.g. 0" oninput="calc()"></div>
+      <div class="field-note" style="color:#dc2626">⚠ Post-Budget 2023, even these are taxed at <b>slab rate</b> (indexation benefit removed). Added to regular income.</div>
+      <div class="field-row"><span class="field-label">Debt MF gains — purchased before 1 Apr 2023 (held ≤36 months)</span><input class="field-input" id="debt_mf_old_stcg" type="number" placeholder="e.g. 0" oninput="calc()"></div>
+      <div class="field-note">Short-term — taxed at slab rate. Added to regular income.</div>
+    </div>
+
+    <div style="background:#f0fdf4;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #a7f3d0">
+      <div style="font-size:12px;font-weight:500;color:#065f46;margin-bottom:8px">🌐 Other Income</div>
+      <div class="field-row"><span class="field-label">Any other income (gifts from non-relatives, etc.)</span><input class="field-input" id="other_inc" type="number" placeholder="e.g. 0" oninput="calc()"></div>
+    </div>
+
+    <div class="field-row" style="margin-top:4px"><span class="field-label" style="font-weight:500;color:#d97706">= Gross Total Income (GTI) — before Chapter VI-A deductions</span><span id="gti" style="font-size:15px;font-weight:500;color:#d97706;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 3B — GTI DERIVATION -->
+<div class="calc-step" style="border-color:#7c3aed;border-width:1.5px">
+  <div class="calc-step-header" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe)">
+    <div class="step-badge" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">GTI</div>
+    <div>
+      <div class="calc-step-title" style="color:#5b21b6">How Gross Total Income (GTI) is Arrived At</div>
+      <div class="calc-step-sub">Income Tax Act groups all income under 5 heads — GTI is the sum before any deductions</div>
+    </div>
+  </div>
+  <div class="calc-step-body">
+    <div class="note" style="margin-bottom:12px;border-left-color:#7c3aed;background:#f5f3ff;color:#4c1d95">
+      GTI = Sum of income from all 5 heads of income. Deductions under Chapter VI-A are subtracted <b>after</b> GTI to arrive at Total Taxable Income.
+    </div>
+
+    <!-- 5 Heads -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-bottom:14px">
+
+      <!-- Head 1 -->
+      <div style="border-radius:10px;border:.5px solid #bfdbfe;overflow:hidden">
+        <div style="background:#dbeafe;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">💼</span>
+          <div style="font-size:12px;font-weight:500;color:#1e40af">Head 1 — Salaries</div>
+        </div>
+        <div style="padding:10px 12px;font-size:12px">
+          <table style="width:100%;border:none;margin:0">
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Basic + HRA + Allowances + Bonus</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_gross_sal">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#059669">Less: Standard deduction u/s 16(ia)</td><td style="border:none;padding:3px 0;text-align:right;color:#059669">− ₹75,000</td></tr>
+            <tr style="border-top:1px dashed #bfdbfe"><td style="border:none;padding:4px 0;font-weight:500;color:#1e40af">Income from Salaries</td><td style="border:none;padding:4px 0;text-align:right;font-weight:500;color:#1e40af" id="gti_head1">₹0</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Head 2 -->
+      <div style="border-radius:10px;border:.5px solid #fde68a;overflow:hidden">
+        <div style="background:#fef9c3;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🏠</span>
+          <div style="font-size:12px;font-weight:500;color:#a16207">Head 2 — House Property</div>
+        </div>
+        <div style="padding:10px 12px;font-size:12px">
+          <table style="width:100%;border:none;margin:0">
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Gross Rent Received (Annual)</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_rent_gross">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#059669">Less: Std deduction @30% u/s 24(a)</td><td style="border:none;padding:3px 0;text-align:right;color:#059669" id="gti_rent_ded">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#6b7280;font-size:11px">Municipal taxes (already deducted)</td><td style="border:none;padding:3px 0;text-align:right;color:#6b7280;font-size:11px">—</td></tr>
+            <tr style="border-top:1px dashed #fde68a"><td style="border:none;padding:4px 0;font-weight:500;color:#a16207">Income from House Property</td><td style="border:none;padding:4px 0;text-align:right;font-weight:500;color:#a16207" id="gti_head2">₹0</td></tr>
+          </table>
+          <div style="font-size:11px;color:#92400e;margin-top:6px;background:#fffbeb;border-radius:6px;padding:5px 8px">Enter net rental (after 30% deduction) in Step 3. Home loan interest deduction u/s 24(b) is <b>not available</b> in new regime.</div>
+        </div>
+      </div>
+
+      <!-- Head 3 -->
+      <div style="border-radius:10px;border:.5px solid #a7f3d0;overflow:hidden">
+        <div style="background:#dcfce7;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">💼</span>
+          <div style="font-size:12px;font-weight:500;color:#15803d">Head 3 — Profits &amp; Gains of Business / Profession</div>
+        </div>
+        <div style="padding:10px 12px;font-size:12px">
+          <table style="width:100%;border:none;margin:0">
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Gross receipts / Revenue</td><td style="border:none;padding:3px 0;text-align:right;color:#6b7280">—</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#059669">Less: Allowable business expenses</td><td style="border:none;padding:3px 0;text-align:right;color:#059669">—</td></tr>
+            <tr style="border-top:1px dashed #a7f3d0"><td style="border:none;padding:4px 0;font-weight:500;color:#15803d">Net Profit from Profession/Business</td><td style="border:none;padding:4px 0;text-align:right;font-weight:500;color:#15803d" id="gti_head3">₹0</td></tr>
+          </table>
+          <div style="font-size:11px;color:#065f46;margin-top:6px;background:#ecfdf5;border-radius:6px;padding:5px 8px">For 44ADA: 50% of receipts. For 44AD: 8% (or 6% digital) of turnover. Enter net profit directly in Step 3.</div>
+        </div>
+      </div>
+
+      <!-- Head 4 -->
+      <div style="border-radius:10px;border:.5px solid #ddd6fe;overflow:hidden">
+        <div style="background:#ede9fe;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">📈</span>
+          <div style="font-size:12px;font-weight:500;color:#5b21b6">Head 4 — Capital Gains</div>
+        </div>
+        <div style="padding:10px 12px;font-size:12px">
+          <table style="width:100%;border:none;margin:0">
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">STCG — equity / equity MF @20%</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_stcg">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">LTCG — equity / equity MF (gross)</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_ltcg_gross">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#059669">Less: LTCG exemption u/s 112A</td><td style="border:none;padding:3px 0;text-align:right;color:#059669" id="gti_ltcg_exempt">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Debt MF gains (all at slab rate)</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_debtmf2">₹0</td></tr>
+            <tr style="border-top:1px dashed #ddd6fe"><td style="border:none;padding:4px 0;font-weight:500;color:#5b21b6">Income from Capital Gains</td><td style="border:none;padding:4px 0;text-align:right;font-weight:500;color:#5b21b6" id="gti_head4">₹0</td></tr>
+          </table>
+          <div style="font-size:11px;color:#4c1d95;margin-top:6px;background:#f5f3ff;border-radius:6px;padding:5px 8px">Debt MF gains form part of capital gains head but are taxed at slab rate (not flat CG rates).</div>
+        </div>
+      </div>
+
+      <!-- Head 5 -->
+      <div style="border-radius:10px;border:.5px solid #e5e7eb;overflow:hidden">
+        <div style="background:#f3f4f6;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">💰</span>
+          <div style="font-size:12px;font-weight:500;color:#374151">Head 5 — Income from Other Sources</div>
+        </div>
+        <div style="padding:10px 12px;font-size:12px">
+          <table style="width:100%;border:none;margin:0">
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Interest income (FD, savings, bonds)</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_int">₹0</td></tr>
+            <tr><td style="border:none;padding:3px 0;color:#6b7280">Any other income (gifts, etc.)</td><td style="border:none;padding:3px 0;text-align:right;font-weight:500" id="gti_other2">₹0</td></tr>
+            <tr style="border-top:1px dashed #e5e7eb"><td style="border:none;padding:4px 0;font-weight:500;color:#374151">Income from Other Sources</td><td style="border:none;padding:4px 0;text-align:right;font-weight:500;color:#374151" id="gti_head5">₹0</td></tr>
+          </table>
+          <div style="font-size:11px;color:#6b7280;margin-top:6px;background:#f9fafb;border-radius:6px;padding:5px 8px">No 80TTA / 80TTB deduction available in new regime. Interest is fully taxable.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GTI Waterfall -->
+    <div style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:12px;padding:14px 16px;border:1px solid #ddd6fe">
+      <div style="font-size:12px;font-weight:500;color:#5b21b6;margin-bottom:10px">GTI Computation — All Heads Combined</div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <tr><td style="padding:5px 0;color:#374151;border-bottom:.5px solid #ddd6fe">Head 1 — Salaries (after ₹75,000 std. deduction)</td><td style="text-align:right;padding:5px 0;border-bottom:.5px solid #ddd6fe;font-weight:500" id="gti_s1">₹0</td></tr>
+        <tr><td style="padding:5px 0;color:#374151;border-bottom:.5px solid #ddd6fe">Head 2 — House Property (net rental after 30%)</td><td style="text-align:right;padding:5px 0;border-bottom:.5px solid #ddd6fe;font-weight:500" id="gti_s2">₹0</td></tr>
+        <tr><td style="padding:5px 0;color:#374151;border-bottom:.5px solid #ddd6fe">Head 3 — Profits &amp; Gains (Professional + Business + F&amp;O)</td><td style="text-align:right;padding:5px 0;border-bottom:.5px solid #ddd6fe;font-weight:500" id="gti_s3">₹0</td></tr>
+        <tr><td style="padding:5px 0;color:#374151;border-bottom:.5px solid #ddd6fe">Head 4 — Capital Gains (STCG + taxable LTCG after ₹1.25L exempt + Debt MF)</td><td style="text-align:right;padding:5px 0;border-bottom:.5px solid #ddd6fe;font-weight:500" id="gti_s4">₹0</td></tr>
+        <tr><td style="padding:5px 0;color:#374151;border-bottom:2px solid #7c3aed">Head 5 — Other Sources (interest, gifts)</td><td style="text-align:right;padding:5px 0;border-bottom:2px solid #7c3aed;font-weight:500" id="gti_s5">₹0</td></tr>
+        <tr style="background:rgba(124,58,237,.08)"><td style="padding:8px 0;font-weight:500;font-size:14px;color:#5b21b6">= Gross Total Income (GTI)</td><td style="text-align:right;padding:8px 0;font-weight:500;font-size:16px;color:#5b21b6" id="gti_total_display">₹0</td></tr>
+        <tr><td style="padding:5px 0;color:#059669;font-size:12px">Less: Chapter VI-A Deductions (NPS employer + Agniveer)</td><td style="text-align:right;padding:5px 0;color:#059669;font-size:12px;font-weight:500" id="gti_vi_a_ded">₹0</td></tr>
+        <tr style="background:rgba(5,150,105,.06)"><td style="padding:6px 0;font-weight:500;color:#065f46">= Total Taxable Income</td><td style="text-align:right;padding:6px 0;font-weight:500;color:#065f46" id="gti_total_taxable">₹0</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#059669,#34d399)">4</div>
+    <div><div class="calc-step-title">Less: Deductions Allowed in New Regime</div><div class="calc-step-sub">Only a handful of deductions survive — enter what applies</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Employer NPS contribution u/s 80CCD(2)</span><input class="field-input" id="nps_employer" type="number" placeholder="e.g. 90000" oninput="calc()"></div>
+    <div class="field-note">Max: 14% of basic+DA for central govt, 10% for others</div>
+    <div class="field-row"><span class="field-label">Agniveer corpus fund u/s 80CCH</span><input class="field-input" id="agniveer" type="number" placeholder="e.g. 0" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#059669">= Total Deductions</span><span id="total_ded" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+    <div class="field-row" style="margin-top:6px"><span class="field-label" style="font-weight:500;color:#7c3aed;font-size:14px">= Total Taxable Income</span><span id="taxable_inc" style="font-size:16px;font-weight:500;color:#7c3aed;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f87171)">5</div>
+    <div><div class="calc-step-title">Apply Slab Rates — Compute Basic Tax</div><div class="calc-step-sub">Tax is calculated on regular income (slab), STCG @20%, and LTCG @12.5% — all separately</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="slab-visual" id="slab_visual"></div>
+    <table class="ledger" id="slab_table">
+      <tr><td class="lbl">Tax on Regular Income — slab rates (salary + profession + biz + F&O + interest + rent + debt MF)</td><td class="val" id="tax_regular">₹0</td></tr>
+      <tr><td class="lbl">Tax on STCG — equity / equity MF @20% (Sec 111A) — not eligible for 87A rebate</td><td class="val" id="tax_stcg">₹0</td></tr>
+      <tr><td class="lbl">Tax on LTCG — equity / equity MF @12.5% above ₹1.25L (Sec 112A) — not eligible for 87A rebate</td><td class="val" id="tax_ltcg">₹0</td></tr>
+      <tr class="total-row"><td>Gross Tax Before Rebate</td><td class="val" id="gross_tax">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 6 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#0e7490,#06b6d4)">6</div>
+    <div><div class="calc-step-title">Less: Sec 87A Rebate</div><div class="calc-step-sub">Rebate applies only on REGULAR income tax (slab) — NOT on STCG/LTCG tax (Finance Act 2025)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Eligible? (regular income ≤ ₹12,00,000 — STCG/LTCG excluded from check)</td><td class="val" id="rebate_eligible">—</td></tr>
+      <tr><td class="lbl">Rebate amount u/s 87A (on slab tax only)</td><td class="val" id="rebate_amt" style="color:#059669">₹0</td></tr>
+      <tr class="highlight-row"><td>Tax after Rebate (slab tax after rebate + STCG/LTCG tax in full)</td><td class="val" id="tax_after_rebate">₹0</td></tr>
+    </table>
+    <div class="note note-g" id="rebate_note" style="display:none"></div>
+    <div class="note note-w" style="margin-top:6px">⚠ <b>FY 2025-26 rule:</b> As per Finance Act 2025, Sec 87A rebate is NOT available against tax on STCG (Sec 111A) or LTCG (Sec 112A/112). Even if total income is ≤ ₹12L, if you have equity STCG/LTCG, those taxes remain payable in full. Confirmed by CBDT clarification.</div>
+  </div>
+</div>
+
+<!-- STEP 7 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">7</div>
+    <div><div class="calc-step-title">Add: Surcharge (if applicable)</div><div class="calc-step-sub">Max 25% on regular income; capped at 15% on STCG/LTCG (Sec 111A/112/112A)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Surcharge rate (on regular income)</td><td class="val" id="surcharge_rate">Nil</td></tr>
+      <tr><td class="lbl">Surcharge on STCG/LTCG (capped at 15%)</td><td class="val" id="surcharge_rate_cg">Nil</td></tr>
+      <tr><td class="lbl">Total surcharge amount</td><td class="val" id="surcharge_amt">₹0</td></tr>
+      <tr class="total-row"><td>Tax + Surcharge</td><td class="val" id="tax_plus_surcharge">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 8 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f87171)">8</div>
+    <div><div class="calc-step-title">Add: Health &amp; Education Cess @4%</div><div class="calc-step-sub">Charged on (tax + surcharge) — no exemption, no threshold</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Cess @4% on tax + surcharge</td><td class="val" id="cess_amt">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 9 -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#1e3a5f,#1a56db)">9</div>
+    <div><div class="calc-step-title">Less: TDS Already Deducted</div><div class="calc-step-sub">Reduce TDS deducted by employer and any other TDS credits</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">TDS deducted by employer (Form 16)</span><input class="field-input" id="tds_employer" type="number" placeholder="e.g. 80000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label">TDS on interest / rent / other</span><input class="field-input" id="tds_other" type="number" placeholder="e.g. 5000" oninput="calc()"></div>
+    <div class="field-row"><span class="field-label">Advance tax paid (all installments)</span><input class="field-input" id="advance_paid" type="number" placeholder="e.g. 0" oninput="calc()"></div>
+  </div>
+</div>
+
+<!-- FINAL RESULT -->
+<div class="result-box">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div><div class="result-title">Total Tax Payable (incl. cess)</div><div class="result-value" id="final_tax">₹0</div><div class="result-sub">Before TDS / advance tax credit</div></div>
+    <div><div class="result-title">Balance Tax Payable / (Refund)</div><div class="result-value" id="balance_tax">₹0</div><div class="result-sub" id="balance_sub">After all TDS & advance tax credits</div></div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.2);padding-top:12px">
+    <div style="font-size:12px;opacity:.8;margin-bottom:8px;font-weight:500">Full computation ledger</div>
+    <table style="width:100%;font-size:12px;border-collapse:collapse">
+      <tr><td style="padding:3px 0;opacity:.75">Gross Salary</td><td style="text-align:right" id="l_gross">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Standard Deduction</td><td style="text-align:right;color:#86efac">− ₹75,000</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Professional + Business + F&amp;O Income (PGBP)</td><td style="text-align:right" id="l_prof">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Interest + Rental + Other income</td><td style="text-align:right" id="l_other">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Debt MF gains (all at slab rate)</td><td style="text-align:right" id="l_debtmf">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Deductions (NPS employer etc.)</td><td style="text-align:right;color:#86efac" id="l_ded">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">STCG — equity / MF (separate @20%)</td><td style="text-align:right" id="l_stcg">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">LTCG — taxable portion @12.5%</td><td style="text-align:right" id="l_ltcg_t">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:5px 0;font-weight:500">Gross Tax</td><td style="text-align:right;font-weight:500" id="l_gtax">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Sec 87A Rebate</td><td style="text-align:right;color:#86efac" id="l_rebate">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Add: Surcharge</td><td style="text-align:right" id="l_surcharge">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Add: Cess @4%</td><td style="text-align:right" id="l_cess">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:5px 0;font-weight:500">Total Tax Liability</td><td style="text-align:right;font-weight:500" id="l_total">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: TDS + Advance Tax</td><td style="text-align:right;color:#86efac" id="l_tds">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:5px 0;font-weight:500;font-size:13px">Net Payable / (Refund)</td><td style="text-align:right;font-weight:500;font-size:13px" id="l_net">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="sh" style="margin-top:18px"><div class="dot" style="background:#d97706"></div><span>Common planning tips for salaried clients</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px">
+  <span class="tip-chip">Ask employer to route NPS contribution via 80CCD(2) — saves up to 10–14% of salary tax-free</span>
+  <span class="tip-chip">Harvest LTCG up to ₹1.25L every year — completely tax-free</span>
+  <span class="tip-chip">Prefer SGB over physical gold — maturity is fully exempt from capital gains</span>
+  <span class="tip-chip">PPF &amp; Sukanya Samriddhi interest remains exempt even in new regime</span>
+  <span class="tip-chip">Pay advance tax by 15 March to avoid 234B/234C interest</span>
+  <span class="tip-chip">File ITR by 31 July 2026 to avoid ₹5,000 late fee</span>
+</div>
+
+</div><!-- end calc-new-regime -->
+
+<!-- ═══════════ OLD REGIME CALCULATOR ═══════════ -->
+<div id="calc-old-regime" style="display:none">
+<div class="note note-w" style="margin-bottom:14px">Step-by-step calculator for the <b>Old Tax Regime (FY 2025-26)</b>. Allows HRA, 80C, 80D, home loan interest and many more deductions. Standard deduction: ₹50,000.</div>
+
+<!-- AGE SELECTOR -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">A</div>
+    <div><div class="calc-step-title">Age Category</div><div class="calc-step-sub">Determines basic exemption limit — senior citizens get higher exemption</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row">
+      <span class="field-label">Client age group</span>
+      <select class="field-input" id="old_age" onchange="calcOld()" style="width:200px">
+        <option value="below60">Below 60 years (Exemption ₹2.5L)</option>
+        <option value="senior">60–80 years — Senior Citizen (Exemption ₹3L)</option>
+        <option value="supersenior">Above 80 years — Super Senior Citizen (Exemption ₹5L)</option>
+      </select>
+    </div>
+    <div class="note note-g" id="old_age_note" style="margin-top:4px">Basic exemption limit: ₹2,50,000 — applicable for individuals below 60 years</div>
+  </div>
+</div>
+
+<!-- STEP 1 OLD — SALARY -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">1</div>
+    <div><div class="calc-step-title">Gross Salary Income</div><div class="calc-step-sub">Enter all salary components</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Basic salary (annual)</span><input class="field-input" id="o_basic" type="number" placeholder="e.g. 900000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">HRA received</span><input class="field-input" id="o_hra" type="number" placeholder="e.g. 300000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Special allowance</span><input class="field-input" id="o_special" type="number" placeholder="e.g. 200000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Bonus / performance pay</span><input class="field-input" id="o_bonus" type="number" placeholder="e.g. 150000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Other taxable allowances</span><input class="field-input" id="o_other_allow" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#dc2626">= Gross Salary</span><span id="o_gross_sal" style="font-size:15px;font-weight:500;color:#dc2626;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 2 OLD — HRA + STD DEDUCTION -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">2</div>
+    <div><div class="calc-step-title">Less: Exemptions from Salary</div><div class="calc-step-sub">HRA exemption, LTA, standard deduction ₹50,000</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div style="background:#fff1f2;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #fecaca">
+      <div style="font-size:12px;font-weight:500;color:#b91c1c;margin-bottom:8px">🏠 HRA Exemption Calculator (Sec 10(13A))</div>
+      <div class="field-row"><span class="field-label">Rent paid annually</span><input class="field-input" id="o_rent_paid" type="number" placeholder="e.g. 240000" oninput="calcOld()"></div>
+      <div class="field-row">
+        <span class="field-label">City type</span>
+        <select class="field-input" id="o_metro" onchange="calcOld()" style="width:160px">
+          <option value="metro">Metro (50% of Basic)</option>
+          <option value="nonmetro">Non-Metro (40% of Basic)</option>
+        </select>
+      </div>
+      <div class="field-note">Metro cities: Mumbai, Delhi, Kolkata, Chennai — 50% of Basic. All others: 40%.</div>
+      <div class="field-row"><span class="field-label" style="color:#059669">HRA Exemption (auto-calculated)</span><span id="o_hra_exempt" style="font-size:13px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+      <div class="field-note" id="o_hra_breakdown" style="color:#9ca3af"></div>
+    </div>
+    <div class="field-row"><span class="field-label">LTA exemption (actual travel cost)</span><input class="field-input" id="o_lta" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-note">LTA: 2 journeys in 4-year block — economy rail/air fare for self+family. FY 2025-26 is in the 2022–2025 block.</div>
+    <div class="field-row"><span class="field-label">Standard deduction u/s 16(ia)</span><span style="font-size:13px;font-weight:500;color:#059669">₹50,000</span></div>
+    <div class="field-row"><span class="field-label" style="font-weight:500;color:#059669">= Net Salary After Exemptions</span><span id="o_net_sal" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span></div>
+  </div>
+</div>
+
+<!-- STEP 3 OLD — OTHER INCOME -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">3</div>
+    <div><div class="calc-step-title">Add: Other Income</div><div class="calc-step-sub">Profession, business, interest, rent, capital gains</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">Professional income (net)</span><input class="field-input" id="o_prof" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Business income (net)</span><input class="field-input" id="o_biz" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">F&amp;O / Options trading income</span><input class="field-input" id="o_fo" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Interest income (FD, savings, bonds)</span><input class="field-input" id="o_int" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Rental income (before 30% deduction)</span><input class="field-input" id="o_rent_inc" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">Enter GROSS rental income — 30% standard deduction (Sec 24a) is auto-applied</div>
+    <div class="field-row"><span class="field-label">STCG — equity / equity MF (≤12 months)</span><input class="field-input" id="o_stcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">LTCG — equity / equity MF (&gt;12 months, gross)</span><input class="field-input" id="o_ltcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>after</b> 1 Apr 2023</span><input class="field-input" id="o_debt_mf_new" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note" style="color:#dc2626">⚠ Always slab rate regardless of holding period (Budget 2023 change)</div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased <b>before</b> 1 Apr 2023 (held &gt;36 months)</span><input class="field-input" id="o_debt_mf_old_ltcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note" style="color:#dc2626">⚠ Indexation removed — taxed at slab rate (same as new regime)</div>
+    <div class="field-row"><span class="field-label">Debt MF gains — purchased before 1 Apr 2023 (held ≤36 months)</span><input class="field-input" id="o_debt_mf_old_stcg" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Other income</span><input class="field-input" id="o_other" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+  </div>
+</div>
+
+<!-- STEP 4 OLD — DEDUCTIONS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">4</div>
+    <div><div class="calc-step-title">Less: Chapter VI-A Deductions</div><div class="calc-step-sub">80C, 80D, 80E, home loan interest, NPS and more — all available in old regime</div></div>
+  </div>
+  <div class="calc-step-body">
+
+    <div style="background:#ecfdf5;border-radius:10px;padding:10px 14px;margin-bottom:10px;border:.5px solid #a7f3d0">
+      <div style="font-size:12px;font-weight:500;color:#15803d;margin-bottom:8px">💰 Section 80C (combined limit ₹1,50,000)</div>
+      <div class="field-row"><span class="field-label">EPF / VPF contribution</span><input class="field-input" id="o_epf" type="number" placeholder="e.g. 72000" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">PPF contribution</span><input class="field-input" id="o_ppf" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">ELSS mutual fund investment</span><input class="field-input" id="o_elss" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">LIC / life insurance premium</span><input class="field-input" id="o_lic" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">Home loan principal repayment</span><input class="field-input" id="o_hl_princ" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label">NSC / SCSS / Sukanya Samriddhi / other 80C</span><input class="field-input" id="o_80c_other" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+      <div class="field-row"><span class="field-label" style="color:#15803d">80C total (capped at ₹1.5L)</span><span id="o_80c_total" style="font-size:13px;font-weight:500;color:#15803d;min-width:160px;text-align:right">₹0</span></div>
+    </div>
+
+    <div class="field-row"><span class="field-label">NPS — own contribution u/s 80CCD(1B)</span><input class="field-input" id="o_nps_self" type="number" placeholder="e.g. 50000" oninput="calcOld()"></div>
+    <div class="field-note">Additional deduction up to ₹50,000 over and above the ₹1.5L 80C limit</div>
+    <div class="field-row"><span class="field-label">NPS — employer contribution u/s 80CCD(2)</span><input class="field-input" id="o_nps_emp" type="number" placeholder="e.g. 90000" oninput="calcOld()"></div>
+    <div class="field-note">Max: 14% of basic+DA (central govt), 10% (others). No monetary cap.</div>
+    <div class="field-row"><span class="field-label">Health insurance — self &amp; family (80D)</span><input class="field-input" id="o_80d_self" type="number" placeholder="e.g. 25000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Health insurance — parents (80D)</span><input class="field-input" id="o_80d_par" type="number" placeholder="e.g. 25000" oninput="calcOld()"></div>
+    <div class="field-note">Limit: ₹25,000 (₹50,000 if parents are senior citizens). Max total 80D = ₹75,000 (self 25K + senior parents 50K).</div>
+    <div class="field-row"><span class="field-label">Home loan interest — self-occupied (Sec 24b)</span><input class="field-input" id="o_hl_int" type="number" placeholder="e.g. 200000" oninput="calcOld()"></div>
+    <div class="field-note">Capped at ₹2,00,000 per year for self-occupied property. No cap for let-out property.</div>
+    <div class="field-row"><span class="field-label">Education loan interest (80E)</span><input class="field-input" id="o_80e" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">Full interest deduction for up to 8 years. No monetary cap.</div>
+    <div class="field-row"><span class="field-label">Donations (80G)</span><input class="field-input" id="o_80g" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+    <div class="field-note">50% or 100% of donation. Cash limit: ₹2,000 per donation.</div>
+    <div class="field-row"><span class="field-label">Savings interest (80TTA) or Senior deposit interest (80TTB)</span><input class="field-input" id="o_80tta" type="number" placeholder="e.g. 10000" oninput="calcOld()"></div>
+    <div class="field-note">80TTA: up to ₹10,000 (savings account interest only). 80TTB: up to ₹50,000 for senior citizens (all deposits).</div>
+    <div class="field-row"><span class="field-label">Other deductions (80DD, 80DDB, 80U etc.)</span><input class="field-input" id="o_other_ded" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+
+    <div class="field-row" style="margin-top:10px;padding-top:8px;border-top:.5px solid #e5e7eb">
+      <span class="field-label" style="font-weight:500;color:#059669">= Total Deductions</span>
+      <span id="o_total_ded" style="font-size:15px;font-weight:500;color:#059669;min-width:160px;text-align:right">₹0</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" style="font-weight:500;color:#7c3aed">= Total Taxable Income</span>
+      <span id="o_taxable_inc" style="font-size:16px;font-weight:500;color:#7c3aed;min-width:160px;text-align:right">₹0</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5 OLD — TAX -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">5</div>
+    <div><div class="calc-step-title">Apply Old Regime Slab Rates</div><div class="calc-step-sub">3-slab structure: 5% / 20% / 30% — varies by age group</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="slab-visual" id="o_slab_visual"></div>
+    <table class="ledger">
+      <tr><td class="lbl">Tax on regular income (old regime slabs)</td><td class="val" id="o_tax_regular">₹0</td></tr>
+      <tr><td class="lbl">Tax on STCG @20% (Sec 111A)</td><td class="val" id="o_tax_stcg">₹0</td></tr>
+      <tr><td class="lbl">Tax on LTCG @12.5% above ₹1.25L (Sec 112A)</td><td class="val" id="o_tax_ltcg">₹0</td></tr>
+      <tr class="total-row"><td>Gross Tax Before Rebate</td><td class="val" id="o_gross_tax">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 6 OLD — REBATE -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">6</div>
+    <div><div class="calc-step-title">Less: Sec 87A Rebate</div><div class="calc-step-sub">Old regime: rebate of ₹12,500 if <b>total taxable income</b> ≤ ₹5 lakh (on slab tax only — not STCG/LTCG)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Eligible? (total taxable income ≤ ₹5,00,000)</td><td class="val" id="o_rebate_elig">—</td></tr>
+      <tr><td class="lbl">Rebate amount u/s 87A</td><td class="val" id="o_rebate_amt" style="color:#059669">₹0</td></tr>
+      <tr class="highlight-row"><td>Tax after Rebate</td><td class="val" id="o_after_rebate">₹0</td></tr>
+    </table>
+    <div class="note note-w" style="margin-top:6px">⚠ Old regime 87A rebate is ₹12,500 (not ₹60,000) and applies only if taxable income ≤ ₹5L. Like new regime, rebate does NOT apply against STCG/LTCG tax.</div>
+  </div>
+</div>
+
+<!-- STEP 7 OLD — SURCHARGE -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">7</div>
+    <div><div class="calc-step-title">Add: Surcharge</div><div class="calc-step-sub">Old regime: up to 37% (higher than new regime's 25% cap for income above ₹5 Cr)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Surcharge rate (on regular income)</td><td class="val" id="o_sc_rate">Nil</td></tr>
+      <tr><td class="lbl">Surcharge on STCG/LTCG (capped at 15%)</td><td class="val" id="o_sc_cg">Nil</td></tr>
+      <tr><td class="lbl">Surcharge amount</td><td class="val" id="o_sc_amt">₹0</td></tr>
+      <tr class="total-row"><td>Tax + Surcharge</td><td class="val" id="o_tax_sc">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 8 OLD — CESS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">8</div>
+    <div><div class="calc-step-title">Add: Health &amp; Education Cess @4%</div><div class="calc-step-sub">Same as new regime — 4% on (tax + surcharge)</div></div>
+  </div>
+  <div class="calc-step-body">
+    <table class="ledger">
+      <tr><td class="lbl">Cess @4%</td><td class="val" id="o_cess">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STEP 9 OLD — TDS CREDITS -->
+<div class="calc-step">
+  <div class="calc-step-header">
+    <div class="step-badge" style="background:linear-gradient(135deg,#dc2626,#f97316)">9</div>
+    <div><div class="calc-step-title">Less: TDS Already Deducted</div><div class="calc-step-sub">Enter TDS and advance tax paid</div></div>
+  </div>
+  <div class="calc-step-body">
+    <div class="field-row"><span class="field-label">TDS deducted by employer (Form 16)</span><input class="field-input" id="o_tds1" type="number" placeholder="e.g. 80000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">TDS on interest / rent / other</span><input class="field-input" id="o_tds2" type="number" placeholder="e.g. 5000" oninput="calcOld()"></div>
+    <div class="field-row"><span class="field-label">Advance tax paid</span><input class="field-input" id="o_adv" type="number" placeholder="e.g. 0" oninput="calcOld()"></div>
+  </div>
+</div>
+
+<!-- OLD RESULT BOX -->
+<div class="result-box" style="background:linear-gradient(135deg,#7f1d1d,#dc2626)">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div><div class="result-title">Total Tax (Old Regime)</div><div class="result-value" id="o_final_tax">₹0</div><div class="result-sub">Before TDS / advance tax credits</div></div>
+    <div><div class="result-title">Net Balance (Old Regime)</div><div class="result-value" id="o_balance">₹0</div><div class="result-sub" id="o_balance_sub">After all credits</div></div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.2);padding-top:12px">
+    <div style="font-size:12px;opacity:.8;margin-bottom:8px;font-weight:500">Old Regime Full Ledger</div>
+    <table style="width:100%;font-size:12px;border-collapse:collapse">
+      <tr><td style="padding:3px 0;opacity:.75">Gross Salary</td><td style="text-align:right" id="ol_gross">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: HRA Exemption</td><td style="text-align:right;color:#86efac" id="ol_hra">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: LTA Exemption</td><td style="text-align:right;color:#86efac" id="ol_lta">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Standard Deduction</td><td style="text-align:right;color:#86efac">− ₹50,000</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Add: Other Income (Prof + Biz + F&O + Interest + Rent)</td><td style="text-align:right" id="ol_other">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">LTCG Exemption (₹1.25L Sec 112A)</td><td style="text-align:right;color:#86efac" id="ol_ltcg_e">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: Total Chapter VI-A Deductions</td><td style="text-align:right;color:#86efac" id="ol_ded">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:4px 0;font-weight:500">Gross Tax</td><td style="text-align:right;font-weight:500" id="ol_gtax">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: 87A Rebate</td><td style="text-align:right;color:#86efac" id="ol_rebate">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Surcharge</td><td style="text-align:right" id="ol_sc">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Cess @4%</td><td style="text-align:right" id="ol_cess">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:4px 0;font-weight:500">Total Tax Liability</td><td style="text-align:right;font-weight:500" id="ol_total">₹0</td></tr>
+      <tr><td style="padding:3px 0;opacity:.75">Less: TDS + Advance Tax</td><td style="text-align:right;color:#86efac" id="ol_tds">₹0</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td style="padding:5px 0;font-weight:500;font-size:13px">Net Payable / (Refund)</td><td style="text-align:right;font-weight:500;font-size:13px" id="ol_net">₹0</td></tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- end calc-old-regime -->
+
+<!-- SHARED: EXCEL EXPORT -->
+<div id="excel-export-banner" style="border-radius:14px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #a7f3d0;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:18px">
+  <div>
+    <div style="font-size:14px;font-weight:500;color:#065f46;margin-bottom:3px">📊 Download Tax Computation as Excel</div>
+    <div style="font-size:12px;color:#047857">Exports a fully formatted Excel sheet with all your filled values, slab breakdown, GTI computation, and final tax summary — ready to share with your client.</div>
+  </div>
+  <button onclick="exportExcel()" style="padding:10px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,#059669,#0e9f6e);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(5,150,105,.3)">⬇ Download Excel</button>
+</div>
+
+</div><!-- end panel-calc -->
+
+</div><!-- end folder-tax -->
+
+</div><!-- end wrap -->
+
+<script>
+// ── Regime switcher ──────────────────────────────
+let activeRegime = 'new';
+function switchRegime(r) {
+  activeRegime = r;
+  document.getElementById('calc-new-regime').style.display = r === 'new' ? 'block' : 'none';
+  document.getElementById('calc-old-regime').style.display = r === 'old' ? 'block' : 'none';
+  document.getElementById('btn-new').className = 'regime-btn' + (r === 'new' ? ' active-new' : '');
+  document.getElementById('btn-old').className = 'regime-btn' + (r === 'old' ? ' active-old' : '');
+  document.getElementById('regime-hint').textContent = r === 'new'
+    ? 'New regime (FY 2025-26): NIL → 5% → 10% → 15% → 20% → 25% → 30% | No HRA/80C deductions'
+    : 'Old regime (FY 2025-26): NIL → 5% → 20% → 30% | HRA, 80C, 80D, home loan interest all available';
+  if (r === 'old') calcOld();
+}
+
+// ── Old Regime Calculator ────────────────────────
+function getO(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calcOldSlabTax(inc, ageGroup) {
+  if (inc <= 0) return 0;
+  let exemption = ageGroup === 'senior' ? 300000 : ageGroup === 'supersenior' ? 500000 : 250000;
+  const taxable = Math.max(0, inc - exemption);
+  if (taxable === 0) return 0;
+  let tax = 0, rem = taxable;
+  // Old regime slabs (above exemption): 5% up to 2.5L, 20% up to 7.5L, 30% above
+  // Absolute amounts:
+  const s1_end = 500000, s2_end = 1000000;
+  if (ageGroup === 'supersenior') {
+    // Super senior: 0 up to 5L, 20% 5L-10L, 30% above 10L
+    const in_20 = Math.max(0, Math.min(inc, s2_end) - 500000);
+    const in_30 = Math.max(0, inc - s2_end);
+    tax = in_20 * 0.20 + in_30 * 0.30;
+  } else {
+    // Below 60 & Senior: 5% 2.5L-5L / Senior: 5% 3L-5L, 20% 5L-10L, 30% above 10L
+    const base = ageGroup === 'senior' ? 300000 : 250000;
+    const in_5 = Math.max(0, Math.min(inc, 500000) - base);
+    const in_20 = Math.max(0, Math.min(inc, 1000000) - 500000);
+    const in_30 = Math.max(0, inc - 1000000);
+    tax = in_5 * 0.05 + in_20 * 0.20 + in_30 * 0.30;
+  }
+  return tax;
+}
+
+function calcOld() {
+  const age = document.getElementById('old_age').value;
+  const exemLimit = age === 'senior' ? 300000 : age === 'supersenior' ? 500000 : 250000;
+
+  // Age note
+  const ageLabels = {below60:'₹2,50,000 — individuals below 60 years', senior:'₹3,00,000 — Senior Citizens (60–80 yrs)', supersenior:'₹5,00,000 — Super Senior Citizens (80+ yrs)'};
+  document.getElementById('old_age_note').textContent = 'Basic exemption limit: ' + ageLabels[age];
+
+  // Step 1
+  const basic = getO('o_basic'), hra_recv = getO('o_hra'), special = getO('o_special');
+  const bonus = getO('o_bonus'), o_allow = getO('o_other_allow');
+  const gross = basic + hra_recv + special + bonus + o_allow;
+  document.getElementById('o_gross_sal').textContent = fmt(gross);
+
+  // Step 2 — HRA exemption: min of (actual HRA, 50%/40% of basic, rent paid − 10% of basic)
+  const rent_paid = getO('o_rent_paid');
+  const metro = document.getElementById('o_metro').value === 'metro';
+  const hra_pct = metro ? 0.50 : 0.40;
+  let hra_exempt = 0;
+  if (basic > 0 && hra_recv > 0 && rent_paid > 0) {
+    const hra_a = hra_recv;
+    const hra_b = basic * hra_pct;
+    const hra_c = Math.max(0, rent_paid - basic * 0.10);
+    hra_exempt = Math.min(hra_a, hra_b, hra_c);
+    document.getElementById('o_hra_exempt').textContent = fmt(hra_exempt);
+    document.getElementById('o_hra_breakdown').textContent =
+      `Min of: A) Actual HRA ${fmt(hra_a)}  B) ${metro?'50%':'40%'} of Basic ${fmt(hra_b)}  C) Rent − 10% of Basic ${fmt(hra_c)}  → Exempt: ${fmt(hra_exempt)}`;
+  } else {
+    document.getElementById('o_hra_exempt').textContent = '₹0';
+    document.getElementById('o_hra_breakdown').textContent =
+      basic === 0 ? 'Enter basic salary to enable HRA exemption calculation' :
+      hra_recv === 0 ? 'Enter HRA received in salary' :
+      'Enter rent paid to calculate HRA exemption';
+  }
+
+  const lta = getO('o_lta');
+  const std_ded = 50000;
+  const netSal = Math.max(0, gross - hra_exempt - lta - std_ded);
+  document.getElementById('o_net_sal').textContent = fmt(netSal);
+
+  // Step 3 — Other income
+  const prof = getO('o_prof'), biz = getO('o_biz'), fo = getO('o_fo');
+  const int_inc = getO('o_int');
+  const rent_gross = getO('o_rent_inc');
+  const rent_net = rent_gross * 0.70; // after 30% std deduction u/s 24a
+  const o_stcg = getO('o_stcg');
+  const o_ltcg_gross = getO('o_ltcg');
+  const o_ltcg_exempt = Math.min(o_ltcg_gross, 125000);
+  const o_ltcg_taxable = Math.max(0, o_ltcg_gross - o_ltcg_exempt);
+  const debt_mf = getO('o_debt_mf_new') + getO('o_debt_mf_old_ltcg') + getO('o_debt_mf_old_stcg');
+  const other = getO('o_other');
+
+  // Step 4 — Deductions
+  const epf = getO('o_epf'), ppf = getO('o_ppf'), elss = getO('o_elss');
+  const lic = getO('o_lic'), hl_princ = getO('o_hl_princ'), o80c_other = getO('o_80c_other');
+  const raw_80c = epf + ppf + elss + lic + hl_princ + o80c_other;
+  const ded_80c = Math.min(raw_80c, 150000);
+  document.getElementById('o_80c_total').textContent = fmt(ded_80c) + (raw_80c > 150000 ? ' (capped)' : '');
+
+  const nps_self = Math.min(getO('o_nps_self'), 50000);
+  const nps_emp = getO('o_nps_emp');
+  const ded_80d = Math.min(getO('o_80d_self'), 25000) + Math.min(getO('o_80d_par'), 50000);
+  const ded_hl_int = Math.min(getO('o_hl_int'), 200000);
+  const ded_80e = getO('o_80e');
+  const ded_80g = getO('o_80g');
+  const ded_80tta = Math.min(getO('o_80tta'), age === 'supersenior' || age === 'senior' ? 50000 : 10000);
+  const ded_other = getO('o_other_ded');
+
+  const total_via = ded_80c + nps_self + nps_emp + ded_80d + ded_hl_int + ded_80e + ded_80g + ded_80tta + ded_other;
+
+  document.getElementById('o_total_ded').textContent = fmt(total_via);
+
+  // GTI (before VI-A deductions, after HRA/LTA/std ded and LTCG exemption)
+  const true_gti_old = netSal + prof + biz + fo + int_inc + rent_net + o_stcg + o_ltcg_taxable + debt_mf + other;
+  // Total Taxable Income
+  const total_taxable_old = Math.max(0, true_gti_old - total_via);
+  // Regular income (slab)
+  const regular_old = Math.max(0, total_taxable_old - o_stcg - o_ltcg_taxable);
+
+  document.getElementById('o_taxable_inc').textContent = fmt(total_taxable_old);
+
+  // Step 5 — Tax
+  const tax_reg_old = calcOldSlabTax(regular_old, age);
+  const tax_stcg_old = o_stcg * 0.20;
+  const tax_ltcg_old = o_ltcg_taxable * 0.125;
+  const gross_tax_old = tax_reg_old + tax_stcg_old + tax_ltcg_old;
+
+  document.getElementById('o_tax_regular').textContent = fmt(tax_reg_old);
+  document.getElementById('o_tax_stcg').textContent = fmt(tax_stcg_old);
+  document.getElementById('o_tax_ltcg').textContent = fmt(tax_ltcg_old);
+  document.getElementById('o_gross_tax').textContent = fmt(gross_tax_old);
+
+  // Old regime slab visual
+  const slabDefsOld = age === 'supersenior'
+    ? [{label:'Up to ₹5L',rate:'NIL',from:0,to:500000,pct:0,color:'#dcfce7'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}]
+    : age === 'senior'
+    ? [{label:'Up to ₹3L',rate:'NIL',from:0,to:300000,pct:0,color:'#dcfce7'},
+       {label:'₹3L–₹5L',rate:'5%',from:300000,to:500000,pct:0.05,color:'#dbeafe'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}]
+    : [{label:'Up to ₹2.5L',rate:'NIL',from:0,to:250000,pct:0,color:'#dcfce7'},
+       {label:'₹2.5L–₹5L',rate:'5%',from:250000,to:500000,pct:0.05,color:'#dbeafe'},
+       {label:'₹5L–₹10L',rate:'20%',from:500000,to:1000000,pct:0.20,color:'#fef9c3'},
+       {label:'Above ₹10L',rate:'30%',from:1000000,to:Infinity,pct:0.30,color:'#fee2e2'}];
+
+  let ovis = `<div style="font-size:11px;color:#6b7280;margin-bottom:6px">Slab breakdown — regular income of ${fmt(regular_old)}</div>`;
+  const maxW = 240;
+  for (const s of slabDefsOld) {
+    const used = Math.max(0, Math.min(regular_old, s.to === Infinity ? regular_old : s.to) - s.from);
+    if (used <= 0 && regular_old <= s.from) break;
+    const barW = regular_old > 0 ? Math.max(used > 0 ? 6 : 0, (used / regular_old) * maxW) : 0;
+    ovis += `<div class="slab-vis-row"><span class="slab-vis-label">${s.label} @${s.rate}</span><div class="slab-vis-bar" style="width:${barW}px;background:${s.color};border:1px solid rgba(0,0,0,.08)"></div><span class="slab-vis-amt">${fmt(used)} → tax ${fmt(used * s.pct)}</span></div>`;
+    if (s.to === Infinity || regular_old <= s.to) break;
+  }
+  document.getElementById('o_slab_visual').innerHTML = ovis;
+
+  // Step 6 — 87A Rebate (old regime: ₹12,500 if TOTAL TAXABLE INCOME ≤ ₹5L)
+  // Note: unlike new regime (regular income check), old regime checks TOTAL taxable income
+  const o_rebate_elig = total_taxable_old <= 500000;
+  const o_rebate = o_rebate_elig ? Math.min(tax_reg_old, 12500) : 0;
+  const tax_reg_ar_old = Math.max(0, tax_reg_old - o_rebate);
+  const after_rebate_old = tax_reg_ar_old + tax_stcg_old + tax_ltcg_old;
+
+  document.getElementById('o_rebate_elig').textContent = o_rebate_elig ? '✅ Yes (total income ≤ ₹5L)' : '❌ No (total income > ₹5L)';
+  document.getElementById('o_rebate_amt').textContent = fmt(o_rebate);
+  document.getElementById('o_after_rebate').textContent = fmt(after_rebate_old);
+
+  // Step 7 — Surcharge (old regime: up to 37% for >5Cr; 15% cap on STCG/LTCG)
+  function oldSurchRate(inc) {
+    if (inc <= 5000000) return 0;
+    if (inc <= 10000000) return 0.10;
+    if (inc <= 20000000) return 0.15;
+    if (inc <= 50000000) return 0.25;
+    return 0.37; // 37% in old regime (no cap unlike new regime)
+  }
+  const o_sr = oldSurchRate(total_taxable_old);
+  const o_sr_cap = Math.min(o_sr, 0.15);
+  const o_sc = tax_reg_ar_old * o_sr + (tax_stcg_old + tax_ltcg_old) * o_sr_cap;
+  const o_tax_sc = after_rebate_old + o_sc;
+
+  document.getElementById('o_sc_rate').textContent = o_sr === 0 ? 'Nil' : (o_sr * 100) + '%';
+  document.getElementById('o_sc_cg').textContent = (tax_stcg_old + tax_ltcg_old) > 0 ? (o_sr_cap === 0 ? 'Nil' : (o_sr_cap * 100) + '% (capped at 15%)') : 'Nil';
+  document.getElementById('o_sc_amt').textContent = fmt(o_sc);
+  document.getElementById('o_tax_sc').textContent = fmt(o_tax_sc);
+
+  // Step 8 — Cess
+  const o_cess = o_tax_sc * 0.04;
+  const o_final = o_tax_sc + o_cess;
+  document.getElementById('o_cess').textContent = fmt(o_cess);
+
+  // Step 9
+  const o_tds_total = getO('o_tds1') + getO('o_tds2') + getO('o_adv');
+  const o_balance = o_final - o_tds_total;
+
+  document.getElementById('o_final_tax').textContent = fmt(o_final);
+  document.getElementById('o_balance').textContent = o_balance < 0 ? '(Refund) ' + fmt(Math.abs(o_balance)) : fmt(o_balance);
+  document.getElementById('o_balance_sub').textContent = o_balance < 0 ? 'File ITR to claim refund' : 'Pay as self-assessment tax before filing';
+
+  // Ledger
+  document.getElementById('ol_gross').textContent = fmt(gross);
+  document.getElementById('ol_hra').textContent = '− ' + fmt(hra_exempt);
+  document.getElementById('ol_lta').textContent = '− ' + fmt(lta);
+  document.getElementById('ol_other').textContent = fmt(prof + biz + fo + int_inc + rent_net + debt_mf + other);
+  document.getElementById('ol_ltcg_e').textContent = '− ' + fmt(o_ltcg_exempt);
+  document.getElementById('ol_ded').textContent = '− ' + fmt(total_via);
+  document.getElementById('ol_gtax').textContent = fmt(gross_tax_old);
+  document.getElementById('ol_rebate').textContent = '− ' + fmt(o_rebate);
+  document.getElementById('ol_sc').textContent = fmt(o_sc);
+  document.getElementById('ol_cess').textContent = fmt(o_cess);
+  document.getElementById('ol_total').textContent = fmt(o_final);
+  document.getElementById('ol_tds').textContent = '− ' + fmt(o_tds_total);
+  document.getElementById('ol_net').textContent = o_balance < 0 ? '(Refund) ' + fmt(Math.abs(o_balance)) : fmt(o_balance);
+}
+
+// Track last active tax tab
+let lastTaxPanel = 'slabs';
+function show(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  lastTaxPanel = id;
+}
+
+function fmt(n) {
+  if (n < 0) return '(₹' + Math.abs(Math.round(n)).toLocaleString('en-IN') + ')';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+function fmtMinus(n) {
+  if (n === 0) return '₹0';
+  return '− ₹' + Math.round(n).toLocaleString('en-IN');
+}
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function slabTax(income) {
+  if (income <= 0) return 0;
+  let tax = 0;
+  const slabs = [
+    [400000, 0],
+    [400000, 0.05],
+    [400000, 0.10],
+    [400000, 0.15],
+    [400000, 0.20],
+    [400000, 0.25],
+    [Infinity, 0.30]
+  ];
+  let remaining = income;
+  for (let [limit, rate] of slabs) {
+    if (remaining <= 0) break;
+    let taxable = Math.min(remaining, limit);
+    tax += taxable * rate;
+    remaining -= taxable;
+  }
+  return tax;
+}
+
+function surchargeRate(income) {
+  if (income <= 5000000) return 0;
+  if (income <= 10000000) return 0.10;
+  if (income <= 20000000) return 0.15;
+  return 0.25; // capped at 25% in new regime
+}
+
+function calc() {
+  // Step 1 — Salary
+  const basic      = getVal('basic');
+  const hra        = getVal('hra');
+  const special    = getVal('special');
+  const bonus      = getVal('bonus');
+  const other_allow= getVal('other_allow');
+  const gross      = basic + hra + special + bonus + other_allow;
+  const stdDed     = 75000;
+  const netSal     = Math.max(0, gross - stdDed);
+
+  // Step 3 — Profession income
+  const prof_income    = getVal('prof_income');
+  const biz_income     = getVal('biz_income');
+  const fo_income      = getVal('fo_income');
+  const total_pgbp     = prof_income + biz_income + fo_income;
+
+  // Presumptive notes — Professional
+  const presProf = document.getElementById('presumptive_prof').value;
+  const pNoteProf = document.getElementById('presumptive_prof_note');
+  if (presProf === '44ADA') {
+    pNoteProf.style.display = 'block';
+    pNoteProf.textContent = '44ADA: Enter 50% of gross professional receipts as the profit above (if not maintaining books). Eligible if gross receipts ≤ ₹75 lakh.';
+  } else { pNoteProf.style.display = 'none'; }
+
+  // Presumptive notes — Business
+  const presBiz = document.getElementById('presumptive_biz').value;
+  const pNoteBiz = document.getElementById('presumptive_biz_note');
+  if (presBiz === '44AD') {
+    pNoteBiz.style.display = 'block';
+    pNoteBiz.textContent = '44AD: Enter 8% of turnover (or 6% if 95%+ receipts are digital) as the profit above. Eligible if turnover ≤ ₹3 Cr.';
+  } else { pNoteBiz.style.display = 'none'; }
+
+  // Update PGBP total display
+  document.getElementById('total_pgbp_display').textContent = fmt(total_pgbp);
+
+  // Step 3 — Other income
+  const int_income     = getVal('int_income');
+  const rent_income    = getVal('rent_income');
+  const other_inc      = getVal('other_inc');
+
+  // Step 3 — Equity capital gains
+  const stcg           = getVal('stcg');
+  const ltcg_total     = getVal('ltcg');
+  const ltcg_exempt    = Math.min(ltcg_total, 125000);
+  const ltcg_taxable   = Math.max(0, ltcg_total - ltcg_exempt);
+
+  // Step 3 — Debt MF gains (ALL taxed at slab rate regardless of holding)
+  const debt_mf_new    = getVal('debt_mf_new');       // post Apr 2023 — always slab
+  const debt_mf_old_ltcg = getVal('debt_mf_old_ltcg'); // pre Apr 2023, long held — now slab (post Budget 2023)
+  const debt_mf_old_stcg = getVal('debt_mf_old_stcg'); // pre Apr 2023, short held — slab
+  const total_debt_mf  = debt_mf_new + debt_mf_old_ltcg + debt_mf_old_stcg;
+
+  // Step 4 — Deductions
+  const nps_employer   = getVal('nps_employer');
+  const agniveer       = getVal('agniveer');
+  const total_ded      = nps_employer + agniveer;
+
+  // ── Correct GTI and Total Taxable Income separation ──
+  // GTI = sum of all 5 heads BEFORE Chapter VI-A deductions, AFTER LTCG exemption (112A)
+  const true_gti = netSal + total_pgbp + int_income + rent_income + total_debt_mf + other_inc
+                   + stcg + ltcg_taxable;
+                   // Note: ltcg_taxable = gross LTCG − ₹1.25L exemption (112A deduction is
+                   // applied within the capital gains head, not under Chapter VI-A)
+
+  // Total Taxable Income = GTI − Chapter VI-A deductions (NPS employer + Agniveer)
+  const total_taxable_income = Math.max(0, true_gti - total_ded);
+
+  // regular_income = slab-rate component of total taxable income (excl. STCG/LTCG at flat rates)
+  const regular_income = Math.max(0, total_taxable_income - stcg - ltcg_taxable);
+
+  // Step 5 — Tax
+  const tax_regular    = slabTax(regular_income);
+  const tax_stcg       = stcg * 0.20;
+  const tax_ltcg       = ltcg_taxable * 0.125;
+  const gross_tax      = tax_regular + tax_stcg + tax_ltcg;
+
+  // Step 6 — Rebate (FY 2025-26 CORRECT RULE per Finance Act 2025)
+  // ✅ Eligibility check uses REGULAR income only (special rate STCG/LTCG excluded)
+  // ✅ Rebate applies ONLY against tax on regular slab income — NOT on STCG/LTCG tax
+  // Source: CBDT clarification + Finance Act 2025 amendment
+  const rebate_eligible = regular_income <= 1200000;
+  const rebate          = rebate_eligible ? Math.min(tax_regular, 60000) : 0;
+  const tax_regular_after_rebate = Math.max(0, tax_regular - rebate);
+  const tax_after_rebate = tax_regular_after_rebate + tax_stcg + tax_ltcg;
+
+  // Step 7 — Surcharge (split: enhanced surcharge capped at 15% on STCG/LTCG per Sec 111A/112/112A)
+  // Normal surcharge applies to regular income; surcharge on capital gains capped at 15%
+  const sr             = surchargeRate(total_taxable_income);  // based on Total Taxable Income
+  const sr_cap         = Math.min(sr, 0.15);  // STCG/LTCG surcharge capped at 15% (Sec 111A/112/112A)
+  const surcharge_regular = tax_regular_after_rebate * sr;
+  const surcharge_cg   = (tax_stcg + tax_ltcg) * sr_cap;
+  const surcharge      = surcharge_regular + surcharge_cg;
+  const tax_plus_sc    = tax_after_rebate + surcharge;
+
+  // Step 8 — Cess
+  const cess           = tax_plus_sc * 0.04;
+  const final_tax      = tax_plus_sc + cess;
+
+  // Step 9 — Credits
+  const tds_employer   = getVal('tds_employer');
+  const tds_other      = getVal('tds_other');
+  const advance_paid   = getVal('advance_paid');
+  const total_credits  = tds_employer + tds_other + advance_paid;
+  const balance        = final_tax - total_credits;
+
+  // ---- UPDATE UI ----
+  document.getElementById('gross_sal').textContent      = fmt(gross);
+  document.getElementById('net_sal').textContent        = fmt(netSal);
+  document.getElementById('gti').textContent            = fmt(true_gti);           // Step 3 bottom: true GTI before VI-A deductions
+  document.getElementById('total_ded').textContent      = fmt(total_ded);
+  document.getElementById('taxable_inc').textContent    = fmt(total_taxable_income); // Step 4 bottom: after deductions
+  document.getElementById('tax_regular').textContent    = fmt(tax_regular);
+  document.getElementById('tax_stcg').textContent       = fmt(tax_stcg);
+  document.getElementById('tax_ltcg').textContent       = fmt(tax_ltcg);
+  document.getElementById('gross_tax').textContent      = fmt(gross_tax);
+  document.getElementById('rebate_eligible').textContent= rebate_eligible ? '✅ Yes (regular income ≤ ₹12L)' : '❌ No (regular income > ₹12L)';
+  document.getElementById('rebate_amt').textContent     = fmt(rebate);
+  document.getElementById('tax_after_rebate').textContent = fmt(tax_after_rebate);
+
+  const rNote = document.getElementById('rebate_note');
+  if (rebate_eligible && rebate > 0 && (tax_stcg + tax_ltcg) === 0) {
+    rNote.style.display = 'block';
+    rNote.textContent = '✅ Full Sec 87A rebate applied — regular income tax wiped out to ₹0. No STCG/LTCG, so total tax is zero!';
+  } else if (rebate_eligible && rebate > 0) {
+    rNote.style.display = 'block';
+    rNote.textContent = '⚠ Sec 87A rebate applied on slab tax only. STCG/LTCG tax of ' + fmt(tax_stcg + tax_ltcg) + ' remains payable — rebate cannot offset special rate income tax.';
+  } else { rNote.style.display = 'none'; }
+
+  document.getElementById('surcharge_rate').textContent    = sr === 0 ? 'Nil' : (sr * 100) + '% (on regular income)';
+  document.getElementById('surcharge_rate_cg').textContent = (tax_stcg + tax_ltcg) > 0 ? (sr_cap === 0 ? 'Nil' : (sr_cap * 100) + '% (capped at 15%)') : 'Nil (no STCG/LTCG)';
+  document.getElementById('surcharge_amt').textContent     = fmt(surcharge);
+  document.getElementById('tax_plus_surcharge').textContent= fmt(tax_plus_sc);
+  document.getElementById('cess_amt').textContent          = fmt(cess);
+  document.getElementById('final_tax').textContent         = fmt(final_tax);
+  document.getElementById('balance_tax').textContent       = balance < 0 ? '(Refund) ' + fmt(Math.abs(balance)) : fmt(balance);
+  document.getElementById('balance_sub').textContent       = balance < 0
+    ? 'Eligible for refund — file ITR to claim'
+    : 'Payable as self-assessment tax before filing ITR';
+
+  // Ledger
+  document.getElementById('l_gross').textContent    = fmt(gross);
+  document.getElementById('l_prof').textContent     = fmt(total_pgbp);
+  document.getElementById('l_other').textContent    = fmt(int_income + rent_income + other_inc);
+  document.getElementById('l_debtmf').textContent   = fmt(total_debt_mf);
+  document.getElementById('l_ded').textContent      = fmtMinus(total_ded);
+  document.getElementById('l_stcg').textContent     = fmt(stcg);
+  document.getElementById('l_ltcg_t').textContent   = fmt(ltcg_taxable);
+  document.getElementById('l_gtax').textContent     = fmt(gross_tax);
+  document.getElementById('l_rebate').textContent   = fmtMinus(rebate);
+  document.getElementById('l_surcharge').textContent= fmt(surcharge);
+  document.getElementById('l_cess').textContent     = fmt(cess);
+  document.getElementById('l_total').textContent    = fmt(final_tax);
+  document.getElementById('l_tds').textContent      = fmtMinus(total_credits);
+  document.getElementById('l_net').textContent      = balance < 0 ? '(Refund) ' + fmt(Math.abs(balance)) : fmt(balance);
+
+  // ---- GTI HEAD BREAKDOWN ----
+  const rentGross = rent_income > 0 ? Math.round(rent_income / 0.7) : 0;  // reverse the 30% deduction for display
+  const rentDed   = rentGross - rent_income;
+
+  // Head values for waterfall:
+  // The ₹1.25L LTCG exemption (Sec 112A) is a deduction WITHIN Head 4 (shown as a line in the card).
+  // So Head 4 NET = stcg + ltcg_taxable + total_debt_mf — and gti_display must equal true_gti.
+  const h1 = netSal;
+  const h2 = rent_income;
+  const h3 = total_pgbp;
+  const h4 = stcg + ltcg_taxable + total_debt_mf;  // STCG + taxable LTCG (after ₹1.25L exempt) + debt MF
+  const h5 = int_income + other_inc;
+  const gti_display = h1 + h2 + h3 + h4 + h5;  // = true_gti ✓ (before VI-A deductions, after LTCG exemption)
+
+  // Head 1 — Salary
+  document.getElementById('gti_gross_sal').textContent = fmt(gross);
+  document.getElementById('gti_head1').textContent     = fmt(h1);
+  document.getElementById('gti_s1').textContent        = fmt(h1);
+
+  // Head 2 — House Property
+  document.getElementById('gti_rent_gross').textContent = fmt(rentGross);
+  document.getElementById('gti_rent_ded').textContent   = rentGross > 0 ? '− ' + fmt(rentDed) : '₹0';
+  document.getElementById('gti_head2').textContent      = fmt(h2);
+  document.getElementById('gti_s2').textContent         = fmt(h2);
+
+  // Head 3 — PGBP
+  document.getElementById('gti_head3').textContent = fmt(total_pgbp);
+  document.getElementById('gti_s3').textContent    = fmt(total_pgbp);
+
+  // Head 4 — Capital Gains
+  document.getElementById('gti_stcg').textContent        = fmt(stcg);
+  document.getElementById('gti_ltcg_gross').textContent  = fmt(ltcg_total);           // show gross for transparency
+  document.getElementById('gti_ltcg_exempt').textContent = ltcg_total > 0 ? '− ' + fmt(ltcg_exempt) : '₹0';
+  document.getElementById('gti_debtmf2').textContent     = fmt(total_debt_mf);
+  document.getElementById('gti_head4').textContent       = fmt(h4);  // = stcg + ltcg_taxable + debtMF ✓
+  document.getElementById('gti_s4').textContent          = fmt(h4);
+
+  // Head 5 — Other Sources
+  document.getElementById('gti_int').textContent    = fmt(int_income);
+  document.getElementById('gti_other2').textContent = fmt(other_inc);
+  document.getElementById('gti_head5').textContent  = fmt(h5);
+  document.getElementById('gti_s5').textContent     = fmt(h5);
+
+  // GTI total
+  document.getElementById('gti_total_display').textContent   = fmt(gti_display);       // = true_gti
+  document.getElementById('gti_vi_a_ded').textContent        = total_ded > 0 ? '− ' + fmt(total_ded) : '₹0';
+  document.getElementById('gti_total_taxable').textContent   = fmt(total_taxable_income);
+
+  // Slab visual bars
+  const slabDefs = [
+    {label:'Up to ₹4L',  limit:400000,  rate:'NIL', color:'#dcfce7', pct:0},
+    {label:'₹4L–₹8L',   limit:400000,  rate:'5%',  color:'#dbeafe', pct:0.05},
+    {label:'₹8L–₹12L',  limit:400000,  rate:'10%', color:'#bfdbfe', pct:0.10},
+    {label:'₹12L–₹16L', limit:400000,  rate:'15%', color:'#fef9c3', pct:0.15},
+    {label:'₹16L–₹20L', limit:400000,  rate:'20%', color:'#fde68a', pct:0.20},
+    {label:'₹20L–₹24L', limit:400000,  rate:'25%', color:'#fca5a5', pct:0.25},
+    {label:'Above ₹24L', limit:Infinity,rate:'30%', color:'#f87171', pct:0.30},
+  ];
+  let vis = '<div style="font-size:11px;color:#6b7280;margin-bottom:6px">Slab breakdown — regular income of ' + fmt(regular_income) + ' (salary + profession + interest + debt MF)</div>';
+  let rem = regular_income;
+  const maxW = 240;
+  for (let s of slabDefs) {
+    const used = Math.min(rem, s.limit);
+    if (used <= 0 && rem <= 0) break;
+    const barW = regular_income > 0 ? Math.max(used > 0 ? 6 : 0, (used / regular_income) * maxW) : 0;
+    const tax_in_slab = used * s.pct;
+    vis += `<div class="slab-vis-row"><span class="slab-vis-label">${s.label} @${s.rate}</span><div class="slab-vis-bar" style="width:${barW}px;background:${s.color};border:1px solid rgba(0,0,0,.08)"></div><span class="slab-vis-amt">${fmt(used)} → tax ${fmt(tax_in_slab)}</span></div>`;
+    rem -= used;
+    if (rem <= 0) break;
+  }
+  document.getElementById('slab_visual').innerHTML = vis;
+}
+
+calc();
+
+async function exportExcel() {
+  const btn = document.querySelector('#excel-export-banner button');
+  const orig = btn.textContent;
+  btn.textContent = '⏳ Generating...';
+  btn.disabled = true;
+
+  if (activeRegime === 'old') {
+    await exportExcelOld(btn, orig);
+  } else {
+    await exportExcelNew(btn, orig);
+  }
+}
+
+async function exportExcelOld(btn, orig) {
+  // ── Collect old regime values ──
+  const age = document.getElementById('old_age').value;
+  const ageLabel = age==='senior'?'Senior Citizen (60–80 yrs)':age==='supersenior'?'Super Senior Citizen (80+)':'Below 60 years';
+  const basic=getO('o_basic'), hra_recv=getO('o_hra'), special=getO('o_special');
+  const bonus=getO('o_bonus'), o_allow=getO('o_other_allow');
+  const gross = basic+hra_recv+special+bonus+o_allow;
+  const rent_paid=getO('o_rent_paid');
+  const metro=document.getElementById('o_metro').value==='metro';
+  let hra_exempt=0;
+  if(basic>0&&hra_recv>0&&rent_paid>0){
+    hra_exempt=Math.min(hra_recv, basic*(metro?.5:.4), Math.max(0,rent_paid-basic*.1));
+  }
+  const lta=getO('o_lta'), std_ded=50000;
+  const netSal=Math.max(0,gross-hra_exempt-lta-std_ded);
+  const prof=getO('o_prof'),biz=getO('o_biz'),fo=getO('o_fo');
+  const int_inc=getO('o_int'), rent_net=getO('o_rent_inc')*0.70;
+  const o_stcg=getO('o_stcg'), o_ltcg_gross=getO('o_ltcg');
+  const o_ltcg_exempt=Math.min(o_ltcg_gross,125000);
+  const o_ltcg_taxable=Math.max(0,o_ltcg_gross-o_ltcg_exempt);
+  const debt_mf=getO('o_debt_mf_new')+getO('o_debt_mf_old_ltcg')+getO('o_debt_mf_old_stcg');
+  const other=getO('o_other');
+  const epf=getO('o_epf'),ppf=getO('o_ppf'),elss=getO('o_elss'),lic=getO('o_lic'),hl_princ=getO('o_hl_princ'),o80c_o=getO('o_80c_other');
+  const ded_80c=Math.min(epf+ppf+elss+lic+hl_princ+o80c_o,150000);
+  const nps_self=Math.min(getO('o_nps_self'),50000),nps_emp=getO('o_nps_emp');
+  const ded_80d=Math.min(getO('o_80d_self'),25000)+Math.min(getO('o_80d_par'),50000);
+  const ded_hl=Math.min(getO('o_hl_int'),200000),ded_80e=getO('o_80e');
+  const ded_80g=getO('o_80g');
+  const ded_80tta=Math.min(getO('o_80tta'),age==='below60'?10000:50000);
+  const ded_other=getO('o_other_ded');
+  const total_via=ded_80c+nps_self+nps_emp+ded_80d+ded_hl+ded_80e+ded_80g+ded_80tta+ded_other;
+  const true_gti=netSal+prof+biz+fo+int_inc+rent_net+o_stcg+o_ltcg_taxable+debt_mf+other;
+  const total_taxable=Math.max(0,true_gti-total_via);
+  const regular_old=Math.max(0,total_taxable-o_stcg-o_ltcg_taxable);
+  function slabOld(inc,a){
+    if(inc<=0)return 0;
+    if(a==='supersenior')return Math.max(0,Math.min(inc,1e6)-5e5)*.2+Math.max(0,inc-1e6)*.3;
+    const b=a==='senior'?3e5:25e4;
+    return Math.max(0,Math.min(inc,5e5)-b)*.05+Math.max(0,Math.min(inc,1e6)-5e5)*.2+Math.max(0,inc-1e6)*.3;
+  }
+  const tax_reg=slabOld(regular_old,age);
+  const tax_stcg=o_stcg*.2, tax_ltcg=o_ltcg_taxable*.125;
+  const gross_tax=tax_reg+tax_stcg+tax_ltcg;
+  const reb_elig=total_taxable<=5e5;
+  const rebate=reb_elig?Math.min(tax_reg,12500):0;
+  const tax_reg_ar=Math.max(0,tax_reg-rebate);
+  const after_rebate=tax_reg_ar+tax_stcg+tax_ltcg;
+  function oSR(i){return i<=5e6?0:i<=1e7?.1:i<=2e7?.15:i<=5e7?.25:.37;}
+  const sr=oSR(total_taxable), sr_cap=Math.min(sr,.15);
+  const surcharge=tax_reg_ar*sr+(tax_stcg+tax_ltcg)*sr_cap;
+  const tc=after_rebate+surcharge, cess=tc*.04, final_tax=tc+cess;
+  const credits=getO('o_tds1')+getO('o_tds2')+getO('o_adv');
+  const balance=final_tax-credits;
+  const INR='#,##0;(#,##0);"-"';
+  const wb=new ExcelJS.Workbook(); wb.creator='FYNNECT Tax Guide';
+  const ws=wb.addWorksheet('Old Regime Tax',{views:[{state:'frozen',ySplit:4}]});
+  ws.getColumn(1).width=52; ws.getColumn(2).width=18; ws.getColumn(3).width=42;
+  const thin=c=>({style:'thin',color:{argb:c||'FFE5E7EB'}});
+  const brd=()=>({top:thin(),bottom:thin(),left:thin(),right:thin()});
+  function sc(cell,{bg,fg='FF374151',bold=false,sz=9.5,align='left',fmt:f,italic=false}={}){
+    if(bg)cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:bg.startsWith('FF')?bg:'FF'+bg}};
+    cell.font={name:'Arial',bold,size:sz,color:{argb:fg.startsWith('FF')?fg:'FF'+fg},italic};
+    cell.alignment={horizontal:align,vertical:'middle',wrapText:true};
+    if(f)cell.numFmt=f; cell.border=brd();
+  }
+  function sHdr(r,text,bg){
+    ws.mergeCells(r,1,r,3);const c=ws.getCell(r,1);c.value='  '+text;
+    sc(c,{bg,fg:'FFFFFFFF',bold:true,sz:9.5});ws.getRow(r).height=21;
+  }
+  function dRow(r,lbl,amt,note,opts={}){
+    const alt=r%2===0?'FFF9FAFB':'FFFFFFFF';
+    const lb=opts.bg||alt,ab=opts.bg||alt;
+    const lc=ws.getCell(r,1);lc.value=lbl;sc(lc,{bg:lb,bold:opts.bold,sz:opts.sz||9.5,indent:opts.indent||0});
+    const ac=ws.getCell(r,2);ac.value=amt;sc(ac,{bg:ab,fg:opts.fgAmt||'FF1F2937',bold:opts.bold,sz:opts.sz||9.5,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3);nc.value=note||'';sc(nc,{bg:ab,fg:'FF9CA3AF',sz:8.5,italic:true});
+    ws.getRow(r).height=17;
+  }
+  function tRow(r,lbl,amt,note,bg,fgAmt='FF1F2937'){
+    const lc=ws.getCell(r,1);lc.value='  '+lbl;sc(lc,{bg,bold:true,sz:10});
+    const ac=ws.getCell(r,2);ac.value=amt;sc(ac,{bg,fg:fgAmt,bold:true,sz:10,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3);nc.value=note||'';sc(nc,{bg,fg:'FF6B7280',sz:8.5,italic:true});
+    ws.getRow(r).height=20;
+  }
+  // Title
+  ws.mergeCells('A1:C1');const t1=ws.getCell('A1');
+  t1.value='   FYNNECT Tax Guide — Old Regime Computation Sheet';
+  t1.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFDC2626'}};
+  t1.font={name:'Arial',bold:true,size:16,color:{argb:'FFFFFFFF'}};
+  t1.alignment={horizontal:'left',vertical:'middle'}; ws.getRow(1).height=38;
+  ws.mergeCells('A2:C2');const t2=ws.getCell('A2');
+  t2.value=`   Old Tax Regime | ${ageLabel} | FY 2025-26 (AY 2026-27) | Generated: ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'})}`;
+  t2.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFFFF1F2'}};
+  t2.font={name:'Arial',size:9,color:{argb:'FFB91C1C'},italic:true};
+  t2.alignment={horizontal:'left',vertical:'middle'}; ws.getRow(2).height=16;
+  ws.mergeCells('A3:C3');ws.getCell('A3').fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFFECACA'}};ws.getRow(3).height=4;
+  [['Income / Deduction Item','left'],['Amount (₹)','right'],['Notes / Section Reference','left']].forEach(([h,a],i)=>{
+    const c=ws.getCell(4,i+1);c.value=h;c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF374151'}};
+    c.font={name:'Arial',bold:true,size:9.5,color:{argb:'FFFFFFFF'}};c.alignment={horizontal:a,vertical:'middle'};c.border=brd();ws.getRow(4).height=20;
+  });
+  let r=5;
+  const gap=()=>{ws.mergeCells(r,1,r,3);ws.getRow(r).height=8;r++;};
+  sHdr(r,'STEP 1 — SALARY INCOME','DC2626');r++;
+  dRow(r,'Basic Salary (annual)',basic,'');r++;
+  dRow(r,'HRA Received',hra_recv,'Exemption calculated via 3-rule formula');r++;
+  dRow(r,'Special Allowance',special,'');r++;
+  dRow(r,'Bonus / Performance Pay',bonus,'');r++;
+  dRow(r,'Other Taxable Allowances',o_allow,'');r++;
+  tRow(r,'GROSS SALARY',gross,'','FFDBEAFE');r++; gap();
+  sHdr(r,'STEP 2 — LESS: EXEMPTIONS FROM SALARY','059669');r++;
+  dRow(r,'HRA Exemption u/s 10(13A)',-hra_exempt,`${metro?'Metro (50%)':'Non-Metro (40%)'} — Min(HRA recd, %Basic, Rent−10%Basic)`,{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'LTA Exemption u/s 10(5)',-lta,'2 journeys per 4-year block',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Standard Deduction u/s 16(ia)',-50000,'Fixed ₹50,000 for old regime (vs ₹75,000 in new regime)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'NET SALARY AFTER EXEMPTIONS',netSal,'','FFDCFCE7','FF15803D');r++; gap();
+  sHdr(r,'STEP 3 — ADD: OTHER INCOME','D97706');r++;
+  dRow(r,'Professional Income (net)',prof,'');r++;
+  dRow(r,'Business Income (net)',biz,'');r++;
+  dRow(r,'F&O / Options Trading Income',fo,'Non-speculative business income');r++;
+  dRow(r,'Interest Income (FD, savings, bonds)',int_inc,'Slab rate');r++;
+  dRow(r,'Rental Income (net after 30% Sec 24a deduction)',rent_net,'Gross rent × 70%');r++;
+  dRow(r,'Debt MF Gains (all at slab rate)',debt_mf,'Post Apr 2023 and pre-Apr 2023 — all taxed at slab rate');r++;
+  dRow(r,'STCG — Equity / Equity MF (≤12 months, STT paid)',o_stcg,'Taxed @20% separately (Sec 111A)',{bg:'FFF5F3FF',bold:true});r++;
+  dRow(r,'LTCG — Equity / Equity MF (>12 months) — GROSS',o_ltcg_gross,'',{bg:'FFF5F3FF',bold:true});r++;
+  dRow(r,'  Less: LTCG Exemption u/s 112A',-o_ltcg_exempt,'First ₹1,25,000 per year tax-free',{bg:'FFECFDF5',fgAmt:'FFB91C1C',indent:2});r++;
+  dRow(r,'  LTCG Taxable Portion',o_ltcg_taxable,'Taxed @12.5%',{bg:'FFFEF9C3',indent:2});r++;
+  dRow(r,'Other Income',other,'');r++;
+  tRow(r,'GROSS TOTAL INCOME (GTI)',true_gti,'Before Chapter VI-A deductions','FFEDE9FE','FF5B21B6');r++; gap();
+  sHdr(r,'STEP 4 — LESS: CHAPTER VI-A DEDUCTIONS (Old Regime)','059669');r++;
+  dRow(r,'80C — EPF+PPF+ELSS+LIC+Home loan principal etc. (capped ₹1.5L)',ded_80c,'Combined limit ₹1,50,000',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80CCD(1B) — Own NPS contribution (max ₹50K over 80C)',nps_self,'Additional deduction beyond ₹1.5L ceiling',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80CCD(2) — Employer NPS contribution',nps_emp,'Max 14% of salary (Govt) / 10% others',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80D — Health insurance premiums (self + parents)',ded_80d,'Self: ₹25K cap; Parents: ₹50K cap (senior)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Sec 24b — Home loan interest (self-occupied)',ded_hl,'Capped at ₹2,00,000 per year',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80E — Education loan interest',ded_80e,'Full interest for up to 8 years',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80G — Donations',ded_80g,'50% or 100% of eligible donations',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'80TTA / 80TTB — Interest deduction',ded_80tta,age==='below60'?'Savings a/c interest up to ₹10,000':'Deposit interest up to ₹50,000 (senior)',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Other deductions (80DD, 80DDB, 80U etc.)',ded_other,'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TOTAL CHAPTER VI-A DEDUCTIONS',total_via,'','FFDCFCE7','FF15803D');r++;
+  tRow(r,'TOTAL TAXABLE INCOME',total_taxable,'GTI minus all deductions','FFDBEAFE','FF1E40AF');r++;
+  dRow(r,'  of which: Regular Income (old regime slabs)',regular_old,'',{bg:'FFEDE9FE',indent:2});r++;
+  dRow(r,'  of which: STCG taxable @20%',o_stcg,'',{bg:'FFEDE9FE',indent:2});r++;
+  dRow(r,'  of which: LTCG taxable @12.5%',o_ltcg_taxable,'',{bg:'FFEDE9FE',indent:2});r++; gap();
+  sHdr(r,'STEP 5 — APPLY OLD REGIME SLAB RATES','DC2626');r++;
+  dRow(r,'Tax on Regular Income (old regime slabs)',tax_reg,'Below 60: NIL→5%→20%→30% | Senior: NIL→5%→20%→30% (₹3L base) | Super Senior: NIL→20%→30% (₹5L base)',{bg:'FFFFF1F2'});r++;
+  dRow(r,'Tax on STCG @20% (Sec 111A)',tax_stcg,'Flat rate — separate from slab',{bg:'FFFFF1F2'});r++;
+  dRow(r,'Tax on LTCG @12.5% (Sec 112A)',tax_ltcg,'On taxable portion above ₹1.25L',{bg:'FFFFF1F2'});r++;
+  tRow(r,'GROSS TAX',gross_tax,'','FFFEE2E2','FFB91C1C');r++; gap();
+  sHdr(r,'STEP 6 — LESS: SEC 87A REBATE (Old regime)','0E7490');r++;
+  dRow(r,'Eligibility (total taxable income ≤ ₹5,00,000)',null,reb_elig?'✅ Eligible — rebate ₹12,500':'❌ Not Eligible',{bg:'FFECFEFF'});r++;
+  dRow(r,'Rebate Amount u/s 87A (on slab tax only)',-rebate,'Max ₹12,500 (old regime). NOT applicable on STCG/LTCG tax.',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TAX AFTER REBATE',after_rebate,'','FFDBEAFE','FF1E40AF');r++; gap();
+  sHdr(r,'STEP 7 — ADD: SURCHARGE (Old regime — up to 37% for >₹5 Cr)','7C3AED');r++;
+  dRow(r,'Surcharge on Regular Income',tax_reg_ar*sr,sr===0?'Nil':'@'+(sr*100)+'% — old regime (no 25% cap unlike new regime)',{bg:'FFF5F3FF'});r++;
+  dRow(r,'Surcharge on STCG/LTCG (capped at 15%)',(tax_stcg+tax_ltcg)*sr_cap,sr_cap===0?'Nil':'@'+(sr_cap*100)+'%',{bg:'FFF5F3FF'});r++;
+  tRow(r,'TAX + SURCHARGE',tc,'','FFEDE9FE','FF5B21B6');r++; gap();
+  sHdr(r,'STEP 8 — ADD: HEALTH & EDUCATION CESS @4%','DC2626');r++;
+  dRow(r,'Cess @4% on (Tax + Surcharge)',cess,'Same as new regime — no exemption',{bg:'FFFFF1F2'});r++;
+  tRow(r,'TOTAL TAX PAYABLE',final_tax,'','FFFEE2E2','FFB91C1C');r++; gap();
+  sHdr(r,'STEP 9 — LESS: TDS & ADVANCE TAX CREDITS','1E3A5F');r++;
+  dRow(r,'TDS Deducted by Employer (Form 16)',-getO('o_tds1'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'TDS on Interest / Rent / Other',-getO('o_tds2'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  dRow(r,'Advance Tax Paid',-getO('o_adv'),'',{bg:'FFECFDF5',fgAmt:'FFB91C1C'});r++;
+  tRow(r,'TOTAL CREDITS',credits,'','FFDCFCE7','FF15803D');r++;
+  r++;ws.getRow(r).height=8;r++;
+  ws.mergeCells(r,1,r,3);
+  const fr=ws.getCell(r,1);
+  fr.value=balance>=0?'  ➤  NET TAX PAYABLE (Self-Assessment Tax)':'  ➤  REFUND DUE — File ITR to Claim';
+  fr.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFDC2626'}};
+  fr.font={name:'Arial',bold:true,size:13,color:{argb:'FFFFFFFF'}};
+  fr.alignment={horizontal:'left',vertical:'middle'};ws.getRow(r).height=32;r++;
+  ws.mergeCells(r,1,r,3);const vr=ws.getCell(r,1);
+  vr.value=Math.abs(balance);
+  vr.fill={type:'pattern',pattern:'solid',fgColor:{argb:balance<0?'FF059669':'FFB91C1C'}};
+  vr.font={name:'Arial',bold:true,size:20,color:{argb:'FFFFFFFF'}};
+  vr.alignment={horizontal:'right',vertical:'middle'};vr.numFmt=INR;ws.getRow(r).height=40;r++;
+  ws.mergeCells(r,1,r,3);const dr=ws.getCell(r,1);
+  dr.value=balance>=0?'  Pay via Challan 280 (Self-Assessment Tax) before filing ITR | Due: 31 July 2026':'  File ITR to claim refund | ITR Due: 31 July 2026';
+  dr.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFEFF6FF'}};
+  dr.font={name:'Arial',size:8.5,color:{argb:'FF1E40AF'},italic:true};
+  dr.alignment={horizontal:'left',vertical:'middle'};ws.getRow(r).height=16;
+  const buf=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='Tax_Computation_OldRegime_FY2025_26.xlsx';a.click();
+  URL.revokeObjectURL(url);
+  btn.textContent=orig;btn.disabled=false;
+}
+
+async function exportExcelNew(btn, orig) {
+  const gross = getVal('basic')+getVal('hra')+getVal('special')+getVal('bonus')+getVal('other_allow');
+  const netSal = Math.max(0, gross - 75000);
+  const totalDebtMF = getVal('debt_mf_new')+getVal('debt_mf_old_ltcg')+getVal('debt_mf_old_stcg');
+  const nps_emp = getVal('nps_employer'), agni = getVal('agniveer');
+  const total_ded = nps_emp + agni;
+  const stcg = getVal('stcg'), ltcg_total = getVal('ltcg');
+  const ltcg_exempt = Math.min(ltcg_total, 125000);
+  const ltcg_taxable = Math.max(0, ltcg_total - ltcg_exempt);
+  const presProf = document.getElementById('presumptive_prof').value;
+  const presBiz  = document.getElementById('presumptive_biz').value;
+  const prof = getVal('prof_income'), biz = getVal('biz_income'), fo = getVal('fo_income');
+  const total_pgbp = prof + biz + fo;
+  const int_inc = getVal('int_income');
+  const rent = getVal('rent_income'), other = getVal('other_inc');
+
+  // GTI = all 5 heads before Chapter VI-A deductions (LTCG exemption already netted in Head 4)
+  const true_gti_xl = netSal + total_pgbp + int_inc + rent + totalDebtMF + other + stcg + ltcg_taxable;
+  // Total Taxable Income = GTI − Chapter VI-A deductions
+  const total_taxable_xl = Math.max(0, true_gti_xl - total_ded);
+  // Regular income = slab-rate portion (excluding STCG & LTCG which are at flat rates)
+  const regular_income = Math.max(0, total_taxable_xl - stcg - ltcg_taxable);
+  const gti = total_taxable_xl; // used for surcharge threshold
+
+  function slabCalc(inc) {
+    if (inc <= 0) return 0;
+    const b = [[400000,0],[400000,.05],[400000,.10],[400000,.15],[400000,.20],[400000,.25],[Infinity,.30]];
+    let tax=0, rem=inc; for(const[l,r]of b){const t=Math.min(rem,l);tax+=t*r;rem-=t;if(rem<=0)break;} return tax;
+  }
+  const tax_reg = slabCalc(regular_income);
+  const tax_stcg = stcg * 0.20;
+  const tax_ltcg = ltcg_taxable * 0.125;
+  const gross_tax = tax_reg + tax_stcg + tax_ltcg;
+  // FY 2025-26: Eligibility uses regular income only; rebate only offsets slab tax (Finance Act 2025)
+  const rebate_elig = regular_income <= 1200000;
+  const rebate = rebate_elig ? Math.min(tax_reg, 60000) : 0;
+  const tax_reg_ar = Math.max(0, tax_reg - rebate);
+  const after_rebate = tax_reg_ar + tax_stcg + tax_ltcg;
+  // Surcharge: based on total taxable income; capped at 15% on STCG/LTCG (Sec 111A/112/112A)
+  const sr = gti<=5e6?0:gti<=1e7?.10:gti<=2e7?.15:.25;
+  const sr_cap = Math.min(sr, 0.15);
+  const surcharge = tax_reg_ar * sr + (tax_stcg + tax_ltcg) * sr_cap;
+  const tax_plus_sc = after_rebate + surcharge;
+  const cess = tax_plus_sc * 0.04;
+  const final_tax = tax_plus_sc + cess;
+  const tds1=getVal('tds_employer'), tds2=getVal('tds_other'), adv=getVal('advance_paid');
+  const credits = tds1+tds2+adv;
+  const balance = final_tax - credits;
+
+  // ── ExcelJS workbook ──
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'Tax Guide FY 2025-26';
+  wb.created = new Date();
+
+  const INR = '#,##0;(#,##0);"-"';
+  const thin = (argb='FFE5E7EB') => ({ style:'thin', color:{ argb } });
+  const brd = (c='FFE5E7EB') => ({ top:thin(c), bottom:thin(c), left:thin(c), right:thin(c) });
+
+  function sc(cell, { bg, fg='FF374151', bold=false, sz=9.5, align='left', fmt, italic=false, wrap=true, indent=0 } = {}) {
+    if(bg) cell.fill = { type:'pattern', pattern:'solid', fgColor:{ argb: bg.startsWith('FF')?bg:'FF'+bg.replace('#','') } };
+    cell.font = { name:'Arial', bold, size:sz, color:{ argb: fg.startsWith('FF')?fg:'FF'+fg.replace('#','') }, italic };
+    cell.alignment = { horizontal:align, vertical:'middle', wrapText:wrap, indent };
+    if(fmt) cell.numFmt = fmt;
+    cell.border = brd();
+  }
+
+  function secHdr(ws, r, text, bg, cols=3) {
+    ws.mergeCells(r,1,r,cols);
+    const c = ws.getCell(r,1);
+    c.value = '  ' + text;
+    sc(c, { bg, fg:'FFFFFFFF', bold:true, sz:9.5 });
+    ws.getRow(r).height = 21;
+  }
+
+  function dataRow(ws, r, label, amount, note, { bg1, bg2, bold=false, fgAmt='FF111827', sz=9.5, indent=0 } = {}) {
+    const alt = r%2===0 ? 'FFF9FAFB' : 'FFFFFFFF';
+    const lb = bg1||alt, ab = bg2||alt, nb = bg2||alt;
+    const lc=ws.getCell(r,1); lc.value=label; sc(lc,{bg:lb,bold,sz,indent});
+    const ac=ws.getCell(r,2); ac.value=amount; sc(ac,{bg:ab,fg:fgAmt,bold,sz,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3); nc.value=note||''; sc(nc,{bg:nb,fg:'FF9CA3AF',sz:8.5,italic:true});
+    ws.getRow(r).height = 17;
+  }
+
+  function totalRow(ws, r, label, amount, note, bg, fgAmt='FF1F2937') {
+    const lc=ws.getCell(r,1); lc.value='  '+label; sc(lc,{bg,bold:true,sz:10});
+    const ac=ws.getCell(r,2); ac.value=amount; sc(ac,{bg,fg:fgAmt,bold:true,sz:10,align:'right',fmt:INR});
+    const nc=ws.getCell(r,3); nc.value=note||''; sc(nc,{bg,fg:'FF6B7280',sz:8.5,italic:true});
+    ws.getRow(r).height = 20;
+  }
+
+  // ════════ SHEET 1 — TAX COMPUTATION ════════
+  const ws1 = wb.addWorksheet('Tax Computation', {
+    views:[{ state:'frozen', ySplit:4 }],
+    pageSetup:{ paperSize:9, orientation:'portrait', fitToPage:true }
+  });
+  ws1.getColumn(1).width = 52;
+  ws1.getColumn(2).width = 18;
+  ws1.getColumn(3).width = 42;
+
+  // Title banner
+  ws1.mergeCells('A1:C1');
+  const t1 = ws1.getCell('A1');
+  t1.value = '   TAX GUIDE — Income Tax Computation Sheet';
+  t1.fill = { type:'pattern', pattern:'solid', fgColor:{ argb:'FF1A56DB' } };
+  t1.font = { name:'Arial', bold:true, size:16, color:{ argb:'FFFFFFFF' } };
+  t1.alignment = { horizontal:'left', vertical:'middle' };
+  ws1.getRow(1).height = 38;
+
+  ws1.mergeCells('A2:C2');
+  const t2 = ws1.getCell('A2');
+  t2.value = `   New Tax Regime (Default) | FY 2025-26 (AY 2026-27) | Generated: ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'})}`;
+  t2.fill = { type:'pattern', pattern:'solid', fgColor:{ argb:'FFEFF6FF' } };
+  t2.font = { name:'Arial', size:9, color:{ argb:'FF1E40AF' }, italic:true };
+  t2.alignment = { horizontal:'left', vertical:'middle' };
+  ws1.getRow(2).height = 16;
+
+  // Blank separator
+  ws1.mergeCells('A3:C3');
+  ws1.getCell('A3').fill = { type:'pattern', pattern:'solid', fgColor:{ argb:'FFDBEAFE' } };
+  ws1.getRow(3).height = 4;
+
+  // Column headers
+  [['Income / Deduction Item','left'], ['Amount (₹)','right'], ['Notes / Section Reference','left']].forEach(([h,align],i) => {
+    const c = ws1.getCell(4, i+1);
+    c.value = h; c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF374151'}};
+    c.font={name:'Arial',bold:true,size:9.5,color:{argb:'FFFFFFFF'}};
+    c.alignment={horizontal:align,vertical:'middle'};
+    c.border=brd('FF1F2937'); ws1.getRow(4).height=20;
+  });
+
+  let r = 5;
+  const gap = (ws) => { ws.mergeCells(r,1,r,3); ws.getRow(r).height=8; r++; };
+
+  // ── STEP 1 ──
+  secHdr(ws1, r, 'STEP 1 — SALARY INCOME', '1A56DB'); r++;
+  dataRow(ws1,r,'Basic Salary (annual)',getVal('basic'),''); r++;
+  dataRow(ws1,r,'HRA Received',getVal('hra'),'Fully taxable in new regime — no exemption'); r++;
+  dataRow(ws1,r,'Special Allowance',getVal('special'),''); r++;
+  dataRow(ws1,r,'Bonus / Performance Pay',getVal('bonus'),''); r++;
+  dataRow(ws1,r,'Other Taxable Allowances',getVal('other_allow'),''); r++;
+  totalRow(ws1,r,'GROSS SALARY',gross,'Sum of all salary components','FFDBEAFE'); r++;
+
+  gap(ws1);
+
+  // ── STEP 2 ──
+  secHdr(ws1, r, 'STEP 2 — LESS: STANDARD DEDUCTION', '059669'); r++;
+  dataRow(ws1,r,'Standard Deduction u/s 16(ia)',-75000,'Fixed ₹75,000 — auto-applied for all salaried & pensioners',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  totalRow(ws1,r,'NET SALARY AFTER STANDARD DEDUCTION',netSal,'',  'FFDCFCE7','FF15803D'); r++;
+
+  gap(ws1);
+
+  // ── STEP 3 ──
+  secHdr(ws1, r, 'STEP 3 — ADD: OTHER INCOME', 'D97706'); r++;
+  dataRow(ws1,r,'Professional Income (net profit — doctors, CAs, lawyers etc.)',prof, presProf==='44ADA'?'Presumptive u/s 44ADA: 50% of gross receipts':'' ); r++;
+  dataRow(ws1,r,'Business Income (net profit — trading, manufacturing, e-commerce)',biz, presBiz==='44AD'?'Presumptive u/s 44AD: 8%/6% of turnover':'' ); r++;
+  dataRow(ws1,r,'Options / F&O Trading Income (treated as Business Income)',fo,'Non-speculative business income; losses carry forward 8 yrs (Sec 43(5))',{bg1:'FFFFF1F2',bg2:'FFFFF1F2'}); r++;
+  dataRow(ws1,r,'Interest Income (FD, savings, bonds)',int_inc,'Fully taxable — no 80TTA deduction in new regime'); r++;
+  dataRow(ws1,r,'Rental Income (after 30% std. deduction)',rent,'Enter net; 30% standard deduction on NAV already applied'); r++;
+  dataRow(ws1,r,'Debt MF Gains (all — post Apr 2023)',getVal('debt_mf_new'),'Always STCG at slab rate; no LTCG benefit'); r++;
+  dataRow(ws1,r,'Debt MF Gains — pre Apr 2023 (long-held)',getVal('debt_mf_old_ltcg'),'Indexation removed; taxed at slab rate'); r++;
+  dataRow(ws1,r,'Debt MF Gains — pre Apr 2023 (short-held)',getVal('debt_mf_old_stcg'),'Slab rate'); r++;
+  dataRow(ws1,r,'Any Other Income',other,'Gifts from non-relatives, misc.'); r++;
+  dataRow(ws1,r,'STCG — Equity / Equity MF (≤12 months, STT paid)',stcg,'Taxed @20% separately (Sec 111A) — not added to slab income',{bg1:'FFF5F3FF',bg2:'FFF5F3FF',bold:true}); r++;
+  dataRow(ws1,r,'LTCG — Equity / Equity MF (>12 months) — GROSS',ltcg_total,'',{bg1:'FFF5F3FF',bg2:'FFF5F3FF',bold:true}); r++;
+  dataRow(ws1,r,'  Less: LTCG Exemption u/s 112A',-ltcg_exempt,'First ₹1,25,000 per year is tax-free',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C',indent:2}); r++;
+  dataRow(ws1,r,'  LTCG Taxable Portion',ltcg_taxable,'Taxed @12.5% (Sec 112A)',{bg1:'FFFEF9C3',bg2:'FFFEF9C3',indent:2}); r++;
+  totalRow(ws1,r,'GROSS TOTAL INCOME (GTI)',true_gti_xl,'Before Chapter VI-A deductions','FFEDE9FE','FF5B21B6'); r++;
+
+  gap(ws1);
+
+  // ── STEP 4 ──
+  secHdr(ws1, r, 'STEP 4 — LESS: DEDUCTIONS ALLOWED IN NEW REGIME', '059669'); r++;
+  dataRow(ws1,r,'Employer NPS Contribution u/s 80CCD(2)',nps_emp,'Max: 14% of salary (Govt) / 10% (others) — best deduction in new regime'); r++;
+  dataRow(ws1,r,'Agniveer Corpus Fund u/s 80CCH',agni,''); r++;
+  totalRow(ws1,r,'TOTAL DEDUCTIONS',total_ded,'','FFDCFCE7','FF15803D'); r++;
+  totalRow(ws1,r,'TOTAL TAXABLE INCOME (GTI − Deductions)',total_taxable_xl,'Slab income + STCG @20% + LTCG @12.5%','FFDBEAFE','FF1E40AF'); r++;
+  dataRow(ws1,r,'  of which: Regular Income (taxed at slab rates)',regular_income,'Salary + PGBP + Interest + Rent + Debt MF − Deductions',{bg1:'FFEDE9FE',bg2:'FFEDE9FE',indent:2}); r++;
+  dataRow(ws1,r,'  of which: STCG taxable @20%',stcg,'Separate — not eligible for 87A rebate',{bg1:'FFEDE9FE',bg2:'FFEDE9FE',indent:2}); r++;
+  dataRow(ws1,r,'  of which: LTCG taxable @12.5%',ltcg_taxable,'Separate — not eligible for 87A rebate',{bg1:'FFEDE9FE',bg2:'FFEDE9FE',indent:2}); r++;
+
+  gap(ws1);
+
+  // ── GTI SUMMARY ──
+  secHdr(ws1, r, 'GTI SUMMARY — 5 HEADS OF INCOME', '7C3AED'); r++;
+  dataRow(ws1,r,'Head 1 — Salaries (after ₹75,000 std. deduction)',netSal,''); r++;
+  dataRow(ws1,r,'Head 2 — House Property (net rental income)',rent,''); r++;
+  dataRow(ws1,r,'Head 3 — Profits & Gains (Professional + Business + F&O)',total_pgbp,''); r++;
+  dataRow(ws1,r,'Head 4 — Capital Gains (STCG + LTCG taxable after ₹1.25L exempt + Debt MF)',stcg+ltcg_taxable+totalDebtMF,'LTCG shown after ₹1.25L Sec 112A exemption'); r++;
+  dataRow(ws1,r,'Head 5 — Income from Other Sources (interest + other)',int_inc+other,''); r++;
+  totalRow(ws1,r,'GROSS TOTAL INCOME (GTI)',true_gti_xl,'Sum of all 5 heads before Chapter VI-A deductions','FFEDE9FE','FF5B21B6'); r++;
+  dataRow(ws1,r,'Less: Chapter VI-A Deductions',-total_ded,'NPS employer contribution + Agniveer',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  totalRow(ws1,r,'TOTAL TAXABLE INCOME',total_taxable_xl,'','FFDBEAFE','FF1E40AF'); r++;
+
+  gap(ws1);
+
+  // ── STEP 5 ──
+  secHdr(ws1, r, 'STEP 5 — APPLY SLAB RATES & COMPUTE TAX', 'DC2626'); r++;
+  dataRow(ws1,r,'Tax on Regular Income (slab rates)',tax_reg,'New regime rates: NIL → 5% → 10% → 15% → 20% → 25% → 30%',{bg1:'FFFFF1F2',bg2:'FFFFF1F2'}); r++;
+  dataRow(ws1,r,'Tax on STCG @20% (Sec 111A)',tax_stcg,'Flat rate — separate from slab',{bg1:'FFFFF1F2',bg2:'FFFFF1F2'}); r++;
+  dataRow(ws1,r,'Tax on LTCG @12.5% (Sec 112A)',tax_ltcg,'On taxable portion above ₹1.25L',{bg1:'FFFFF1F2',bg2:'FFFFF1F2'}); r++;
+  totalRow(ws1,r,'GROSS TAX BEFORE REBATE',gross_tax,'','FFFEE2E2','FFB91C1C'); r++;
+
+  gap(ws1);
+
+  // ── STEP 6 ──
+  secHdr(ws1, r, 'STEP 6 — LESS: SEC 87A REBATE', '0E7490'); r++;
+  dataRow(ws1,r,'Sec 87A Eligibility (regular income ≤ ₹12L — STCG/LTCG excluded)',null,rebate_elig?'✅ Eligible':'❌ Not Eligible',{bg1:'FFECFEFF',bg2:'FFECFEFF'}); r++;
+  dataRow(ws1,r,'Rebate Amount u/s 87A (applied on slab tax ONLY)',-rebate,'Finance Act 2025: Rebate NOT applicable on STCG/LTCG tax',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  totalRow(ws1,r,'TAX AFTER REBATE (slab after rebate + full STCG/LTCG tax)',after_rebate,'','FFDBEAFE','FF1E40AF'); r++;
+
+  gap(ws1);
+
+  // ── STEP 7 ──
+  secHdr(ws1, r, 'STEP 7 — ADD: SURCHARGE (25% max on regular; 15% max on STCG/LTCG)', '7C3AED'); r++;
+  dataRow(ws1,r,'Surcharge on Regular Income',tax_reg_ar * sr, sr===0?'Nil':'@'+(sr*100)+'% — new regime capped at 25%',{bg1:'FFF5F3FF',bg2:'FFF5F3FF'}); r++;
+  dataRow(ws1,r,'Surcharge on STCG/LTCG (Sec 111A/112/112A)',(tax_stcg+tax_ltcg)*sr_cap, sr_cap===0?'Nil':'@'+(sr_cap*100)+'% — capped at 15% per Income Tax Act',{bg1:'FFF5F3FF',bg2:'FFF5F3FF'}); r++;
+  dataRow(ws1,r,'Total Surcharge Amount',surcharge,'',{bg1:'FFF5F3FF',bg2:'FFF5F3FF'}); r++;
+  totalRow(ws1,r,'TAX + SURCHARGE',tax_plus_sc,'','FFEDE9FE','FF5B21B6'); r++;
+
+  gap(ws1);
+
+  // ── STEP 8 ──
+  secHdr(ws1, r, 'STEP 8 — ADD: HEALTH & EDUCATION CESS @4%', 'DC2626'); r++;
+  dataRow(ws1,r,'Cess @4% on (Tax + Surcharge)',cess,'Mandatory — no exemption, no threshold',{bg1:'FFFFF1F2',bg2:'FFFFF1F2'}); r++;
+  totalRow(ws1,r,'TOTAL TAX PAYABLE (GROSS)',final_tax,'','FFFEE2E2','FFB91C1C'); r++;
+
+  gap(ws1);
+
+  // ── STEP 9 ──
+  secHdr(ws1, r, 'STEP 9 — LESS: TDS & ADVANCE TAX CREDITS', '1E3A5F'); r++;
+  dataRow(ws1,r,'TDS Deducted by Employer (Form 16)',-tds1,'As per Form 16 / Form 26AS',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  dataRow(ws1,r,'TDS on Interest / Rent / Other',-tds2,'From Form 26AS / AIS',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  dataRow(ws1,r,'Advance Tax Paid (all installments)',-adv,'Paid via Challan 280',{bg1:'FFECFDF5',bg2:'FFECFDF5',fgAmt:'FFB91C1C'}); r++;
+  totalRow(ws1,r,'TOTAL CREDITS',credits,'','FFDCFCE7','FF15803D'); r++;
+
+  // ── FINAL RESULT ──
+  r++; ws1.getRow(r).height = 8; r++;
+  ws1.mergeCells(r,1,r,3);
+  const lbl = balance >= 0 ? '  ➤  NET TAX PAYABLE (Self-Assessment)' : '  ➤  REFUND DUE — File ITR to Claim';
+  const fc = ws1.getCell(r,1);
+  fc.value = lbl;
+  fc.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF1A56DB'}};
+  fc.font={name:'Arial',bold:true,size:13,color:{argb:'FFFFFFFF'}};
+  fc.alignment={horizontal:'left',vertical:'middle'};
+  fc.border=brd('FF1A56DB');
+  ws1.getRow(r).height=32; r++;
+
+  ws1.mergeCells(r,1,r,3);
+  const vc = ws1.getCell(r,1);
+  vc.value = Math.abs(balance);
+  vc.fill={type:'pattern',pattern:'solid',fgColor:{argb: balance<0?'FF059669':'FFB91C1C'}};
+  vc.font={name:'Arial',bold:true,size:20,color:{argb:'FFFFFFFF'}};
+  vc.alignment={horizontal:'right',vertical:'middle'};
+  vc.numFmt=INR;
+  vc.border=brd(balance<0?'FF059669':'FFB91C1C');
+  ws1.getRow(r).height=40; r++;
+
+  ws1.mergeCells(r,1,r,3);
+  const dc = ws1.getCell(r,1);
+  dc.value = balance>=0
+    ? '  Pay via Challan 280 (Self-Assessment Tax) before filing ITR | Due: 31 July 2026'
+    : '  File ITR to claim refund | ITR Due: 31 July 2026';
+  dc.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFEFF6FF'}};
+  dc.font={name:'Arial',size:8.5,color:{argb:'FF1E40AF'},italic:true};
+  dc.alignment={horizontal:'left',vertical:'middle'};
+  dc.border=brd('FFBFDBFE');
+  ws1.getRow(r).height=16;
+
+
+  // ════════ SHEET 2 — SLAB BREAKDOWN ════════
+  const ws2 = wb.addWorksheet('Slab Breakdown', {
+    views:[{state:'frozen',ySplit:4}]
+  });
+  ws2.getColumn(1).width=14; ws2.getColumn(2).width=34;
+  ws2.getColumn(3).width=22; ws2.getColumn(4).width=22;
+
+  ws2.mergeCells('A1:D1');
+  const s1=ws2.getCell('A1');
+  s1.value='   SLAB-WISE TAX BREAKDOWN';
+  s1.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF7C3AED'}};
+  s1.font={name:'Arial',bold:true,size:14,color:{argb:'FFFFFFFF'}};
+  s1.alignment={horizontal:'left',vertical:'middle'};
+  ws2.getRow(1).height=34;
+
+  ws2.mergeCells('A2:D2');
+  const s2=ws2.getCell('A2');
+  s2.value=`   Regular Taxable Income: ₹${regular_income.toLocaleString('en-IN')} | Total Regular Tax: ₹${Math.round(tax_reg).toLocaleString('en-IN')}`;
+  s2.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF5F3FF'}};
+  s2.font={name:'Arial',size:9,color:{argb:'FF5B21B6'},italic:true};
+  s2.alignment={horizontal:'left',vertical:'middle'};
+  ws2.getRow(2).height=16;
+
+  ws2.mergeCells('A3:D3');
+  ws2.getCell('A3').fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFEDE9FE'}};
+  ws2.getRow(3).height=4;
+
+  [['Rate','center'],['Income Slab Range','left'],['Income in Slab (₹)','right'],['Tax in Slab (₹)','right']].forEach(([h,align],i)=>{
+    const c=ws2.getCell(4,i+1);
+    c.value=h; c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF374151'}};
+    c.font={name:'Arial',bold:true,size:9.5,color:{argb:'FFFFFFFF'}};
+    c.alignment={horizontal:align,vertical:'middle'};
+    c.border=brd('FF1F2937'); ws2.getRow(4).height=20;
+  });
+
+  const slabDefs=[
+    ['NIL','Up to ₹4,00,000',0,400000,0,'FFDCFCE7','FF15803D'],
+    ['5%','₹4,00,001 – ₹8,00,000',400000,800000,.05,'FFDBEAFE','FF1D4ED8'],
+    ['10%','₹8,00,001 – ₹12,00,000',800000,1200000,.10,'FFDBEAFE','FF1D4ED8'],
+    ['15%','₹12,00,001 – ₹16,00,000',1200000,1600000,.15,'FFFEF9C3','FFA16207'],
+    ['20%','₹16,00,001 – ₹20,00,000',1600000,2000000,.20,'FFFEF9C3','FFA16207'],
+    ['25%','₹20,00,001 – ₹24,00,000',2000000,2400000,.25,'FFFEE2E2','FFB91C1C'],
+    ['30%','Above ₹24,00,000',2400000,Infinity,.30,'FFFEE2E2','FFB91C1C'],
+  ];
+  let rem=regular_income, sr2=5, slabTotal=0;
+  for(const [rate,range,lo,hi,rt,bg,fg] of slabDefs){
+    const lim=hi===Infinity?Infinity:hi-lo;
+    const used=Math.min(rem,lim);
+    const taxInSlab=used*rt;
+    slabTotal+=taxInSlab;
+    const active=used>0;
+
+    const rc=ws2.getCell(sr2,1); rc.value=rate;
+    rc.fill={type:'pattern',pattern:'solid',fgColor:{argb:active?bg:'FFF9FAFB'}};
+    rc.font={name:'Arial',bold:active,size:10,color:{argb:active?fg:'FF9CA3AF'}};
+    rc.alignment={horizontal:'center',vertical:'middle'};
+    rc.border=brd();
+
+    const rng=ws2.getCell(sr2,2); rng.value=range;
+    rng.fill={type:'pattern',pattern:'solid',fgColor:{argb:active?bg:'FFF9FAFB'}};
+    rng.font={name:'Arial',size:9.5,color:{argb:active?fg:'FF9CA3AF'},bold:active};
+    rng.alignment={horizontal:'left',vertical:'middle'};
+    rng.border=brd();
+
+    const ac=ws2.getCell(sr2,3); ac.value=used;
+    ac.fill={type:'pattern',pattern:'solid',fgColor:{argb:active?bg:'FFF9FAFB'}};
+    ac.font={name:'Arial',bold:active,size:9.5,color:{argb:active?fg:'FF9CA3AF'}};
+    ac.numFmt=INR; ac.alignment={horizontal:'right',vertical:'middle'}; ac.border=brd();
+
+    const tc=ws2.getCell(sr2,4); tc.value=taxInSlab;
+    tc.fill={type:'pattern',pattern:'solid',fgColor:{argb:active?bg:'FFF9FAFB'}};
+    tc.font={name:'Arial',bold:active,size:9.5,color:{argb:active?fg:'FF9CA3AF'}};
+    tc.numFmt=INR; tc.alignment={horizontal:'right',vertical:'middle'}; tc.border=brd();
+
+    ws2.getRow(sr2).height=20; sr2++;
+    rem-=used; if(rem<=0) break;
+  }
+
+  // Total slab row
+  [['TOTAL','center'],['All slabs combined','left'],[regular_income,'right'],[tax_reg,'right']].forEach(([v,align],i)=>{
+    const c=ws2.getCell(sr2,i+1);
+    c.value=v; c.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FF7C3AED'}};
+    c.font={name:'Arial',bold:true,size:10,color:{argb:'FFFFFFFF'}};
+    c.alignment={horizontal:align,vertical:'middle'};
+    if(i>1) { c.numFmt=INR; }
+    c.border=brd('FF7C3AED');
+  });
+  ws2.getRow(sr2).height=22; sr2++;
+
+  sr2++;
+  ws2.mergeCells(sr2,1,sr2,4);
+  const n1=ws2.getCell(sr2,1);
+  n1.value='  Note: Slab rates above apply only to regular income. STCG (₹'+stcg.toLocaleString('en-IN')+') is taxed @20% flat. LTCG taxable (₹'+ltcg_taxable.toLocaleString('en-IN')+') is taxed @12.5% flat.';
+  n1.fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFFFFBEB'}};
+  n1.font={name:'Arial',size:8.5,color:{argb:'FF92400E'},italic:true};
+  n1.alignment={horizontal:'left',vertical:'middle',wrapText:true};
+  n1.border=brd('FFFDE68A');
+  ws2.getRow(sr2).height=32;
+
+
+  // ════════ DOWNLOAD ════════
+  const buffer = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buffer], { type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'Tax_Computation_FY2025_26.xlsx'; a.click();
+  URL.revokeObjectURL(url);
+
+  btn.textContent = orig;
+  btn.disabled = false;
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+</body>
+</html>
